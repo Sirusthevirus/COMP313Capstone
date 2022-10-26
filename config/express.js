@@ -61,7 +61,6 @@ module.exports = function () {
 
     require('../app/routes/students.server.routes.js')(app);
 
-
     //The express.static() middleware takes one argument 
     //to determine the location of the static folder
     //Configure static file serving

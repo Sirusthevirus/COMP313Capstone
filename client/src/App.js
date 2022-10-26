@@ -9,7 +9,7 @@ import Nav from 'react-bootstrap/Nav';
 import './App.css';
 //
 import Home from './components/Home';
-
+import Quote from './components/Quote'
 //
 
 
@@ -30,7 +30,7 @@ function App() {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
             <Nav.Link href="/home">Home</Nav.Link>
-            <Nav.Link href="/quote">Quote</Nav.Link>
+            <Nav.Link href="/quote">Generate Quote</Nav.Link>
      
 
           </Nav>
@@ -39,6 +39,7 @@ function App() {
     
       <div>          
           <Route render ={()=> < Home />} path="/home" />
+          <Route render ={()=> < Quote />} path="/quote" />
       </div>
 
     </Router>
