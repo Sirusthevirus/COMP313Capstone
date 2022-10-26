@@ -1,20 +1,55 @@
 const mongoose = require('mongoose');
-const saltRounds = 10;
 
-const Schema = mongoose.Schema;
-
-var QuoteSchema = new Schema({
-    QuoteCode:{
+let QuoteSchema = mongoose.Schema({
+    materials: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'materials'
+    }],
+    dryAndWet: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'dryAndWet'
+    }],
+    mechanical: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'mechanical'
+    }],
+    standard: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'standard'
+    }],
+    additional: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'additional'
+    }],
+    assembly: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'assembly'
+    }],
+    exchangeRate: {
+        type: Number
+    },
+    freight: {
+        type: Number
+    },
+    numberOfLayers: {
+        type: Number,
+        default: 1
+    },
+    customer: {
+        type: String
+    },
+    partNumber: {
+        type: Number
+    },
+    revision: {
+        type: Number
+    },
+    panelSize: {
         type: String,
-        unique: true
+        enum: ["12x18", "18x24"]
     }
+}, {
+    collection: "quotes"
 });
 
-// Configure the 'QuoteSchema' to use getters and virtuals when transforming to JSON
-EnrollmentSchema.set('toJSON', {
-	getters: true,
-	virtuals: true
-});
-
-// Create the 'Quote' model out of the 'QuoteSchema'
-mongoose.model('Quote', QuoteSchema);
+module.exports.quotes = mongoose.model('quote', QuoteSchema);
