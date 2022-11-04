@@ -1,4 +1,4 @@
-﻿var students = require('../../app/controllers/students.server.controller');
+﻿/*var students = require('../../app/controllers/students.server.controller');
 var express = require('express');
 var router = express.Router();
 
@@ -21,4 +21,4 @@ module.exports = function (app) {
 
     //path to a protected page
 	app.get('/welcome',students.welcome); 
-};  
+};  */

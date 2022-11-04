@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-
+const saltRounds = 10;
 const Schema = mongoose.Schema;
 
 var MaterialSchema = new Schema({
@@ -8,10 +8,13 @@ var MaterialSchema = new Schema({
         type: String,
         enum: ["Laminate Material","Cover Coat", "Stiffener", "3M Tapes"]
     },
+    materialType:String,
     supplier: String,
     material: String,
-    thickness: String,
-    numberOfUse: Number
+    code: String,
+    numberOfUse: Number,
+    price: Number
+
 });
 
 //configure the 'MaterialSchema' to use getter and and virtuals when transforming to JSON

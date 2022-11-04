@@ -59,7 +59,7 @@ module.exports = function () {
     // Load the routing files
 
 
-    require('../app/routes/students.server.routes.js')(app);
+    //require('../app/routes/students.server.routes.js')(app);
     require('../app/routes/materials.server.routes.js')(app);
 
     //The express.static() middleware takes one argument 

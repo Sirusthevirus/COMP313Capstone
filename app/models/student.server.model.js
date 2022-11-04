@@ -1,4 +1,5 @@
-﻿const mongoose = require('mongoose');
+﻿/*
+const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
@@ -64,3 +65,4 @@ StudentSchema.set('toJSON', {
 // Create the 'Student' model out of the 'StudentSchema'
 mongoose.model('Student', StudentSchema);
 
+*/

@@ -1,4 +1,4 @@
-﻿const Student = require('mongoose').model('Student');
+﻿/*const Student = require('mongoose').model('Student');
 
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
@@ -223,4 +223,4 @@ exports.requiredLogin = function(req, res, next) {
         return res.status(400).end()
     }
     next();
-};
+};*/
