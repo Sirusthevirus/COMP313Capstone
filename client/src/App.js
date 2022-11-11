@@ -10,6 +10,7 @@ import './App.css';
 //
 import Home from './components/Home';
 import Quote from './components/Quote'
+import Assembly from './components/Assembly'
 //
 
 
@@ -31,8 +32,7 @@ function App() {
           <Nav className="mr-auto">
             <Nav.Link href="/home">Home</Nav.Link>
             <Nav.Link href="/quote">Generate Quote</Nav.Link>
-     
-
+            <Nav.Link href="/Assembly">Generate Assembly</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
@@ -40,6 +40,7 @@ function App() {
       <div>          
           <Route render ={()=> < Home />} path="/home" />
           <Route render ={()=> < Quote />} path="/quote" />
+          <Route render ={()=> < Assembly />} path="/assembly" />
       </div>
 
     </Router>
