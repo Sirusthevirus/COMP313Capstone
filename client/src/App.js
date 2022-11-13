@@ -22,6 +22,7 @@ import Login from './components/Login'
 //
 
 import './App.css';
+import Summary from './components/Summary';
 
 function App() {
 
@@ -34,6 +35,7 @@ function App() {
             <Nav.Link href="/home">Home</Nav.Link>
             <Nav.Link href="/quote">Generate Quote</Nav.Link>
             <Nav.Link href="/assembly">Generate Assembly</Nav.Link>
+            <Nav.Link href="/summary">Summary</Nav.Link>
             <Nav.Link href="/login">Login</Nav.Link>
           </Nav>
         </Navbar.Collapse>
@@ -44,6 +46,7 @@ function App() {
           <Route render ={()=> < Quote />} path="/quote" />
           <Route render ={()=> < Assembly />} path="/assembly" />
           <Route render ={()=> <Login/>} path="/login" />
+          <Route render ={()=> <Summary/>} path="/summary" />
       </div>
 
     </Router>
