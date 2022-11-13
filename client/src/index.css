@@ -56,3 +56,9 @@ h1 {
   margin-left: 883px;
   margin-top: 900px;
 }
+
+/*lgin form*/
+.loginForm{
+  margin: auto;
+  width:300px;
+}
