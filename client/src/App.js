@@ -11,6 +11,7 @@ import './App.css';
 import Home from './components/Home';
 import Quote from './components/Quote'
 import Assembly from './components/Assembly'
+import Login from './components/Login'
 //
 
 
@@ -32,7 +33,8 @@ function App() {
           <Nav className="mr-auto">
             <Nav.Link href="/home">Home</Nav.Link>
             <Nav.Link href="/quote">Generate Quote</Nav.Link>
-            <Nav.Link href="/Assembly">Generate Assembly</Nav.Link>
+            <Nav.Link href="/assembly">Generate Assembly</Nav.Link>
+            <Nav.Link href="/login">Login</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
@@ -41,6 +43,7 @@ function App() {
           <Route render ={()=> < Home />} path="/home" />
           <Route render ={()=> < Quote />} path="/quote" />
           <Route render ={()=> < Assembly />} path="/assembly" />
+          <Route render ={()=> <Login/>} path="/login" />
       </div>
 
     </Router>
