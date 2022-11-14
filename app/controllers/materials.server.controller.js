@@ -49,3 +49,7 @@ exports.update = function (req, res) {
     });
 
 };
+
+//delete material
+
+
