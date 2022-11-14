@@ -14,26 +14,12 @@ function getErrorMessage(err) {
 //
 
 exports.create = function (req, res) {
-    const quote = req.quote;
-    quote._id = req.quote._id;
-    quote.materials = req.quote.materials;
-    quote.dryAndWet = req.quote.dryAndWet;
-    quote.mechanical = req.quote.mechanical;
-    quote.standard = req.quote.standard;
-    quote.additional = req.quote.additional;
-    quote.assembly = req.quote.assembly;
-    quote.exchangeRate = req.quote.exchangeRate;
-    quote.freight = req.quote.freight;
-    quote.numberofLayers = req.quote.numberofLayers;
-    quote.customer = req.quote.customer;
-    quote.partNumber = req.quote.partNumber;
-    quote.revision = req.quote.revision;
-    quote.panelSize = req.quote.panelSize;
+    var quote = new Quote (req.body);
 
     //article.creator = req.bodwe nbey.username;
     console.log(req.body)
     //
-    course.save((err) => {
+    quote.save((err) => {
         if (err) {
             console.log('error', getErrorMessage(err))
 
@@ -59,6 +45,9 @@ exports.allQuotes = function (req, res, next) {
         }
     });
 };
+
+//find individual quote
+
 
 //edit quote's price
 
@@ -87,7 +76,6 @@ exports.update = function (req, res) {
             res.status(200).json(quote);
         }
     });
-
 };
 
 exports.delete = function(req, res){
