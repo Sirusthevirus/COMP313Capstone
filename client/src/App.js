@@ -12,6 +12,8 @@ import Home from './components/Home';
 import Quote from './components/Quote'
 import Assembly from './components/Assembly'
 import Login from './components/Login'
+import Manufacturing from './components/Manufacturing';
+import Processes from './components/Processes';
 //
 
 
@@ -32,21 +34,25 @@ function App() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
+          <Nav.Link href="/login">Login</Nav.Link>
             <Nav.Link href="/home">Home</Nav.Link>
             <Nav.Link href="/quote">Generate Quote</Nav.Link>
-            <Nav.Link href="/assembly">Generate Assembly</Nav.Link>
-            <Nav.Link href="/summary">Summary</Nav.Link>
-            <Nav.Link href="/login">Login</Nav.Link>
+            <Nav.Link href="/assembly">Generate Assembly</Nav.Link>          
+            <Nav.Link href="/manufacturing">Manufacturing</Nav.Link>
+             <Nav.Link href="/processes">Processes</Nav.Link>
+             <Nav.Link href="/summary">Summary</Nav.Link>  
           </Nav>
         </Navbar.Collapse>
       </Navbar>
     
-      <div>          
+      <div> 
+          <Route render ={()=> <Login/>} path="/login" />         
           <Route render ={()=> < Home />} path="/home" />
           <Route render ={()=> < Quote />} path="/quote" />
           <Route render ={()=> < Assembly />} path="/assembly" />
-          <Route render ={()=> <Login/>} path="/login" />
-          <Route render ={()=> <Summary/>} path="/summary" />
+          <Route render={()=> <Manufacturing />} path="/manufacturing" />
+           <Route render={()=> <Processes />} path="/processes" />
+           <Route render ={()=> <Summary/>} path="/summary" />
       </div>
 
     </Router>
