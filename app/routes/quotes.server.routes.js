@@ -1,4 +1,4 @@
-var quote = require('../../app/controllers/quotes.server.controller');
+var quotes = require('../../app/controllers/quotes.server.controller');
 var express = require('express');
 var router = express.Router();
 
