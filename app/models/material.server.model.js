@@ -8,7 +8,6 @@ var MaterialSchema = new Schema({
         type: String,
         enum: ["Laminate Material","Cover Coat", "Stiffener", "3M Tapes"]
     },
-    materialType:String,
     supplier: String,
     material: String,
     code: String,
