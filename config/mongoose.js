@@ -13,7 +13,7 @@ module.exports = function () {
     (err)=> console.error(err)
 );
 
-    
+    require('../app/models/additional.server.model');
     require('../app/models/material.server.model');
     require('../app/models/dryAndWet.server.model');
     require('../app/models/quote.server.model');
