@@ -6,7 +6,7 @@ import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Jumbotron from 'react-bootstrap/Jumbotron';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { withRouter } from 'react-router-dom';
+// import { withRouter } from 'react-router-dom';
 import '../quote.css'
 
 
@@ -956,4 +956,4 @@ function Processes(props)
 }
     
 
-export default withRouter(Processes);
+export default Processes;

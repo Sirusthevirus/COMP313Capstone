@@ -1,34 +1,30 @@
-import React from 'react';
-import {
-  BrowserRouter as Router,
-  Route
-} from "react-router-dom";
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 //
-import Navbar from 'react-bootstrap/Navbar';
-import Nav from 'react-bootstrap/Nav';
-import NavDropdown from 'react-bootstrap/NavDropdown';
-import './App.css';
+import Navbar from "react-bootstrap/Navbar";
+import Nav from "react-bootstrap/Nav";
+import NavDropdown from "react-bootstrap/NavDropdown";
+import "./App.css";
 //
-import Home from './components/Home';
-import Quote from './components/Quote'
-import Assembly from './components/Assembly'
-import Login from './samplePages/Login'
-import Manufacturing from './components/Manufacturing';
-import Processes from './components/Processes';
+import Home from "./components/Home";
+import Quote from "./components/Quote";
+import Assembly from "./components/Assembly";
+import Login from "./samplePages/Login";
+import Manufacturing from "./components/Manufacturing";
+import Processes from "./components/Processes";
+import Materials from "./CRUDmaterials/Materials";
+import ListMaterial from "./CRUDmaterials/Material/ListMaterial";
+import CreateMaterial from './CRUDmaterials/Material/CreateMaterial';
 //
-
-
 
 //
 
-
 //
 
-import './App.css';
-import Summary from './components/Summary';
+import "./App.css";
+import Summary from "./components/Summary";
 
 function App() {
-
   return (
     <Router>
       <Navbar bg="light" expand="lg">
@@ -41,27 +37,40 @@ function App() {
             <Nav.Link href="/manufacturing">Manufacturing</Nav.Link>
              <Nav.Link href="/processes">Processes</Nav.Link>
              <Nav.Link href="/summary">Summary</Nav.Link>   */}
-             <Nav.Link href="/quotes">Quotes</Nav.Link>
-             <NavDropdown title="Items" id="basic-nav-dropdown">
-             <NavDropdown.Item href="#">Mateirals</NavDropdown.Item>
-             </NavDropdown>
-             <NavDropdown title="Sample pages" id="basic-nav-dropdown">
-             <NavDropdown.Item href="/login">Login</NavDropdown.Item>
-             </NavDropdown>
+            <Nav.Link href="/quotes">Quotes</Nav.Link>
+            <NavDropdown title="Items" id="basic-nav-dropdown">
+              <NavDropdown.Item href="materials">Mateirals</NavDropdown.Item>
+            </NavDropdown>
+            <NavDropdown title="Sample pages" id="basic-nav-dropdown">
+              <NavDropdown.Item href="/login">Login</NavDropdown.Item>
+            </NavDropdown>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
-    
-      <div> 
-          <Route render ={()=> <Login/>} path="/login" />         
-          <Route render ={()=> < Home />} path="/home" />
-          <Route render ={()=> < Quote />} path="/quote" />
-          <Route render ={()=> < Assembly />} path="/assembly" />
-          <Route render={()=> <Manufacturing />} path="/manufacturing" />
-           <Route render={()=> <Processes />} path="/processes" />
-           <Route render ={()=> <Summary/>} path="/summary" />
-      </div>
 
+      <div>
+        <Routes>
+          {/* <Route render={() => <Login />} path="/login" />
+          <Route render={() => <Home />} path="/home" />
+          <Route render={() => <Quote />} path="/quote" />
+          <Route render={() => <Assembly />} path="/assembly" />
+          <Route render={() => <Manufacturing />} path="/manufacturing" />
+          <Route render={() => <Processes />} path="/processes" />
+          <Route render={() => <Summary />} path="/summary" />
+          <Route render={() => <Materials />} path="/materials" />
+          <Route render={() => <ListMaterial />} path="/listMaterial" /> */}
+          <Route path="login" element={<Login />} />
+          <Route path="home" element={<Home />} />
+          <Route path="quote" element={<Quote />} />
+          <Route path="assembly" element={<Assembly />} />
+          <Route path="manufacturing" element={<Manufacturing />} />
+          <Route path="processes" element={<Processes />} />
+          <Route path="summary" element={<Summary />} />
+          <Route path="materials" element={<Materials />} />
+          <Route path="listMaterial" element={<ListMaterial />} />
+          <Route path="createMaterial" element={<CreateMaterial />} />
+        </Routes>
+      </div>
     </Router>
   );
 }
