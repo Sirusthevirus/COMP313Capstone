@@ -59,6 +59,7 @@ module.exports = function () {
     // Load the routing files
 
     require('../app/routes/additional.server.routes.js')(app);
+    require('../app/routes/assembly.server.routes.js')(app);
     require('../app/routes/materials.server.routes.js')(app);
     require('../app/routes/dryAndWet.server.routes.js')(app);
     require('../app/routes/quotes.server.routes.js')(app);
