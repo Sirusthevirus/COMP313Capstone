@@ -11,5 +11,8 @@ module.exports = function (app) {
         .put(materials.update)
         .delete(materials.delete)
     
+    app.param('m', materials.materialByMaterial)
+    app.route('/specificMaterial/:m')
+        .get(materials.read)
    
 };

@@ -29,9 +29,18 @@ exports.materialByID = function (req, res, next, id) {
     });
 };
 //get material by material field
-exports.materialByMaterial = function(req, res, next, student){
-
-}
+exports.materialByMaterial = function(req, res, next, material){
+    Material.find({material: material},  function (err, material) {
+        if (err) {
+            return next(err);
+        } else {
+            res.json(material);
+        }
+    });
+};
+exports.read = function(req,res, next){
+    res.json(req.material);
+};
 
 //get all of the materials
 exports.allMaterials = function (req, res, next) {
