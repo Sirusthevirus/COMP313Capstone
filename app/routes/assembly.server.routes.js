@@ -3,15 +3,9 @@ var express = require('express');
 var router = express.Router();
 
 module.exports = function (app) {
-    app.post('/', assembly.create);
-
-    app.get("/assembly",assembly.requiredLogin,assembly.allUserList); //go to http://localhost:3000/students to see the list
-
-    app.route('/assembly/:assemblyId')
-    .get(assembly.read)
-
-    app.param('assemblyId', assembly.quoteById);
-
-    //path to a protected page
-	app.get('/welcome',assembly.welcome); 
+    app.post('/addAssembly', assembly.create);
+    app.get("/Assemblies",assembly.allAssembly); 
+    app.param('aId', assembly.assemblyByID);
+    app.route('/AssemblyDelete/:aId')
+        .delete(assembly.delete);
 };  

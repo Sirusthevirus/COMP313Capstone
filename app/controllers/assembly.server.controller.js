@@ -1,48 +1,52 @@
-const Assembly = require('mongoose').model('Assembly');
+const Assembly = require('mongoose').model('assembly');
 
 // Add a assembly
-function getErrorMessage(err) {
-    if (err.errors) {
-        for (let errName in err.errors) {
-            if (err.errors[errName].message) return err.errors[errName].
-                message;
-        }
-    } else {
-        return 'Unknown server error';
-    }
-};
-//
-
-exports.create = function (req, res) {
-    const assembly = new Assembly();
-    //assembly.assemblyName = req.body.assemblyName;
-
-
-    //article.creator = req.bodwe nbey.username;
-    console.log(req.body)
-    //
-    assembly.save((err) => {
-        if (err) {
-            console.log('error', getErrorMessage(err))
-
-            return res.status(400).send({
-                message: getErrorMessage(err)
-            });
+exports.create = function (req, res, next){
+    var assembly = new Assembly (req.body);
+    assembly.save(function (err){
+        if(err){
+            return next(err);
         } else {
-            res.status(200).json({
-                status: 1,
-                assembly
-            });
+            console.log(req.body)
+            res.json(assembly);
+        }
+    });
+};
+//Get all assembly
+exports.allAssembly = function (req, res, next) {
+    Assembly.find({}, function (err, asseblies) {
+        if(err){
+            return next(err);
+        } else {
+            res.json(asseblies);
         }
     });
 };
 
-// Add a assembly
-
-//Get a assembly
-
-//Get List of assembly
-
-//Edit a assembly
+//find by id
+exports.assemblyByID = function (req, res, next, id) {
+    Assembly.findById(id).populate().exec((err, assembly) =>
+    {
+        if (err) return next(err);
+        if(!assembly) return next(new Error('Failed to load material '
+        + id));
+        req.assembly = assembly;
+        next();
+        res.status(200).json(assembly);
+    });
+};
 
 //Delete a assembly
+//There is an error please let me know if you fix this
+exports.delete = function (req,res) {
+    const assembly =  req.assembly;
+    assembly.remove((err) => {
+        if (err) {
+            return res.status(400).send({
+                message: getErrorMessage(err)
+            });
+        } else {
+            res.status(200);
+        }
+    });
+}

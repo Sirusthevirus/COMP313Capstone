@@ -58,9 +58,10 @@ module.exports = function () {
     //bootstrap the app using the controller and routing modules
     // Load the routing files
 
-
-    //require('../app/routes/students.server.routes.js')(app);
+    require('../app/routes/additional.server.routes.js')(app);
+    require('../app/routes/assembly.server.routes.js')(app);
     require('../app/routes/materials.server.routes.js')(app);
+    require('../app/routes/dryAndWet.server.routes.js')(app);
     require('../app/routes/quotes.server.routes.js')(app);
     require('../app/routes/standard.server.routes.js')(app);
 
