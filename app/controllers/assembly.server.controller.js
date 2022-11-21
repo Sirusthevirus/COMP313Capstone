@@ -37,6 +37,7 @@ exports.assemblyByID = function (req, res, next, id) {
 };
 
 //Delete a assembly
+//There is an error please let me know if you fix this
 exports.delete = function (req,res) {
     const assembly =  req.assembly;
     assembly.remove((err) => {
