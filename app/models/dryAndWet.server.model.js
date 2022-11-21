@@ -4,6 +4,9 @@ let dryAndWet = mongoose.Schema({
     name: {
         type: String
     },
+    numberOfUse: {
+        type: Number
+    },
     price: {
         type: Number
     }
@@ -11,4 +14,4 @@ let dryAndWet = mongoose.Schema({
     collection: "dryAndWet"
 });
 
-module.exports.dryAndWet = mongoose.model('dryAndWet', dryAndWet);
+module.exports.dryAndWet = mongoose.model('DryAndWet', dryAndWet);

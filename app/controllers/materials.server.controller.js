@@ -44,11 +44,11 @@ exports.read = function(req,res, next){
 
 //get all of the materials
 exports.allMaterials = function (req, res, next) {
-    Material.find({}, function (err, courses) {
+    Material.find({}, function (err, materials) {
         if (err) {
             return next(err);
         } else {
-            res.json(courses);
+            res.json(materials);
         }
     });
 };
