@@ -66,6 +66,7 @@ export default function CreateMaterial() {
               value={material.materialType}
               onChange={onChange}
             >
+              <option></option>
               <option value="Laminate Material">Laminate Material</option>
               <option value="Cover Coat">Cover Coat</option>
               <option value="Stiffener">Stiffener</option>

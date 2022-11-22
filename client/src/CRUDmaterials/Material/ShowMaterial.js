@@ -11,7 +11,7 @@ export default function ShowMaterial() {
   const [data, setData] = useState({});
   const [showLoading, setShowLoading] = useState(true);
   const apiUrl = "http://localhost:3000/byId/" + mId;
-  const apiUrlDelete = "http://localhost:3000/materials/ " + mId;
+  const apiUrlDelete = "http://localhost:3000/materials/" + mId;
   useEffect(() => {
     setShowLoading(false);
     const fetchData = async () => {
