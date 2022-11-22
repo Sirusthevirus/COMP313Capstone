@@ -62,3 +62,9 @@ h1 {
   margin: auto;
   width:300px;
 }
+
+/*button style*/
+.buttonStyle{
+  text-align: right;
+  margin: auto 50px;
+}

@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import ListGroup from "react-bootstrap/ListGroup";
 import Spinner from "react-bootstrap/Spinner";
 import { useNavigate } from "react-router-dom";
-import CreateMaterial from "./CreateMaterial";
+import Table from "react-bootstrap/Table";
+import Button from "react-bootstrap/Button";
+import ListGroup from "react-bootstrap/ListGroup";
+import Jumbotron from "react-bootstrap/Jumbotron";
+import { Link } from "react-router-dom";
 
 export default function ListMaterial() {
   let navigate = useNavigate();
@@ -30,40 +33,102 @@ export default function ListMaterial() {
     fetchData();
   }, []);
 
+  const editMaterial = (id) => {
+    navigate("/editMaterial/" + id);
+  };
 
-  const showDetail = (id) => {
-    navigate("/showMaterial/" + id);
+  const deleteMaterial = (item) => {
+    setShowLoading(true);
+    const mId = item._id;
+
+    const material = {
+      materialType: item.materialType,
+      supplier: item.supplier,
+      material: item.material,
+      code: item.code,
+      numberOfUse: item.numberOfUse,
+      price: item.price,
+    };
+
+    console.log("material to delete:", material);
+    const apiUrlDelete = "http://localhost:3000/materials/" + mId;
+    axios
+      .delete(apiUrlDelete, material)
+      .then((results) => {
+        setShowLoading(false);
+        console.log("deleted material:", results.data);
+        fetchData();
+      })
+      .catch((error) => setShowLoading(false));
   };
 
   return (
     <div>
-      {data.length !== 0 ? (
-        <div>
-          {showLoading && (
-            <Spinner animation="border" role="status">
-              <span className="sr-only">Loading...</span>
-            </Spinner>
-          )}
-          <h2>See all your Materials here:</h2>
-          <ListGroup>
-            {data.map((item, idx) => (
-              <ListGroup.Item
-                key={idx}
-                action
-                onClick={() => {
-                  showDetail(item._id);
-                }}
-              >
-                {item.materialType}
-                <br/>
-                {item.material}
-              </ListGroup.Item>
-            ))}
-          </ListGroup>
-        </div>
-      ) : (
-        <CreateMaterial />
+        <Jumbotron>
+      {showLoading && (
+        <Spinner animation="border" role="status">
+          <span className="sr-only">Loading...</span>
+        </Spinner>
       )}
+      <h2>See all your Materials here:</h2>
+      <ListGroup>
+        <Table>
+          <thead>
+            <tr>
+              <th>Material Type</th>
+              <th>Supplier</th>
+              <th>Material Name</th>
+              <th>Code</th>
+              <th>Number of use</th>
+              <th>Price</th>
+              <th>Edit Action</th>
+              <th>Delete Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {data.map((item, idx) => (
+              <tr key={idx}>
+                <td key={idx}>{item.materialType} </td>
+                <td key={idx}> {item.supplier} </td>
+                <td key={idx}>{item.material} </td>
+                <td key={idx}>{item.code} </td>
+                <td key={idx}>{item.numberOfUse}</td>
+                <td key={idx}>{item.price} </td>
+                <td>
+                  <Button
+                    type="button"
+                    variant="primary"
+                    onClick={() => {
+                      editMaterial(item._id);
+                    }}
+                  >
+                    Edit
+                  </Button>
+                </td>
+                <td>
+                  <Button
+                    type="button"
+                    variant="warning"
+                    onClick={() => {
+                      deleteMaterial(item);
+                    }}
+                  >
+                    Delete
+                  </Button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
+      </ListGroup>
+      <div className="buttonStyle">
+        <Link to="/createMaterial">
+          <Button type="button" variant="secondary">
+            Create A New Material
+          </Button>
+        </Link>
+      </div>
+      </Jumbotron>
     </div>
   );
 }

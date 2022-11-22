@@ -13,10 +13,12 @@ import Login from "./samplePages/Login";
 import Manufacturing from "./components/Manufacturing";
 import Processes from "./components/Processes";
 import Materials from "./CRUDmaterials/Materials";
+
+//Laminate & Cover Coat & Stiffener & 3M Tapes
 import ListMaterial from "./CRUDmaterials/Material/ListMaterial";
 import CreateMaterial from './CRUDmaterials/Material/CreateMaterial';
 import EditMaterial from './CRUDmaterials/Material/EditMaterial'
-import ShowMaterial from './CRUDmaterials/Material/ShowMaterial'
+
 //
 
 //
@@ -71,8 +73,7 @@ function App() {
           <Route path="materials" element={<Materials />} />
           <Route path="listMaterial" element={<ListMaterial />} />
           <Route path="createMaterial" element={<CreateMaterial />} />
-          <Route path="editMaterial" element={<EditMaterial />} />
-          <Route path="showMaterial/:mId" element={<ShowMaterial />} />
+          <Route path="editMaterial/:mId" element={<EditMaterial />} />
         </Routes>
       </div>
     </Router>
