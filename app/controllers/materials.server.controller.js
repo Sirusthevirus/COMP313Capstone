@@ -42,6 +42,10 @@ exports.read = function(req,res, next){
     res.json(req.material);
 };
 
+exports.byId = function (req, res, next){
+    res.status(200);
+}
+
 //get all of the materials
 exports.allMaterials = function (req, res, next) {
     Material.find({}, function (err, materials) {

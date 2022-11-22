@@ -15,6 +15,8 @@ import Processes from "./components/Processes";
 import Materials from "./CRUDmaterials/Materials";
 import ListMaterial from "./CRUDmaterials/Material/ListMaterial";
 import CreateMaterial from './CRUDmaterials/Material/CreateMaterial';
+import EditMaterial from './CRUDmaterials/Material/EditMaterial'
+import ShowMaterial from './CRUDmaterials/Material/ShowMaterial'
 //
 
 //
@@ -69,6 +71,8 @@ function App() {
           <Route path="materials" element={<Materials />} />
           <Route path="listMaterial" element={<ListMaterial />} />
           <Route path="createMaterial" element={<CreateMaterial />} />
+          <Route path="editMaterial" element={<EditMaterial />} />
+          <Route path="showMaterial/:mId" element={<ShowMaterial />} />
         </Routes>
       </div>
     </Router>

@@ -14,5 +14,6 @@ module.exports = function (app) {
     app.param('m', materials.materialByMaterial)
     app.route('/specificMaterial/:m')
         .get(materials.read)
-   
+    app.route("/byId/:mId")
+        .get(materials.byId)
 };
