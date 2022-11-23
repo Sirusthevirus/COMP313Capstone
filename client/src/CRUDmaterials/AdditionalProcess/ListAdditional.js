@@ -72,7 +72,7 @@ export default function ListAdditional() {
           <Table>
             <thead>
               <tr>
-                <th>Material name</th>
+                <th>Material Name</th>
                 <th>Price</th>
                 <th>Edit Action</th>
                 <th>Delete Action</th>

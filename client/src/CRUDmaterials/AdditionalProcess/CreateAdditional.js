@@ -48,10 +48,10 @@ export default function CreateAdditional() {
         )}
         <Form onSubmit={saveAdditional}>
           <Form.Group className="mb-3">
-            <Form.Label>Additional process material name</Form.Label>
+            <Form.Label>Additional Process Material Name</Form.Label>
             <Form.Control
               type="text"
-              placeholder="Material name"
+              placeholder="Material Name"
               name="name"
               id="name"
               value={additional.name}

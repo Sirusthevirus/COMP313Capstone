@@ -85,10 +85,10 @@ export default function CreateMaterial() {
             />
           </Form.Group>
           <Form.Group className="mb-3">
-            <Form.Label>Material name</Form.Label>
+            <Form.Label>Material Name</Form.Label>
             <Form.Control
               type="text"
-              placeholder="Material name"
+              placeholder="Material Name"
               name="material"
               id="material"
               value={material.material}
@@ -107,10 +107,10 @@ export default function CreateMaterial() {
             />
           </Form.Group>
           <Form.Group className="mb-3">
-            <Form.Label>Number of use</Form.Label>
+            <Form.Label>Number Of Use</Form.Label>
             <Form.Control
               type="number"
-              placeholder="Number of use"
+              placeholder="Number Of Use"
               name="numberOfUse"
               id="numberOfUse"
               value={material.numberOfUse}

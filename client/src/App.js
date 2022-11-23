@@ -73,6 +73,9 @@ function App() {
           <Route path="listAdditional" element={<ListAdditional />} />
           <Route path="createAdditional" element={<CreateAdditional />} />
           <Route path="editAdditional/:aId" element={<EditAdditional />} />
+          {/* route for dry film & wet process */}
+          {/* route for mechanical process */}
+          {/* route for standard process */}
         </Routes>
       </div>
     </Router>

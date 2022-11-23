@@ -97,10 +97,10 @@ export default function EditMaterial() {
             />
           </Form.Group>
           <Form.Group className="mb-3">
-            <Form.Label>Material</Form.Label>
+            <Form.Label>Material Name</Form.Label>
             <Form.Control
               type="text"
-              placeholder="material"
+              placeholder="Material Name"
               name="material"
               id="material"
               value={material.material}
