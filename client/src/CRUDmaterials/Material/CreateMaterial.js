@@ -66,7 +66,7 @@ export default function CreateMaterial() {
               value={material.materialType}
               onChange={onChange}
             >
-              <option></option>
+              <option>Select . . .</option>
               <option value="Laminate Material">Laminate Material</option>
               <option value="Cover Coat">Cover Coat</option>
               <option value="Stiffener">Stiffener</option>
@@ -77,7 +77,7 @@ export default function CreateMaterial() {
             <Form.Label>Supplier</Form.Label>
             <Form.Control
               type="text"
-              placeholder="supplier"
+              placeholder="Supplier"
               name="supplier"
               id="supplier"
               value={material.supplier}
@@ -85,10 +85,10 @@ export default function CreateMaterial() {
             />
           </Form.Group>
           <Form.Group className="mb-3">
-            <Form.Label>Material</Form.Label>
+            <Form.Label>Material name</Form.Label>
             <Form.Control
               type="text"
-              placeholder="material"
+              placeholder="Material name"
               name="material"
               id="material"
               value={material.material}
@@ -99,7 +99,7 @@ export default function CreateMaterial() {
             <Form.Label>Code</Form.Label>
             <Form.Control
               type="text"
-              placeholder="code"
+              placeholder="Code"
               name="code"
               id="code"
               value={material.code}
@@ -107,10 +107,10 @@ export default function CreateMaterial() {
             />
           </Form.Group>
           <Form.Group className="mb-3">
-            <Form.Label>number Of Use</Form.Label>
+            <Form.Label>Number of use</Form.Label>
             <Form.Control
               type="number"
-              placeholder="numberOfUse"
+              placeholder="Number of use"
               name="numberOfUse"
               id="numberOfUse"
               value={material.numberOfUse}
@@ -121,7 +121,7 @@ export default function CreateMaterial() {
             <Form.Label>Price</Form.Label>
             <Form.Control
               type="number"
-              placeholder="price"
+              placeholder="Price"
               name="price"
               id="price"
               value={material.price}

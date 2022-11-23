@@ -72,8 +72,8 @@ export default function ListAdditional() {
           <Table>
             <thead>
               <tr>
-                <th>Additional process name</th>
-                <th>price</th>
+                <th>Material name</th>
+                <th>Price</th>
                 <th>Edit Action</th>
                 <th>Delete Action</th>
               </tr>

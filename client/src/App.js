@@ -44,7 +44,7 @@ function App() {
             <Nav.Link href="/manufacturing">Manufacturing</Nav.Link>
              <Nav.Link href="/processes">Processes</Nav.Link>
              <Nav.Link href="/summary">Summary</Nav.Link>   */}
-            <Nav.Link href="/quotes">Quotes</Nav.Link>
+            <Nav.Link href="/quote">Quotes</Nav.Link>
             <NavDropdown title="Items" id="basic-nav-dropdown">
               <NavDropdown.Item href="materials">Materials</NavDropdown.Item>
             </NavDropdown>

@@ -6,8 +6,6 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Jumbotron from "react-bootstrap/Jumbotron";
 
-
-
 export default function EditMaterial() {
   let navigate = useNavigate();
   let { mId } = useParams();
@@ -33,7 +31,6 @@ export default function EditMaterial() {
       console.log(result.data);
       setShowLoading(false);
     };
-
     fetchData();
   }, []);
 

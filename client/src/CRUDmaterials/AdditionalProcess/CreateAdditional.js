@@ -48,10 +48,10 @@ export default function CreateAdditional() {
         )}
         <Form onSubmit={saveAdditional}>
           <Form.Group className="mb-3">
-            <Form.Label>Additional Process name</Form.Label>
+            <Form.Label>Additional process material name</Form.Label>
             <Form.Control
               type="text"
-              placeholder="material name"
+              placeholder="Material name"
               name="name"
               id="name"
               value={additional.name}
@@ -62,7 +62,7 @@ export default function CreateAdditional() {
             <Form.Label>Price</Form.Label>
             <Form.Control
               type="number"
-              placeholder="price"
+              placeholder="Price"
               name="price"
               id="price"
               value={additional.price}
