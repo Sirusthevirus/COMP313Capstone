@@ -18,12 +18,15 @@ import Materials from "./CRUDmaterials/Materials";
 import ListMaterial from "./CRUDmaterials/Material/ListMaterial";
 import CreateMaterial from './CRUDmaterials/Material/CreateMaterial';
 import EditMaterial from './CRUDmaterials/Material/EditMaterial'
+//Additional Processes
+import ListAdditional from "./CRUDmaterials/AdditionalProcess/ListAdditional";
+import CreateAdditional from './CRUDmaterials/AdditionalProcess/CreateAdditional';
+import EditAdditional from './CRUDmaterials/AdditionalProcess/EditAdditional'
+//Dry Film & Wet Processes
 
-//
+//Mechanical Processes
 
-//
-
-//
+//Standard Processes
 
 import "./App.css";
 import Summary from "./components/Summary";
@@ -54,15 +57,6 @@ function App() {
 
       <div>
         <Routes>
-          {/* <Route render={() => <Login />} path="/login" />
-          <Route render={() => <Home />} path="/home" />
-          <Route render={() => <Quote />} path="/quote" />
-          <Route render={() => <Assembly />} path="/assembly" />
-          <Route render={() => <Manufacturing />} path="/manufacturing" />
-          <Route render={() => <Processes />} path="/processes" />
-          <Route render={() => <Summary />} path="/summary" />
-          <Route render={() => <Materials />} path="/materials" />
-          <Route render={() => <ListMaterial />} path="/listMaterial" /> */}
           <Route path="login" element={<Login />} />
           <Route path="home" element={<Home />} />
           <Route path="quote" element={<Quote />} />
@@ -71,9 +65,14 @@ function App() {
           <Route path="processes" element={<Processes />} />
           <Route path="summary" element={<Summary />} />
           <Route path="materials" element={<Materials />} />
+          {/* route for meterials */}
           <Route path="listMaterial" element={<ListMaterial />} />
           <Route path="createMaterial" element={<CreateMaterial />} />
           <Route path="editMaterial/:mId" element={<EditMaterial />} />
+          {/* route for additional process */}
+          <Route path="listAdditional" element={<ListAdditional />} />
+          <Route path="createAdditional" element={<CreateAdditional />} />
+          <Route path="editAdditional/:aId" element={<EditAdditional />} />
         </Routes>
       </div>
     </Router>

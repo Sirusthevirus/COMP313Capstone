@@ -4,8 +4,8 @@ var router = express.Router();
 
 module.exports = function(app) {
     app.post('/addAdditionals', additionals.create);
-    app.get('/Additionals', additionals.allAdditionals);
+    app.get('/additionals', additionals.allAdditionals);
     app.param('aId', additionals.additionalByID);
-    app.route('/AdditionalDelete/:aId')
+    app.route('/additionalDelete/:aId')
         .delete(additionals.delete);
 };
