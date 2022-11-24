@@ -29,8 +29,7 @@ exports.additionalByID = function (req, res, next, id) {
     Additional.findById(id).populate().exec((err, additional) =>
     {
         if (err) return next(err);
-        if(!additional) return next(new Error('Failed to load material '
-        + id));
+        if(!additional) return next(new Error('Failed to load material '+ id));
         req.additional = additional;
         next();
         res.status(200).json(additional);

@@ -28,8 +28,7 @@ exports.assemblyByID = function (req, res, next, id) {
     Assembly.findById(id).populate().exec((err, assembly) =>
     {
         if (err) return next(err);
-        if(!assembly) return next(new Error('Failed to load material '
-        + id));
+        if(!assembly) return next(new Error('Failed to load material '+ id));
         req.assembly = assembly;
         next();
         res.status(200).json(assembly);
@@ -37,7 +36,6 @@ exports.assemblyByID = function (req, res, next, id) {
 };
 
 //Delete a assembly
-//There is an error please let me know if you fix this
 exports.delete = function (req,res) {
     const assembly =  req.assembly;
     assembly.remove((err) => {

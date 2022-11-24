@@ -5,7 +5,7 @@ var router = express.Router();
 module.exports = function (app) {
     app.post('/addAssembly', assembly.create);
     app.get("/Assemblies",assembly.allAssembly); 
-    app.param('aId', assembly.assemblyByID);
-    app.route('/AssemblyDelete/:aId')
-        .delete(assembly.delete);
+    app.param('asId', assembly.assemblyByID);
+    app.route('/AssemblyDelete/:asId')
+      .delete(assembly.delete);
 };  
