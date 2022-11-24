@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import Spinner from "react-bootstrap/Spinner";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Jumbotron from "react-bootstrap/Jumbotron";
-
-import { useNavigate, useParams } from "react-router-dom";
 
 export default function EditMaterial() {
   let navigate = useNavigate();
@@ -32,7 +31,6 @@ export default function EditMaterial() {
       console.log(result.data);
       setShowLoading(false);
     };
-
     fetchData();
   }, []);
 
@@ -99,10 +97,10 @@ export default function EditMaterial() {
             />
           </Form.Group>
           <Form.Group className="mb-3">
-            <Form.Label>Material</Form.Label>
+            <Form.Label>Material Name</Form.Label>
             <Form.Control
               type="text"
-              placeholder="material"
+              placeholder="Material Name"
               name="material"
               id="material"
               value={material.material}

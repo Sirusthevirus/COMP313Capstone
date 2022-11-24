@@ -8,13 +8,13 @@ import Button from "react-bootstrap/Button";
 import ListGroup from "react-bootstrap/ListGroup";
 import Jumbotron from "react-bootstrap/Jumbotron";
 
-export default function ListMaterial() {
+export default function ListAdditional() {
   let navigate = useNavigate();
   const [data, setData] = useState([]);
   const [showLoading, setShowLoading] = useState(true);
   const [listError, setListError] = useState(false);
 
-  const apiUrl = "http://localhost:3000/materials";
+  const apiUrl = "http://localhost:3000/additionals";
   const fetchData = async () => {
     axios
       .get(apiUrl)
@@ -33,30 +33,27 @@ export default function ListMaterial() {
     fetchData();
   }, []);
 
-  const editMaterial = (id) => {
-    navigate("/editMaterial/" + id);
+  const editAdditional = (aId) => {
+    navigate("/editAdditional/" + aId);
   };
 
-  const deleteMaterial = (item) => {
+  const deleteAdditional = (item) => {
     setShowLoading(true);
-    const mId = item._id;
+    const aId = item._id;
 
-    const material = {
-      materialType: item.materialType,
-      supplier: item.supplier,
-      material: item.material,
-      code: item.code,
-      numberOfUse: item.numberOfUse,
+    const additional = {
+      name: item.name,
       price: item.price,
+   
     };
 
-    console.log("material to delete:", material);
-    const apiUrlDelete = "http://localhost:3000/materials/" + mId;
+    console.log("Additional Process to delete:", additional);
+    const apiUrlDelete = "http://localhost:3000/additionalDelete/" + aId;
     axios
-      .delete(apiUrlDelete, material)
+      .delete(apiUrlDelete, additional)
       .then((results) => {
         setShowLoading(false);
-        console.log("deleted material:", results.data);
+        console.log("deleted additional:", results.data);
         fetchData();
       })
       .catch((error) => setShowLoading(false));
@@ -70,16 +67,12 @@ export default function ListMaterial() {
             <span className="sr-only">Loading...</span>
           </Spinner>
         )}
-        <h2>See all your Materials here:</h2>
+        <h2>See all your Additional Processes here:</h2>
         <ListGroup>
           <Table>
             <thead>
               <tr>
-                <th>Material Type</th>
-                <th>Supplier</th>
                 <th>Material Name</th>
-                <th>Code</th>
-                <th>Number of use</th>
                 <th>Price</th>
                 <th>Edit Action</th>
                 <th>Delete Action</th>
@@ -88,18 +81,14 @@ export default function ListMaterial() {
             <tbody>
               {data.map((item, idx) => (
                 <tr key={idx}>
-                  <td>{item.materialType} </td>
-                  <td>{item.supplier} </td>
-                  <td>{item.material} </td>
-                  <td>{item.code} </td>
-                  <td>{item.numberOfUse}</td>
+                  <td>{item.name} </td>
                   <td>{item.price} </td>
                   <td>
                     <Button
                       type="button"
                       variant="primary"
                       onClick={() => {
-                        editMaterial(item._id);
+                        editAdditional(item._id);
                       }}
                     >
                       Edit
@@ -110,7 +99,7 @@ export default function ListMaterial() {
                       type="button"
                       variant="warning"
                       onClick={() => {
-                        deleteMaterial(item);
+                        deleteAdditional(item);
                       }}
                     >
                       Delete
@@ -122,13 +111,13 @@ export default function ListMaterial() {
           </Table>
         </ListGroup>
         <div className="buttonStyle">
-          <Link to="/createMaterial">
+          <Link to="/createAdditional">
             <Button type="button" variant="secondary">
-              Create A New Material
+              Create A New Additional Process
             </Button>
           </Link>
         </div>
       </Jumbotron>
     </div>
-  );
+  )
 }
