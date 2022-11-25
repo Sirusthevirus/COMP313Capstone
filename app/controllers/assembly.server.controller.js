@@ -35,6 +35,11 @@ exports.assemblyByID = function (req, res, next, id) {
     });
 };
 
+//get by id
+exports.byId = function (req, res, next){
+    res.status(200);
+}
+
 //Delete a assembly
 exports.delete = function (req,res) {
     const assembly =  req.assembly;

@@ -8,4 +8,6 @@ module.exports = function (app) {
     app.param('asId', assembly.assemblyByID);
     app.route('/AssemblyDelete/:asId')
       .delete(assembly.delete);
+    app.route('/AssemblyById/:asId')
+      .get(assembly.assemblyByID);
 };  

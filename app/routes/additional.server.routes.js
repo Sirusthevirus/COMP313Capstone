@@ -8,4 +8,7 @@ module.exports = function(app) {
     app.param('aId', additionals.additionalByID);
     app.route('/additionalDelete/:aId')
         .delete(additionals.delete);
+    
+    app.route('/additionalById/:aId')
+        .get(additionals.byId);
 };

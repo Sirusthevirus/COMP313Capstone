@@ -36,6 +36,11 @@ exports.dryAndWetByID = function (req, res, next, id) {
         res.status(200).json(dryAndWet);
     });
 };
+//get by id
+exports.byId = function (req, res, next){
+    res.status(200);
+}
+
 //delete dryandwet
 exports.delete = function (req,res) {
     const dryandwet =  req.dryAndWet;

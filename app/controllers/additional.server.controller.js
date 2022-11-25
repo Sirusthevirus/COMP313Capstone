@@ -35,6 +35,11 @@ exports.additionalByID = function (req, res, next, id) {
         res.status(200).json(additional);
     });
 };
+//get by id
+exports.byId = function (req, res, next){
+    res.status(200);
+}
+
 //delete Additional
 exports.delete = function (req,res) {
     const additional =  req.additional;

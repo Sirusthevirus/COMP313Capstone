@@ -7,5 +7,7 @@ module.exports = function(app) {
     app.get('/DryAndWets', dryAndWets.allDryAndWets);
     app.param('dId', dryAndWets.dryAndWetByID);
     app.route('/DryAndWetsDelete/:dId')
-        .delete(dryAndWets.delete)
+        .delete(dryAndWets.delete);
+    app.route('/DryAndWetsById/:dId')
+        .get(dryAndWets.byId);
 };
