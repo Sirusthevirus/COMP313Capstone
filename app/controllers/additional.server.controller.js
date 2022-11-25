@@ -7,7 +7,7 @@ exports.create = function (req, res, next){
         if(err){
             return next(err);
         } else {
-            console.log(req.body)
+            console.log(req.body);
             res.json(additional);
         }
     });
