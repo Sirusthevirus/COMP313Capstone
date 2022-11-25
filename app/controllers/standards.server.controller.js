@@ -53,3 +53,20 @@ exports.allStandards = function (req, res, next) {
 exports.delete = function(req, res){
     standard.deleteOne({_id: req._id});
 }
+
+exports.standardByID = function (req, res, next, id) {
+    standard.findById(id).populate().exec((err, standard) =>
+    {
+        if (err) return next(err);
+        if (!standard) return next(new Error('Failed to load standard process '
+            + id));
+        req.standard = standard;
+        console.log('in standardByID:', req.standard)
+        next();
+        res.status(200).json(standard);
+    });
+};
+
+exports.byId = function (req, res, next){
+    res.status(200);
+}

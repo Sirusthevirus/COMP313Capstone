@@ -81,3 +81,20 @@ exports.update = function (req, res) {
 exports.delete = function(req, res){
     Quote.deleteOne({_id: req._id});
 }
+
+exports.quoteByID = function (req, res, next, id) {
+    quote.findById(id).populate().exec((err, quote) =>
+    {
+        if (err) return next(err);
+        if (!quote) return next(new Error('Failed to load quote '
+            + id));
+        req.quote = quote;
+        console.log('in quoteByID:', req.quote)
+        next();
+        res.status(200).json(quote);
+    });
+};
+
+exports.byId = function (req, res, next){
+    res.status(200);
+}

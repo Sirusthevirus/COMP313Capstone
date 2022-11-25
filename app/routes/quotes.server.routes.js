@@ -7,4 +7,10 @@ module.exports = function (app) {
     app.get('/quotes', quotes.allQuotes);
     app.post('/deleteQuote/:_id').put(quotes.delete)
     app.route('/quotes/:_id').put(quotes.update)
+    app.param('qId', quotes.quoteByID);
+    app.route('/quotes/:qId')
+        .put(quotes.update)
+        .delete(quotes.delete)
+    app.route("/byId/:qId")
+        .get(quotes.byId)
 };  
