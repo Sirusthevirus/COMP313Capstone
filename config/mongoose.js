@@ -15,8 +15,9 @@ module.exports = function () {
 
     require('../app/models/additional.server.model');
     require('../app/models/assembly.server.model');
-    require('../app/models/material.server.model');
     require('../app/models/dryAndWet.server.model');
+    require('../app/models/material.server.model');
+    require('../app/models/mechanical.server.model');
     require('../app/models/quote.server.model');
     require('../app/models/standard.server.model');
     // Return the Mongoose connection instance
