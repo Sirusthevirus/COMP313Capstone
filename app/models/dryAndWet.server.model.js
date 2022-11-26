@@ -4,9 +4,6 @@ let dryAndWet = mongoose.Schema({
     name: {
         type: String
     },
-    numberOfUse: {
-        type: Number
-    },
     price: {
         type: Number
     }
