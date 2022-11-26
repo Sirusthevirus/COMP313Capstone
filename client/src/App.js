@@ -21,12 +21,18 @@ import EditMaterial from './CRUDmaterials/Material/EditMaterial'
 //Additional Processes
 import ListAdditional from "./CRUDmaterials/AdditionalProcess/ListAdditional";
 import CreateAdditional from './CRUDmaterials/AdditionalProcess/CreateAdditional';
-import EditAdditional from './CRUDmaterials/AdditionalProcess/EditAdditional'
 //Dry Film & Wet Processes
-
+import ListDryAndWet from "./CRUDmaterials/DryFilmAndWetProcess/ListDryAndWet";
+import CreateDryAndWet from "./CRUDmaterials/DryFilmAndWetProcess/CreateDryAndWet";
 //Mechanical Processes
-
+import ListMechanical from "./CRUDmaterials/MechanicalProcess/ListMechanical";
+import CreateMechanical from "./CRUDmaterials/MechanicalProcess/CreateMechanical";
 //Standard Processes
+import ListStandard from "./CRUDmaterials/StandardProcess/ListStandard";
+import CreateStandard from "./CRUDmaterials/StandardProcess/CreateStandard";
+//Assembly
+import ListAssembly from "./CRUDmaterials/Assembly/ListAssembly";
+import CreateAssembly from "./CRUDmaterials/Assembly/CreateAssembly";
 
 import "./App.css";
 import Summary from "./components/Summary";
@@ -72,10 +78,18 @@ function App() {
           {/* route for additional process */}
           <Route path="listAdditional" element={<ListAdditional />} />
           <Route path="createAdditional" element={<CreateAdditional />} />
-          <Route path="editAdditional/:aId" element={<EditAdditional />} />
           {/* route for dry film & wet process */}
+          <Route path="listDryAndWet" element={<ListDryAndWet />} />
+          <Route path="createDryAndWet" element={<CreateDryAndWet />} />
           {/* route for mechanical process */}
+          <Route path="listMechanical" element={<ListMechanical />} />
+          <Route path="createMechanical" element={<CreateMechanical />} />
           {/* route for standard process */}
+          <Route path="listStandard" element={<ListStandard />} />
+          <Route path="createStandard" element={<CreateStandard />} />
+          {/* route for assembly */}
+          <Route path="listAssembly" element={<ListAssembly />} />
+          <Route path="createAssembly" element={<CreateAssembly />} />
         </Routes>
       </div>
     </Router>

@@ -16,6 +16,34 @@ export default function Materials() {
         <Link to={`/listAdditional`}>
           <Button>Additional Processes</Button>
         </Link>
+
+        <br /><br />
+
+
+        <Link to={`/listDryAndWet`}>
+          <Button>Dry Film & Wet</Button>
+        </Link>
+
+        <br /><br />
+
+
+        <Link to={`/listMechanical`}>
+          <Button>Mechanical</Button>
+        </Link>
+
+        <br /><br />
+
+
+        <Link to={`/listStandard`}>
+          <Button>Standard Processes</Button>
+        </Link>
+
+        <br /><br />
+
+
+        <Link to={`/listAssembly`}>
+          <Button>Assembly</Button>
+        </Link>
       </Jumbotron>
     </div>
   );

@@ -7,12 +7,12 @@ import Button from "react-bootstrap/Button";
 import ListGroup from "react-bootstrap/ListGroup";
 import Jumbotron from "react-bootstrap/Jumbotron";
 
-export default function ListAdditional() {
+export default function ListAssembly() {
   const [data, setData] = useState([]);
   const [showLoading, setShowLoading] = useState(true);
   const [listError, setListError] = useState(false);
 
-  const apiUrl = "http://localhost:3000/additionals";
+  const apiUrl = "http://localhost:3000/Assemblies";
   const fetchData = async () => {
     axios
       .get(apiUrl)
@@ -31,27 +31,29 @@ export default function ListAdditional() {
     fetchData();
   }, []);
 
-  const deleteAdditional = (item) => {
+  const deleteAssembly = (item) => {
     setShowLoading(true);
-    const aId = item._id;
+    const asId = item._id;
 
-    const additional = {
-      name: item.name,
-      price: item.price,
+    const assembly = {
+      type: item.type,
+      cost: item.cost,
+      margin: item.margin,
+      minutes: item.minutes,
+      IORatio: item.IORatio,
     };
 
-    console.log("Additional Process to delete:", additional);
-    const apiUrlDelete = "http://localhost:3000/additionalDelete/" + aId;
+    console.log("Assembly to delete:", assembly);
+    const apiUrlDelete = "http://localhost:3000/AssemblyDelete/" + asId;
     axios
-      .delete(apiUrlDelete, additional)
+      .delete(apiUrlDelete, assembly)
       .then((results) => {
         setShowLoading(false);
-        console.log("deleted additional:", results.data);
+        console.log("deleted assembly:", results.data);
         fetchData();
       })
       .catch((error) => setShowLoading(false));
   };
-
   return (
     <div>
       <Jumbotron>
@@ -60,28 +62,33 @@ export default function ListAdditional() {
             <span className="sr-only">Loading...</span>
           </Spinner>
         )}
-        <h2>See all your Additional Processes here:</h2>
+        <h2>See all your Assemblies here:</h2>
         <ListGroup>
           <Table>
             <thead>
               <tr>
-                <th>Material Name</th>
-                <th>Price</th>
-
+                <th>Type</th>
+                <th>Cost</th>
+                <th>Margin</th>
+                <th>Minutes</th>
+                <th>IORatio</th>
                 <th>Delete Action</th>
               </tr>
             </thead>
             <tbody>
               {data.map((item, idx) => (
                 <tr key={idx}>
-                  <td>{item.name} </td>
-                  <td>{item.price} </td>
+                  <td>{item.type} </td>
+                  <td>{item.cost} </td>
+                  <td>{item.margin} </td>
+                  <td>{item.minutes} </td>
+                  <td>{item.IORatio} </td>
                   <td>
                     <Button
                       type="button"
                       variant="warning"
                       onClick={() => {
-                        deleteAdditional(item);
+                        deleteAssembly(item);
                       }}
                     >
                       Delete
@@ -93,9 +100,9 @@ export default function ListAdditional() {
           </Table>
         </ListGroup>
         <div className="buttonStyle">
-          <Link to="/createAdditional">
+          <Link to="/createAssembly">
             <Button type="button" variant="secondary">
-              Create A New Additional Process
+              Create A New Assembly
             </Button>
           </Link>
         </div>
