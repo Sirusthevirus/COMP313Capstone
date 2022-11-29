@@ -8,10 +8,135 @@ import Jumbotron from 'react-bootstrap/Jumbotron';
 import 'bootstrap/dist/css/bootstrap.min.css';
 // import { withRouter } from 'react-router-dom';
 import '../quote.css'
+import axios from 'axios';
 
 
 function Quote(props)
 {
+        /* Service List*/
+        const [serviceList, setServiceList] = useState([
+            {supplier: "", material: "", weight: "", used: ""},
+            
+        ]);
+    
+        const [serviceLists, setServiceLists] = useState([
+            {supplier: "", material: "", thinkness: "", used: ""},
+            
+        ]);
+    
+        const [serviceListstiff, setServiceListstiff] = useState([
+            {supplier: "", material: "", thinkness: "", used: ""},
+            
+        ]);
+    
+        const [serviceListstape, setServiceListstape] = useState([
+            {supplier: "", material: "", thinkness: "", used: ""},
+            
+        ]);
+    
+         /* Add Button*/
+    
+        const handleServiceAdd = () => {
+            setServiceList([...serviceList, {supplier: "", material: "", weight: "", used: ""}]);
+    
+        };
+    
+        const handleServiceAddO = () => {
+            setServiceLists([...serviceLists, {supplier: "", material: "", thinkness: "", used: ""}]);
+    
+        };
+    
+        const handleServiceAddT = () => {
+            setServiceListstiff([...serviceListstiff, {supplier: "", material: "", thinkness: "", used: ""}]);
+    
+        };
+    
+        const handleServiceAddTape = () => {
+            setServiceListstape([...serviceListstape, {supplier: "", material: "", thinkness: "", used: ""}]);
+    
+        };
+    
+         /* Remove Button*/
+    
+        const handleServiceRemove = (index) => {
+            const list = [...serviceList]
+            list.splice(index, 1);
+            setServiceList(list)
+        };
+    
+        const handleServiceRemoveO = (index) => {
+            const list = [...serviceLists]
+            list.splice(index, 1);
+            setServiceLists(list)
+        };
+    
+        const handleServiceRemoveT = (index) => {
+            const list = [...serviceListstiff]
+            list.splice(index, 1);
+            setServiceListstiff(list)
+        };
+    
+        const handleServiceRemoveTape = (index) => {
+            const list = [...serviceListstape]
+            list.splice(index, 1);
+            setServiceListstape(list)
+        };
+    
+         /* Output*/
+    
+        const handleServiceChange = (e, index) => {
+            const {name, value} = e.target
+            const list = [...serviceList];
+            list[index][name] = value;
+            setServiceList(list)
+    
+        };
+    
+        const handleServiceChangeO = (e, index) => {
+            const {name, value} = e.target
+            const list = [...serviceLists];
+            list[index][name] = value;
+            setServiceLists(list)
+    
+        };
+    
+        const handleServiceChangeT = (e, index) => {
+            const {name, value} = e.target
+            const list = [...serviceListstiff];
+            list[index][name] = value;
+            setServiceListstiff(list)
+    
+        };
+    
+        const handleServiceChangeTape = (e, index) => {
+            const {name, value} = e.target
+            const list = [...serviceListstape];
+            list[index][name] = value;
+            setServiceListstape(list)
+    
+        };
+
+        const [optionList, setOptionList] = useState([]);
+        const fetchLaminateData = () => {
+            axios
+              .get("http://localhost:5000/materials")
+              .then((response) => {
+                const { data } = response;
+                if(response.status === 200){
+                    //check the api call is success by stats code 200,201 ...etc
+                    setOptionList(data)
+                    console.log(data)
+                }else{
+                    //error handle section 
+                }
+              })
+              .catch((error) => console.log(error));
+          };
+
+        useEffect(() => {
+            fetchLaminateData();
+          }, []);
+        
   return (
         <Jumbotron>
             <Form style={{display: 'flex'}}>
@@ -67,24 +192,371 @@ function Quote(props)
                     </Form.Control>
                 </Col>
             </Form.Group>
-            <Form.Group as={Row} className="mb-3">
-                <Col sm={4}>
-                    <Form.Label>Status</Form.Label>
-                    <Form.Control as="select">
-                    <option>Active</option>
-                    <option>Inactive</option>
-                    </Form.Control>
-                </Col>
-            </Form.Group>
-            <Form.Group as={Row} className="mb-3">
-                <Col sm={4}>
-                    <Form.Label>Status</Form.Label>
-                    <Form.Control as="select">
-                    <option>Active</option>
-                    <option>Inactive</option>
-                    </Form.Control>
-                </Col>
-            </Form.Group>
+                <div className="col-12 mt-3" style={{display: 'inline-block', background: 'lightgrey', paddingLeft: '1.5em', paddingRight: '1.5em', paddingTop: '1.5em', paddingBottom: '1.5em', borderRadius:'25px'}} >
+                <h4>Laminate Material</h4>
+                    {serviceList.map((singleService,index)=>( 
+                    <Row key={index}>
+                        <Form.Group as={Col} className="mb-3">
+                            <Form.Label>Supplier</Form.Label>
+                            <Form.Control name='supplier' as="select">
+                            {optionList.map((d) => (
+                                <option key={d.id} value={d.id}>{d.supplier}</option>
+                                ))}
+                            </Form.Control>              
+                        </Form.Group>
+                        <Form.Group as={Col}>
+                            <Form.Label>Material</Form.Label>
+                            <Form.Control name='material' as="select">
+                            {optionList.map((d) => (
+                                <option key={d.id} value={d.id}>{d.material}</option>
+                                ))}
+                            </Form.Control>
+                        </Form.Group>
+                        <Form.Group as={Col}>
+                            <Form.Label>CU Weight</Form.Label>
+                            <Form.Control name='weight' as="select">
+                            {optionList.map((d) => (
+                                <option key={d.id} value={d.id}>{d.code}</option>
+                                ))}
+                            </Form.Control>
+                        </Form.Group>
+
+                        <Form.Group as={Col}>
+                            <Form.Label>Used</Form.Label>
+                            <Form.Control name='used' type="number" placeholder='0'
+                            value={singleService.service}
+                            onChange = {(e) => handleServiceChange(e, index)}>
+                            </Form.Control>
+                        </Form.Group>
+                        <div className=" mt-4">
+                        {serviceList.length-1 === index &&
+                        <Button style={{width:"90px", height:"38px"}} onClick={handleServiceAdd} variant="primary" type="Input">
+                            Add
+                        </Button> }
+                        </div>
+                        &nbsp;&nbsp;
+                        <div className="mt-4">
+                            {serviceList.length > 1 && 
+                            <Button onClick={() => handleServiceRemove(index)} variant="primary" type="Delete">
+                            Remove
+                        </Button> }
+                        </div>
+                    </Row>))}
+                </div>
+
+            <div  className="col-12 mt-3" style={{display: 'inline-block', background: 'lightgrey', paddingLeft: '1.5em', paddingRight: '1.5em', paddingTop: '1.5em', paddingBottom: '1.5em', borderRadius:'25px'}} >
+            <h4>Cover Coat</h4>
+                {serviceLists.map((singleServices,index)=>( 
+                <Row key={index}>
+                    <Form.Group as={Col} className="mb-3">
+                        <Form.Label>Supplier</Form.Label>
+                        <Form.Control name='supplier' as="select"
+                        value={singleServices.service}
+                        onChange = {(e) => handleServiceChangeO(e, index)}>
+                            <option> Dupont</option>
+                            <option> Suppliers from DB</option>
+                        </Form.Control>
+                    </Form.Group>
+                    <Form.Group as={Col}>
+                        <Form.Label>Material</Form.Label>
+                        <Form.Control name='material' as="select"
+                        value={singleServices.service}
+                        onChange = {(e) => handleServiceChangeO(e, index)}>
+                            <option> FLP 7164</option>
+                            <option> Materials from DB</option>
+                        </Form.Control>
+                    </Form.Group>
+                    <Form.Group as={Col}>
+                        <Form.Label>Thickness</Form.Label>
+                        <Form.Control name='thickness' as="select"
+                        value={singleServices.service}
+                        onChange = {(e) => handleServiceChangeO(e, index)}>
+                            <option> 0.25 oz</option>
+                            <option> Weights from DB</option>
+                        </Form.Control>
+                    </Form.Group>
+                    <Form.Group as={Col}>
+                        <Form.Label>Used</Form.Label>
+                        <Form.Control name='used' type="number" placeholder='0'
+                        value={singleServices.service}
+                        onChange = {(e) => handleServiceChangeO(e, index)}>
+                        </Form.Control>
+                    </Form.Group>
+                    <div className=" mt-4">
+                    {serviceLists.length-1 === index &&
+                     <Button style={{width:"90px", height:"38px"}} onClick={handleServiceAddO} variant="primary" type="Input">
+                        Add
+                    </Button> }
+                    </div>
+                    &nbsp;&nbsp;
+                    <div className="mt-4">
+                        {serviceLists.length > 1 && 
+                        <Button onClick={() => handleServiceRemoveO(index)} variant="primary" type="Delete">
+                        Remove
+                    </Button> }
+                    </div>
+                </Row>))}
+                </div>
+
+                <div  className="col-12 mt-3" style={{display: 'inline-block', background: 'lightgrey', paddingLeft: '1.5em', paddingRight: '1.5em', paddingTop: '1.5em', paddingBottom: '1.5em', borderRadius:'25px'}} >
+                <h4>Stiffener</h4>
+                {serviceListstiff.map((singleServicestiff,index)=>( 
+                <Row key={index}>
+                    <Form.Group as={Col} className="mb-3">
+                        <Form.Label>Supplier</Form.Label>
+                        <Form.Control name='supplier' as="select"
+                        value={singleServicestiff.service}
+                        onChange = {(e) => handleServiceChangeT(e, index)}>
+                            <option> Dupont</option>
+                            <option> Suppliers from DB</option>
+                        </Form.Control>
+                    </Form.Group>
+                    <Form.Group as={Col}>
+                        <Form.Label>Material</Form.Label>
+                        <Form.Control name='material' as="select"
+                        value={singleServicestiff.service}
+                        onChange = {(e) => handleServiceChangeT(e, index)}>
+                            <option> FLP 7164</option>
+                            <option> Materials from DB</option>
+                        </Form.Control>
+                    </Form.Group>
+                    <Form.Group as={Col}>
+                        <Form.Label>Thickness</Form.Label>
+                        <Form.Control name='thickness' as="select"
+                        value={singleServicestiff.service}
+                        onChange = {(e) => handleServiceChangeT(e, index)}>
+                            <option> 0.25 oz</option>
+                            <option> Weights from DB</option>
+                        </Form.Control>
+                    </Form.Group>
+                    <Form.Group as={Col}>
+                        <Form.Label>Used</Form.Label>
+                        <Form.Control name='used' type="number" placeholder='0'
+                        value={singleServicestiff.service}
+                        onChange = {(e) => handleServiceChangeT(e, index)}>
+                        </Form.Control>
+                    </Form.Group>
+                    <div className=" mt-4">
+                    {serviceListstiff.length-1 === index &&
+                     <Button style={{width:"90px", height:"38px"}} onClick={handleServiceAddT} variant="primary" type="Input">
+                        Add
+                    </Button> }
+                    </div>
+                    &nbsp;&nbsp;
+
+                    <div className="mt-4">
+                        {serviceListstiff.length > 1 && 
+                        <Button onClick={() => handleServiceRemoveT(index)} variant="primary" type="Delete">
+                        Remove
+                    </Button> }
+                    </div>
+                </Row>))}
+                </div>
+
+                <div  className="col-12 mt-3" style={{display: 'inline-block', background: 'lightgrey', paddingLeft: '1.5em', paddingRight: '1.5em', paddingTop: '1.5em', paddingBottom: '1.5em', borderRadius:'25px'}} >
+                <h4>3M Tape</h4>
+                {serviceListstape.map((singleServicestape,index)=>( 
+                <Row key={index}>
+                    <Form.Group as={Col} className="mb-3">
+                        <Form.Label>Supplier</Form.Label>
+                        <Form.Control name='supplier' as="select"
+                        value={singleServicestape.service}
+                        onChange = {(e) => handleServiceChangeTape(e, index)}>
+                            <option> Dupont</option>
+                            <option> Suppliers from DB</option>
+                        </Form.Control>
+                    </Form.Group>
+                    <Form.Group as={Col}>
+                        <Form.Label>Material</Form.Label>
+                        <Form.Control name='material' as="select"
+                        value={singleServicestape.service}
+                        onChange = {(e) => handleServiceChangeTape(e, index)}>
+                            <option> FLP 7164</option>
+                            <option> Materials from DB</option>
+                        </Form.Control>
+                    </Form.Group>
+                    <Form.Group as={Col}>
+                        <Form.Label>Model # </Form.Label>
+                        <Form.Control name='thickness' as="select"
+                        value={singleServicestape.service}
+                        onChange = {(e) => handleServiceChangeTape(e, index)}>
+                            <option> 587342</option>
+                            <option> Model# from DB</option>
+                        </Form.Control>
+                    </Form.Group>
+                    <Form.Group as={Col}>
+                        <Form.Label>Used</Form.Label>
+                        <Form.Control name='used' type="number" placeholder='0'
+                        value={singleServicestape.service}
+                        onChange = {(e) => handleServiceChangeTape(e, index)}>
+                        </Form.Control>
+                    </Form.Group>
+                    <div className=" mt-4">
+                    {serviceListstape.length-1 === index &&
+                     <Button style={{width:"90px", height:"38px"}} onClick={handleServiceAddTape} variant="primary" type="Input">
+                        Add
+                    </Button> }
+                    </div>
+                    &nbsp;&nbsp;                   
+                </Row>))}
+                </div>
+                
+
+
+                <div  className="col-12 mt-3" style={{display: 'inline-block', background: 'lightgrey', paddingLeft: '1.5em', paddingRight: '1.5em', paddingTop: '1.5em', paddingBottom: '1.5em', borderRadius:'25px'}} >
+                <h4>Dry Film & Wet Processes</h4>
+                {serviceListstape.map((singleServicestape,index)=>( 
+                <Row key={index}>
+                    <Form.Group as={Col} className="mb-3">
+                        <Form.Label>Supplier</Form.Label>
+                        <Form.Control name='supplier' as="select"
+                        value={singleServicestape.service}
+                        onChange = {(e) => handleServiceChangeTape(e, index)}>
+                            <option> Dupont</option>
+                            <option> Suppliers from DB</option>
+                        </Form.Control>
+                    </Form.Group>
+                    <Form.Group as={Col}>
+                        <Form.Label>Material</Form.Label>
+                        <Form.Control name='material' as="select"
+                        value={singleServicestape.service}
+                        onChange = {(e) => handleServiceChangeTape(e, index)}>
+                            <option> FLP 7164</option>
+                            <option> Materials from DB</option>
+                        </Form.Control>
+                    </Form.Group>
+                    <Form.Group as={Col}>
+                        <Form.Label>Used</Form.Label>
+                        <Form.Control name='used' type="number" placeholder='0'
+                        value={singleServicestape.service}
+                        onChange = {(e) => handleServiceChangeTape(e, index)}>
+                        </Form.Control>
+                    </Form.Group>
+                    <div className=" mt-4">
+                    {serviceListstape.length-1 === index &&
+                     <Button style={{width:"90px", height:"38px"}} onClick={handleServiceAddTape} variant="primary" type="Input">
+                        Add
+                    </Button> }
+                    </div>
+                    &nbsp;&nbsp;                   
+                </Row>))}
+                </div>
+
+                <div  className="col-12 mt-3" style={{display: 'inline-block', background: 'lightgrey', paddingLeft: '1.5em', paddingRight: '1.5em', paddingTop: '1.5em', paddingBottom: '1.5em', borderRadius:'25px'}} >
+                <h4>Mechanical Processes</h4>
+                {serviceListstape.map((singleServicestape,index)=>( 
+                <Row key={index}>
+                    <Form.Group as={Col} className="mb-3">
+                        <Form.Label>Supplier</Form.Label>
+                        <Form.Control name='supplier' as="select"
+                        value={singleServicestape.service}
+                        onChange = {(e) => handleServiceChangeTape(e, index)}>
+                            <option> Dupont</option>
+                            <option> Suppliers from DB</option>
+                        </Form.Control>
+                    </Form.Group>
+                    <Form.Group as={Col}>
+                        <Form.Label>Material</Form.Label>
+                        <Form.Control name='material' as="select"
+                        value={singleServicestape.service}
+                        onChange = {(e) => handleServiceChangeTape(e, index)}>
+                            <option> FLP 7164</option>
+                            <option> Materials from DB</option>
+                        </Form.Control>
+                    </Form.Group>
+                    <Form.Group as={Col}>
+                        <Form.Label>Used</Form.Label>
+                        <Form.Control name='used' type="number" placeholder='0'
+                        value={singleServicestape.service}
+                        onChange = {(e) => handleServiceChangeTape(e, index)}>
+                        </Form.Control>
+                    </Form.Group>
+                    <div className=" mt-4">
+                    {serviceListstape.length-1 === index &&
+                     <Button style={{width:"90px", height:"38px"}} onClick={handleServiceAddTape} variant="primary" type="Input">
+                        Add
+                    </Button> }
+                    </div>
+                    &nbsp;&nbsp;                   
+                </Row>))}
+                </div>
+                <div  className="col-12 mt-3" style={{display: 'inline-block', background: 'lightgrey', paddingLeft: '1.5em', paddingRight: '1.5em', paddingTop: '1.5em', paddingBottom: '1.5em', borderRadius:'25px'}} >
+                <h4>Standard Processes</h4>
+                {serviceListstape.map((singleServicestape,index)=>( 
+                <Row key={index}>
+                    <Form.Group as={Col} className="mb-3">
+                        <Form.Label>Supplier</Form.Label>
+                        <Form.Control name='supplier' as="select"
+                        value={singleServicestape.service}
+                        onChange = {(e) => handleServiceChangeTape(e, index)}>
+                            <option> Dupont</option>
+                            <option> Suppliers from DB</option>
+                        </Form.Control>
+                    </Form.Group>
+                    <Form.Group as={Col}>
+                        <Form.Label>Material</Form.Label>
+                        <Form.Control name='material' as="select"
+                        value={singleServicestape.service}
+                        onChange = {(e) => handleServiceChangeTape(e, index)}>
+                            <option> FLP 7164</option>
+                            <option> Materials from DB</option>
+                        </Form.Control>
+                    </Form.Group>
+                    <Form.Group as={Col}>
+                        <Form.Label>Used</Form.Label>
+                        <Form.Control name='used' type="number" placeholder='0'
+                        value={singleServicestape.service}
+                        onChange = {(e) => handleServiceChangeTape(e, index)}>
+                        </Form.Control>
+                    </Form.Group>
+                    <div className=" mt-4">
+                    {serviceListstape.length-1 === index &&
+                     <Button style={{width:"90px", height:"38px"}} onClick={handleServiceAddTape} variant="primary" type="Input">
+                        Add
+                    </Button> }
+                    </div>
+                    &nbsp;&nbsp;                   
+                </Row>))}
+                </div>
+
+                <div className="col-12 mt-3" style={{display: 'inline-block', background: 'lightgrey', paddingLeft: '1.5em', paddingRight: '1.5em', paddingTop: '1.5em', paddingBottom: '1.5em', borderRadius:'25px'}} >
+                <h4>Finishes</h4>
+                {serviceListstape.map((singleServicestape,index)=>( 
+                <Row key={index}>
+                    <Form.Group as={Col} className="mb-3">
+                        <Form.Label>Supplier</Form.Label>
+                        <Form.Control name='supplier' as="select"
+                        value={singleServicestape.service}
+                        onChange = {(e) => handleServiceChangeTape(e, index)}>
+                            <option> Dupont</option>
+                            <option> Suppliers from DB</option>
+                        </Form.Control>
+                    </Form.Group>
+                    <Form.Group as={Col}>
+                        <Form.Label>Material</Form.Label>
+                        <Form.Control name='material' as="select"
+                        value={singleServicestape.service}
+                        onChange = {(e) => handleServiceChangeTape(e, index)}>
+                            <option> FLP 7164</option>
+                            <option> Materials from DB</option>
+                        </Form.Control>
+                    </Form.Group>
+                    <Form.Group as={Col}>
+                        <Form.Label>Used</Form.Label>
+                        <Form.Control name='used' type="number" placeholder='0'
+                        value={singleServicestape.service}
+                        onChange = {(e) => handleServiceChangeTape(e, index)}>
+                        </Form.Control>
+                    </Form.Group>
+                    <div className=" mt-4">
+                    {serviceListstape.length-1 === index &&
+                     <Button style={{width:"90px", height:"38px"}} onClick={handleServiceAddTape} variant="primary" type="Input">
+                        Add
+                    </Button> }
+                    </div>
+                    &nbsp;&nbsp;                   
+                </Row>))}
+                </div>
             </div>
             {
                 //The space below can be used to add a dynamic cost breakdown to the quote form. Change the above div to col-8 instead of col-12
