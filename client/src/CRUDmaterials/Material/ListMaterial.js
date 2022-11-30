@@ -46,7 +46,6 @@ export default function ListMaterial() {
       supplier: item.supplier,
       material: item.material,
       code: item.code,
-      numberOfUse: item.numberOfUse,
       price: item.price,
     };
 
@@ -79,7 +78,6 @@ export default function ListMaterial() {
                 <th>Supplier</th>
                 <th>Material Name</th>
                 <th>Code</th>
-                <th>Number of use</th>
                 <th>Price</th>
                 <th>Edit Action</th>
                 <th>Delete Action</th>
@@ -92,7 +90,6 @@ export default function ListMaterial() {
                   <td>{item.supplier} </td>
                   <td>{item.material} </td>
                   <td>{item.code} </td>
-                  <td>{item.numberOfUse}</td>
                   <td>{item.price} </td>
                   <td>
                     <Button

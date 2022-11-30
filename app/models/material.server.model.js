@@ -11,7 +11,6 @@ var MaterialSchema = new Schema({
     supplier: String,
     material: String,
     code: String,
-    numberOfUse: Number,
     price: Number
 
 });

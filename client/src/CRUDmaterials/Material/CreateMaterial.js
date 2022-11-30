@@ -14,7 +14,6 @@ export default function CreateMaterial() {
     supplier: "",
     material: "",
     code: "",
-    numberOfUse: "",
     price: "",
   });
   const [showLoading, setShowLoading] = useState(false);
@@ -29,7 +28,6 @@ export default function CreateMaterial() {
       supplier: material.supplier,
       material: material.material,
       code: material.code,
-      numberOfUse: material.numberOfUse,
       price: material.price,
     };
     //use promises
@@ -103,17 +101,6 @@ export default function CreateMaterial() {
               name="code"
               id="code"
               value={material.code}
-              onChange={onChange}
-            />
-          </Form.Group>
-          <Form.Group className="mb-3">
-            <Form.Label>Number Of Use</Form.Label>
-            <Form.Control
-              type="number"
-              placeholder="Number Of Use"
-              name="numberOfUse"
-              id="numberOfUse"
-              value={material.numberOfUse}
               onChange={onChange}
             />
           </Form.Group>

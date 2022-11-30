@@ -119,7 +119,7 @@ function Quote(props)
         const [optionList, setOptionList] = useState([]);
         const fetchLaminateData = () => {
             axios
-              .get("http://localhost:5000/materials")
+              .get("http://localhost:5000/specificMaterial/m")
               .then((response) => {
                 const { data } = response;
                 if(response.status === 200){

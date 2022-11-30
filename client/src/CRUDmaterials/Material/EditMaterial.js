@@ -17,7 +17,6 @@ export default function EditMaterial() {
     supplier: "",
     material: "",
     code: "",
-    numberOfUse: "",
     price: "",
   });
   const [showLoading, setShowLoading] = useState(false);
@@ -42,7 +41,6 @@ export default function EditMaterial() {
       supplier: material.supplier,
       material: material.material,
       code: material.code,
-      numberOfUse: material.numberOfUse,
       price: material.price,
     };
     axios
@@ -115,17 +113,6 @@ export default function EditMaterial() {
               name="code"
               id="code"
               value={material.code}
-              onChange={onChange}
-            />
-          </Form.Group>
-          <Form.Group className="mb-3">
-            <Form.Label>Number Of Use</Form.Label>
-            <Form.Control
-              type="number"
-              placeholder="numberOfUse"
-              name="numberOfUse"
-              id="numberOfUse"
-              value={material.numberOfUse}
               onChange={onChange}
             />
           </Form.Group>
