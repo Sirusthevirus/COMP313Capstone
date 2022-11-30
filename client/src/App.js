@@ -13,7 +13,7 @@ import Assembly from "./components/Assembly";
 import Login from "./samplePages/Login";
 import Manufacturing from "./components/Manufacturing";
 import Processes from "./components/Processes";
-import Materials from "./CRUDmaterials/Materials";
+
 
 //Laminate & Cover Coat & Stiffener & 3M Tapes
 import ListMaterial from "./CRUDmaterials/Material/ListMaterial";
@@ -53,12 +53,15 @@ function App() {
              <Nav.Link href="/summary">Summary</Nav.Link>   */}
             {/* <Nav.Link href="/quote">Quotes</Nav.Link> */}
             <Nav.Link href="/allQuotes">All Quotes</Nav.Link>
-            <NavDropdown title="Items" id="basic-nav-dropdown">
-              <NavDropdown.Item href="materials">Materials</NavDropdown.Item>
+            <NavDropdown title="Materials" id="basic-nav-dropdown">
+              <NavDropdown.Item href="listMaterial">Laminate & Cover Coat & Stiffener & 3M Tapes</NavDropdown.Item>
+              <NavDropdown.Item href="listAdditional">Additional Processes</NavDropdown.Item>
+              <NavDropdown.Item href="listDryAndWet">Dry Film & Wet</NavDropdown.Item>
+              <NavDropdown.Item href="listMechanical">Mechanical</NavDropdown.Item>
+              <NavDropdown.Item href="listStandard">Standard Processes</NavDropdown.Item>
+              <NavDropdown.Item href="listAssembly">Assembly</NavDropdown.Item>
             </NavDropdown>
-            <NavDropdown title="Sample pages" id="basic-nav-dropdown">
-              <NavDropdown.Item href="/login">Login</NavDropdown.Item>
-            </NavDropdown>
+            <Nav.Link href="/login">Login</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
@@ -74,7 +77,6 @@ function App() {
           <Route path="manufacturing" element={<Manufacturing />} />
           <Route path="processes" element={<Processes />} />
           <Route path="summary" element={<Summary />} />
-          <Route path="materials" element={<Materials />} />
           {/* route for meterials */}
           <Route path="listMaterial" element={<ListMaterial />} />
           <Route path="createMaterial" element={<CreateMaterial />} />
