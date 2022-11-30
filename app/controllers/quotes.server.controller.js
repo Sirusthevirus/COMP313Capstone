@@ -29,7 +29,7 @@ exports.create = function (req, res) {
         } else {
             res.status(200).json({
                 status: 1,
-                course
+                quote
             });
         }
     });

@@ -7,7 +7,8 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import "./App.css";
 //
 import Home from "./components/Home";
-import Quote from "./components/Quote";
+import Quote from "./components/Quote/Quote";
+import ListQuotes from "./components/Quote/ListQuotes";
 import Assembly from "./components/Assembly";
 import Login from "./samplePages/Login";
 import Manufacturing from "./components/Manufacturing";
@@ -50,7 +51,8 @@ function App() {
             <Nav.Link href="/manufacturing">Manufacturing</Nav.Link>
              <Nav.Link href="/processes">Processes</Nav.Link>
              <Nav.Link href="/summary">Summary</Nav.Link>   */}
-            <Nav.Link href="/quote">Quotes</Nav.Link>
+            {/* <Nav.Link href="/quote">Quotes</Nav.Link> */}
+            <Nav.Link href="/allQuotes">All Quotes</Nav.Link>
             <NavDropdown title="Items" id="basic-nav-dropdown">
               <NavDropdown.Item href="materials">Materials</NavDropdown.Item>
             </NavDropdown>
@@ -65,6 +67,8 @@ function App() {
         <Routes>
           <Route path="login" element={<Login />} />
           <Route path="home" element={<Home />} />
+          <Route path="home" element={<Home />} />
+          <Route path="allQuotes" element={<ListQuotes />} />
           <Route path="quote" element={<Quote />} />
           <Route path="assembly" element={<Assembly />} />
           <Route path="manufacturing" element={<Manufacturing />} />
