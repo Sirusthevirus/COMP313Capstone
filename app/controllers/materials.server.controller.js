@@ -29,8 +29,8 @@ exports.materialByID = function (req, res, next, id) {
     });
 };
 //get material by material field
-exports.materialByMaterial = function(req, res, next, material){
-    Material.find({material: material},  function (err, material) {
+exports.materialByMaterial = function(req, res, next, materialType){
+    Material.find({materialType: materialType},  function (err, material) {
         if (err) {
             return next(err);
         } else {
