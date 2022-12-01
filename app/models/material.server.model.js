@@ -10,7 +10,9 @@ var MaterialSchema = new Schema({
     },
     supplier: String,
     material: String,
-    code: String,
+    cuWeight: Number,
+    thickness: Number,
+    modelNumber: String,
     price: Number
 
 });
