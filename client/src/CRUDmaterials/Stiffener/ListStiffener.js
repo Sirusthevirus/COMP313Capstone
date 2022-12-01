@@ -8,59 +8,54 @@ import Button from "react-bootstrap/Button";
 import ListGroup from "react-bootstrap/ListGroup";
 import Jumbotron from "react-bootstrap/Jumbotron";
 
-export default function ListMaterial() {
+export default function ListStiffener() {
   let navigate = useNavigate();
   const [data, setData] = useState([]);
   const [showLoading, setShowLoading] = useState(true);
   const [listError, setListError] = useState(false);
-
   const apiUrl = "http://localhost:3000/materials";
   const fetchData = async () => {
     axios
       .get(apiUrl)
       .then((result) => {
-        console.log("result.data:", result.data);
         setData(result.data);
         setShowLoading(false);
+        console.log(result.data);
       })
       .catch((error) => {
         console.log("error in fetchData:", error);
         setListError(true);
       });
   };
-
   useEffect(() => {
     fetchData();
   }, []);
-
-  const editMaterial = (id) => {
-    navigate("/editMaterial/" + id);
+  const editStiffener = (id) => {
+    navigate("/editStiffener/" + id);
   };
-
-  const deleteMaterial = (item) => {
+  const deleteStiffener = (item) => {
     setShowLoading(true);
     const mId = item._id;
 
-    const material = {
+    const stiffener = {
       materialType: item.materialType,
       supplier: item.supplier,
       material: item.material,
-      code: item.code,
+      thickness: item.thickness,
       price: item.price,
     };
-
-    console.log("material to delete:", material);
+    console.log("Stiffener to delete:", stiffener);
     const apiUrlDelete = "http://localhost:3000/materials/" + mId;
     axios
-      .delete(apiUrlDelete, material)
+      .delete(apiUrlDelete, stiffener)
       .then((results) => {
         setShowLoading(false);
-        console.log("deleted material:", results.data);
+        console.log("deleted stiffener:", results.data);
         fetchData();
       })
       .catch((error) => setShowLoading(false));
   };
-
+  const stiffener = data.filter((st) => st.materialType === "Stiffener");
   return (
     <div>
       <Jumbotron>
@@ -69,7 +64,8 @@ export default function ListMaterial() {
             <span className="sr-only">Loading...</span>
           </Spinner>
         )}
-        <h2>See all your Materials here:</h2>
+        <h2>See all your Stiffeners here:</h2>
+
         <ListGroup>
           <Table>
             <thead>
@@ -77,26 +73,26 @@ export default function ListMaterial() {
                 <th>Material Type</th>
                 <th>Supplier</th>
                 <th>Material Name</th>
-                <th>Code</th>
+                <th>Thickness</th>
                 <th>Price</th>
                 <th>Edit Action</th>
                 <th>Delete Action</th>
               </tr>
             </thead>
             <tbody>
-              {data.map((item, idx) => (
+              {stiffener.map((item, idx) => (
                 <tr key={idx}>
                   <td>{item.materialType} </td>
                   <td>{item.supplier} </td>
                   <td>{item.material} </td>
-                  <td>{item.cuWeight} </td>
+                  <td>{item.thickness} </td>
                   <td>{item.price} </td>
                   <td>
                     <Button
                       type="button"
                       variant="primary"
                       onClick={() => {
-                        editMaterial(item._id);
+                        editStiffener(item._id);
                       }}
                     >
                       Edit
@@ -107,7 +103,7 @@ export default function ListMaterial() {
                       type="button"
                       variant="warning"
                       onClick={() => {
-                        deleteMaterial(item);
+                        deleteStiffener(item);
                       }}
                     >
                       Delete
@@ -119,9 +115,9 @@ export default function ListMaterial() {
           </Table>
         </ListGroup>
         <div className="buttonStyle">
-          <Link to="/createMaterial">
+          <Link to="/createStiffener">
             <Button type="button" variant="secondary">
-              Create A New Material
+              Create A New Stiffener
             </Button>
           </Link>
         </div>

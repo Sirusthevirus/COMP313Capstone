@@ -216,7 +216,7 @@ function Quote(props)
                             <Form.Label>CU Weight</Form.Label>
                             <Form.Control name='weight' as="select">
                             {optionList.map((d) => (
-                                <option key={d.id} value={d.id}>{d.code}</option>
+                                <option key={d.id} value={d.id}>{d.cuWeight}</option>
                                 ))}
                             </Form.Control>
                         </Form.Group>

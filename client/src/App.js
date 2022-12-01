@@ -15,10 +15,22 @@ import Manufacturing from "./components/Manufacturing";
 import Processes from "./components/Processes";
 
 
-//Laminate & Cover Coat & Stiffener & 3M Tapes
-import ListMaterial from "./CRUDmaterials/Material/ListMaterial";
-import CreateMaterial from './CRUDmaterials/Material/CreateMaterial';
-import EditMaterial from './CRUDmaterials/Material/EditMaterial'
+//Laminate 
+import ListLaminate from "./CRUDmaterials/Laminate/ListLaminate";
+import CreateLaminate from "./CRUDmaterials/Laminate/CreateLaminate";
+import EditLaminate from "./CRUDmaterials/Laminate/EditLaminate";
+//Cover Coat
+import ListCoverCoat from './CRUDmaterials/CoverCoat/ListCoverCoat'
+import CreateCoverCoat from './CRUDmaterials/CoverCoat/CreateCoverCoat'
+import EditCoverCoat from './CRUDmaterials/CoverCoat/EditCoverCoat'
+//Stiffener
+import ListStiffener from './CRUDmaterials/Stiffener/ListStiffener';
+import CreateStiffener from './CRUDmaterials/Stiffener/CreateStiffener';
+import EditStiffener from './CRUDmaterials/Stiffener/EditStiffener';
+//3M Tapes
+import List3MTapes from './CRUDmaterials/3MTapes/List3MTapes'
+import Create3MTapes from './CRUDmaterials/3MTapes/Create3MTapes'
+import Edit3MTapes from './CRUDmaterials/3MTapes/Edit3MTapes'
 //Additional Processes
 import ListAdditional from "./CRUDmaterials/AdditionalProcess/ListAdditional";
 import CreateAdditional from './CRUDmaterials/AdditionalProcess/CreateAdditional';
@@ -54,7 +66,10 @@ function App() {
             {/* <Nav.Link href="/quote">Quotes</Nav.Link> */}
             <Nav.Link href="/allQuotes">All Quotes</Nav.Link>
             <NavDropdown title="Materials" id="basic-nav-dropdown">
-              <NavDropdown.Item href="listMaterial">Laminate & Cover Coat & Stiffener & 3M Tapes</NavDropdown.Item>
+              <NavDropdown.Item href="listLaminate">Laminate Material</NavDropdown.Item>
+              <NavDropdown.Item href="listCoverCoat">Cover Coat</NavDropdown.Item>
+              <NavDropdown.Item href="listStiffener">Stiffener</NavDropdown.Item>
+              <NavDropdown.Item href="list3MTapes">3M Tapes</NavDropdown.Item>
               <NavDropdown.Item href="listAdditional">Additional Processes</NavDropdown.Item>
               <NavDropdown.Item href="listDryAndWet">Dry Film & Wet</NavDropdown.Item>
               <NavDropdown.Item href="listMechanical">Mechanical</NavDropdown.Item>
@@ -77,10 +92,22 @@ function App() {
           <Route path="manufacturing" element={<Manufacturing />} />
           <Route path="processes" element={<Processes />} />
           <Route path="summary" element={<Summary />} />
-          {/* route for meterials */}
-          <Route path="listMaterial" element={<ListMaterial />} />
-          <Route path="createMaterial" element={<CreateMaterial />} />
-          <Route path="editMaterial/:mId" element={<EditMaterial />} />
+          {/* route for Laminate Material */}
+          <Route path="listLaminate" element={<ListLaminate />} />
+          <Route path="createLaminate" element={<CreateLaminate />} />
+          <Route path="editLaminate/:mId" element={<EditLaminate />} />
+          {/* route for Cover Coat */}
+          <Route path="listCoverCoat" element={<ListCoverCoat />} />
+          <Route path="createCoverCoat" element={<CreateCoverCoat />} />
+          <Route path="editCoverCoat/:mId" element={<EditCoverCoat />} />
+          {/* route for Stiffener */}
+          <Route path="listStiffener" element={<ListStiffener />} />
+          <Route path="createStiffener" element={<CreateStiffener />} />
+          <Route path="editStiffener/:mId" element={<EditStiffener />} />
+          {/* route for 3M Tapes */}
+          <Route path="list3MTapes" element={<List3MTapes />} />
+          <Route path="create3MTapes" element={<Create3MTapes />} />
+          <Route path="edit3MTapes/:mId" element={<Edit3MTapes />} />
           {/* route for additional process */}
           <Route path="listAdditional" element={<ListAdditional />} />
           <Route path="createAdditional" element={<CreateAdditional />} />

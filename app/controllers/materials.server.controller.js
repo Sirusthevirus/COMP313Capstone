@@ -63,8 +63,9 @@ exports.update = function (req, res) {
     material.materialType = req.body.materialType;
     material.supplier = req.body.supplier;
     material.material = req.body.material;
-    material.code = req.body.code;
-    material.numberOfUse = req.body.code;
+    material.cuWeight = req.body.cuWeight;
+    material.thickness = req.body.thickness;
+    material.modelNumber = req.body.modelNumber;
     material.price = req.body.price;
     console.log("material req: "+req.material);
     console.log("want to save material" + material.material);

@@ -8,7 +8,7 @@ import Button from "react-bootstrap/Button";
 import ListGroup from "react-bootstrap/ListGroup";
 import Jumbotron from "react-bootstrap/Jumbotron";
 
-export default function ListMaterial() {
+export default function ListLaminate() {
   let navigate = useNavigate();
   const [data, setData] = useState([]);
   const [showLoading, setShowLoading] = useState(true);
@@ -19,9 +19,9 @@ export default function ListMaterial() {
     axios
       .get(apiUrl)
       .then((result) => {
-        console.log("result.data:", result.data);
         setData(result.data);
         setShowLoading(false);
+        console.log(result.data);
       })
       .catch((error) => {
         console.log("error in fetchData:", error);
@@ -33,33 +33,34 @@ export default function ListMaterial() {
     fetchData();
   }, []);
 
-  const editMaterial = (id) => {
-    navigate("/editMaterial/" + id);
+  const editLaminate = (id) => {
+    navigate("/editLaminate/" + id);
   };
 
-  const deleteMaterial = (item) => {
+  const deleteLaminate = (item) => {
     setShowLoading(true);
     const mId = item._id;
 
-    const material = {
+    const laminate = {
       materialType: item.materialType,
       supplier: item.supplier,
       material: item.material,
-      code: item.code,
+      cuWeight: item.cuWeight,
       price: item.price,
     };
-
-    console.log("material to delete:", material);
+    console.log("Laminate to delete:", laminate);
     const apiUrlDelete = "http://localhost:3000/materials/" + mId;
     axios
-      .delete(apiUrlDelete, material)
+      .delete(apiUrlDelete, laminate)
       .then((results) => {
         setShowLoading(false);
-        console.log("deleted material:", results.data);
+        console.log("deleted laminate:", results.data);
         fetchData();
       })
       .catch((error) => setShowLoading(false));
   };
+
+  const laminate = data.filter((la) => la.materialType === "Laminate Material");
 
   return (
     <div>
@@ -69,7 +70,8 @@ export default function ListMaterial() {
             <span className="sr-only">Loading...</span>
           </Spinner>
         )}
-        <h2>See all your Materials here:</h2>
+        <h2>See all your Laminate Materials here:</h2>
+
         <ListGroup>
           <Table>
             <thead>
@@ -77,14 +79,14 @@ export default function ListMaterial() {
                 <th>Material Type</th>
                 <th>Supplier</th>
                 <th>Material Name</th>
-                <th>Code</th>
+                <th>Cu Weight</th>
                 <th>Price</th>
                 <th>Edit Action</th>
                 <th>Delete Action</th>
               </tr>
             </thead>
             <tbody>
-              {data.map((item, idx) => (
+              {laminate.map((item, idx) => (
                 <tr key={idx}>
                   <td>{item.materialType} </td>
                   <td>{item.supplier} </td>
@@ -96,7 +98,7 @@ export default function ListMaterial() {
                       type="button"
                       variant="primary"
                       onClick={() => {
-                        editMaterial(item._id);
+                        editLaminate(item._id);
                       }}
                     >
                       Edit
@@ -107,7 +109,7 @@ export default function ListMaterial() {
                       type="button"
                       variant="warning"
                       onClick={() => {
-                        deleteMaterial(item);
+                        deleteLaminate(item);
                       }}
                     >
                       Delete
@@ -119,9 +121,9 @@ export default function ListMaterial() {
           </Table>
         </ListGroup>
         <div className="buttonStyle">
-          <Link to="/createMaterial">
+          <Link to="/createLaminate">
             <Button type="button" variant="secondary">
-              Create A New Material
+              Create A New Laminate Material
             </Button>
           </Link>
         </div>
