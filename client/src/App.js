@@ -66,15 +66,15 @@ function App() {
             {/* <Nav.Link href="/quote">Quotes</Nav.Link> */}
             <Nav.Link href="/allQuotes">All Quotes</Nav.Link>
             <NavDropdown title="Materials" id="basic-nav-dropdown">
-              <NavDropdown.Item href="listLaminate">Laminate Material</NavDropdown.Item>
-              <NavDropdown.Item href="listCoverCoat">Cover Coat</NavDropdown.Item>
-              <NavDropdown.Item href="listStiffener">Stiffener</NavDropdown.Item>
-              <NavDropdown.Item href="list3MTapes">3M Tapes</NavDropdown.Item>
-              <NavDropdown.Item href="listAdditional">Additional Processes</NavDropdown.Item>
-              <NavDropdown.Item href="listDryAndWet">Dry Film & Wet</NavDropdown.Item>
-              <NavDropdown.Item href="listMechanical">Mechanical</NavDropdown.Item>
-              <NavDropdown.Item href="listStandard">Standard Processes</NavDropdown.Item>
-              <NavDropdown.Item href="listAssembly">Assembly</NavDropdown.Item>
+              <NavDropdown.Item href="/listLaminate">Laminate Material</NavDropdown.Item>
+              <NavDropdown.Item href="/listCoverCoat">Cover Coat</NavDropdown.Item>
+              <NavDropdown.Item href="/listStiffener">Stiffener</NavDropdown.Item>
+              <NavDropdown.Item href="/list3MTapes">3M Tapes</NavDropdown.Item>
+              <NavDropdown.Item href="/listAdditional">Additional Processes</NavDropdown.Item>
+              <NavDropdown.Item href="/listDryAndWet">Dry Film & Wet</NavDropdown.Item>
+              <NavDropdown.Item href="/listMechanical">Mechanical</NavDropdown.Item>
+              <NavDropdown.Item href="/listStandard">Standard Processes</NavDropdown.Item>
+              <NavDropdown.Item href="/listAssembly">Assembly</NavDropdown.Item>
             </NavDropdown>
             <Nav.Link href="/login">Login</Nav.Link>
           </Nav>

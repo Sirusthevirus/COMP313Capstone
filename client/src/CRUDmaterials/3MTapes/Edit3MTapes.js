@@ -7,58 +7,53 @@ import Button from "react-bootstrap/Button";
 import Jumbotron from "react-bootstrap/Jumbotron";
 
 export default function Edit3MTapes() {
-    let navigate = useNavigate();
-    let { mId } = useParams();
-    console.log(mId);
-
-    const [tapes, set3MTapes] = useState({
-        _id: "",
-        materialType: "",
-        supplier: "",
-        material: "",
-        modelNumber: "",
-        price: "",
-      });
-
-      const [showLoading, setShowLoading] = useState(false);
-      const apiUrl = "http://localhost:3000/byId/" + mId;
-      const apiUrlUpdate = "http://localhost:3000/materials/" + mId;
-
-      useEffect(() => {
+  let navigate = useNavigate();
+  let { mId } = useParams();
+  console.log(mId);
+  const [tapes, set3MTapes] = useState({
+    _id: "",
+    materialType: "",
+    supplier: "",
+    material: "",
+    modelNumber: "",
+    price: "",
+  });
+  const [showLoading, setShowLoading] = useState(false);
+  const apiUrl = "http://localhost:3000/byId/" + mId;
+  const apiUrlUpdate = "http://localhost:3000/materials/" + mId;
+  useEffect(() => {
+    setShowLoading(false);
+    const fetchData = async () => {
+      const result = await axios(apiUrl);
+      set3MTapes(result.data);
+      console.log(result.data);
+      setShowLoading(false);
+    };
+    fetchData();
+  }, []);
+  const update3MTapes = (e) => {
+    setShowLoading(true);
+    e.preventDefault();
+    const data = {
+      materialType: tapes.materialType,
+      supplier: tapes.supplier,
+      material: tapes.material,
+      modelNumber: tapes.modelNumber,
+      price: tapes.price,
+    };
+    axios
+      .put(apiUrlUpdate, data)
+      .then((result) => {
+        console.log("after calling put to update", result.data);
         setShowLoading(false);
-        const fetchData = async () => {
-          const result = await axios(apiUrl);
-          set3MTapes(result.data);
-          console.log(result.data);
-          setShowLoading(false);
-        };
-        fetchData();
-      }, []);
-
-      const update3MTapes = (e) => {
-        setShowLoading(true);
-        e.preventDefault();
-        const data = {
-          materialType: tapes.materialType,
-          supplier: tapes.supplier,
-          material: tapes.material,
-          modelNumber: tapes.modelNumber,
-          price: tapes.price,
-        };
-        axios
-          .put(apiUrlUpdate, data)
-          .then((result) => {
-            console.log("after calling put to update", result.data);
-            setShowLoading(false);
-            navigate("/list3MTapes");
-          })
-          .catch((error) => setShowLoading(false));
-      };
-      const onChange = (e) => {
-        e.persist();
-        set3MTapes({ ...tapes, [e.target.name]: e.target.value });
-      };
-
+        navigate("/list3MTapes");
+      })
+      .catch((error) => setShowLoading(false));
+  };
+  const onChange = (e) => {
+    e.persist();
+    set3MTapes({ ...tapes, [e.target.name]: e.target.value });
+  };
   return (
     <div>
       <Jumbotron>
@@ -132,5 +127,5 @@ export default function Edit3MTapes() {
         </Form>
       </Jumbotron>
     </div>
-  )
+  );
 }

@@ -16,7 +16,6 @@ export default function CreateLaminate() {
     price: "",
   });
   const [showLoading, setShowLoading] = useState(false);
-
   const apiUrl = "http://localhost:3000/addMaterial";
   const saveLaminate = (e) => {
     setShowLoading(true);
@@ -37,7 +36,6 @@ export default function CreateLaminate() {
       })
       .catch((error) => setShowLoading(false));
   };
-
   // handles onChange event
   const onChange = (e) => {
     e.persist();

@@ -21,7 +21,6 @@ export default function EditStiffener() {
   const [showLoading, setShowLoading] = useState(false);
   const apiUrl = "http://localhost:3000/byId/" + mId;
   const apiUrlUpdate = "http://localhost:3000/materials/" + mId;
-
   useEffect(() => {
     setShowLoading(false);
     const fetchData = async () => {
@@ -32,7 +31,6 @@ export default function EditStiffener() {
     };
     fetchData();
   }, []);
-
   const updateStiffener = (e) => {
     setShowLoading(true);
     e.preventDefault();
@@ -56,7 +54,6 @@ export default function EditStiffener() {
     e.persist();
     setStiffener({ ...stiffener, [e.target.name]: e.target.value });
   };
-
   return (
     <div>
       <Jumbotron>
@@ -65,7 +62,6 @@ export default function EditStiffener() {
             <span className="sr-only">Loading...</span>
           </Spinner>
         )}
-
         <Form onSubmit={updateStiffener}>
           <Form.Group className="mb-3">
             <Form.Label>Material Type</Form.Label>

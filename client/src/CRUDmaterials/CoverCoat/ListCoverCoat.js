@@ -27,19 +27,15 @@ export default function ListCoverCoat() {
         setListError(true);
       });
   };
-
   useEffect(() => {
     fetchData();
   }, []);
-
   const editCoverCoat = (id) => {
     navigate("/editCoverCoat/" + id);
   };
-
   const deleteCoverCoat = (item) => {
     setShowLoading(true);
     const mId = item._id;
-
     const coverCoat = {
       materialType: item.materialType,
       supplier: item.supplier,
@@ -68,7 +64,6 @@ export default function ListCoverCoat() {
           </Spinner>
         )}
         <h2>See all your Cover Coats here:</h2>
-
         <ListGroup>
           <Table>
             <thead>

@@ -10,7 +10,6 @@ export default function EditCoverCoat() {
   let navigate = useNavigate();
   let { mId } = useParams();
   console.log(mId);
-
   const [coverCoat, setCoverCoat] = useState({
     _id: "",
     materialType: "",
@@ -19,11 +18,9 @@ export default function EditCoverCoat() {
     thickness: "",
     price: "",
   });
-
   const [showLoading, setShowLoading] = useState(false);
   const apiUrl = "http://localhost:3000/byId/" + mId;
   const apiUrlUpdate = "http://localhost:3000/materials/" + mId;
-
   useEffect(() => {
     setShowLoading(false);
     const fetchData = async () => {
@@ -34,7 +31,6 @@ export default function EditCoverCoat() {
     };
     fetchData();
   }, []);
-
   const updateCoverCoat = (e) => {
     setShowLoading(true);
     e.preventDefault();
@@ -54,7 +50,6 @@ export default function EditCoverCoat() {
       })
       .catch((error) => setShowLoading(false));
   };
-
   const onChange = (e) => {
     e.persist();
     setCoverCoat({ ...coverCoat, [e.target.name]: e.target.value });
@@ -67,7 +62,6 @@ export default function EditCoverCoat() {
             <span className="sr-only">Loading...</span>
           </Spinner>
         )}
-
         <Form onSubmit={updateCoverCoat}>
           <Form.Group className="mb-3">
             <Form.Label>Material Type</Form.Label>

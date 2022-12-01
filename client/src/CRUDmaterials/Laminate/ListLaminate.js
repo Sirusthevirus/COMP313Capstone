@@ -13,7 +13,6 @@ export default function ListLaminate() {
   const [data, setData] = useState([]);
   const [showLoading, setShowLoading] = useState(true);
   const [listError, setListError] = useState(false);
-
   const apiUrl = "http://localhost:3000/materials";
   const fetchData = async () => {
     axios
@@ -28,19 +27,15 @@ export default function ListLaminate() {
         setListError(true);
       });
   };
-
   useEffect(() => {
     fetchData();
   }, []);
-
   const editLaminate = (id) => {
     navigate("/editLaminate/" + id);
   };
-
   const deleteLaminate = (item) => {
     setShowLoading(true);
     const mId = item._id;
-
     const laminate = {
       materialType: item.materialType,
       supplier: item.supplier,
@@ -59,9 +54,7 @@ export default function ListLaminate() {
       })
       .catch((error) => setShowLoading(false));
   };
-
   const laminate = data.filter((la) => la.materialType === "Laminate Material");
-
   return (
     <div>
       <Jumbotron>

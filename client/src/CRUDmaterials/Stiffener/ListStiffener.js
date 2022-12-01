@@ -7,7 +7,6 @@ import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
 import ListGroup from "react-bootstrap/ListGroup";
 import Jumbotron from "react-bootstrap/Jumbotron";
-
 export default function ListStiffener() {
   let navigate = useNavigate();
   const [data, setData] = useState([]);
@@ -36,7 +35,6 @@ export default function ListStiffener() {
   const deleteStiffener = (item) => {
     setShowLoading(true);
     const mId = item._id;
-
     const stiffener = {
       materialType: item.materialType,
       supplier: item.supplier,
@@ -65,7 +63,6 @@ export default function ListStiffener() {
           </Spinner>
         )}
         <h2>See all your Stiffeners here:</h2>
-
         <ListGroup>
           <Table>
             <thead>

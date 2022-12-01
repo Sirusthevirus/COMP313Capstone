@@ -30,15 +30,12 @@ export default function List3MTapes() {
   useEffect(() => {
     fetchData();
   }, []);
-
   const edit3MTapes = (id) => {
     navigate("/edit3MTapes/" + id);
   };
-
   const delete3MTapes = (item) => {
     setShowLoading(true);
     const mId = item._id;
-
     const tapes = {
       materialType: item.materialType,
       supplier: item.supplier,
@@ -57,9 +54,7 @@ export default function List3MTapes() {
       })
       .catch((error) => setShowLoading(false));
   };
-
   const tapes = data.filter((cc) => cc.materialType === "3M Tapes");
-
   return (
     <div>
       <Jumbotron>

@@ -19,11 +19,9 @@ export default function EditLaminate() {
     cuWeight: "",
     price: "",
   });
-
   const [showLoading, setShowLoading] = useState(false);
   const apiUrl = "http://localhost:3000/byId/" + mId;
   const apiUrlUpdate = "http://localhost:3000/materials/" + mId;
-
   useEffect(() => {
     setShowLoading(false);
     const fetchData = async () => {
@@ -34,7 +32,6 @@ export default function EditLaminate() {
     };
     fetchData();
   }, []);
-
   const updateLaminate = (e) => {
     setShowLoading(true);
     e.preventDefault();
@@ -54,12 +51,10 @@ export default function EditLaminate() {
       })
       .catch((error) => setShowLoading(false));
   };
-
   const onChange = (e) => {
     e.persist();
     setLaminate({ ...laminate, [e.target.name]: e.target.value });
   };
-
   return (
     <div>
       <Jumbotron>
