@@ -56,17 +56,21 @@ export default function ListCoverCoat() {
   };
   const coverCoat = data.filter((cc) => cc.materialType === "Cover Coat");
   return (
-    <div>
-      <Jumbotron>
+    
+      <Jumbotron style={{background: 'white'}}>
+
+      <h2 style={{marginLeft:'2.5em'}}><b>List of Cover Coats: </b></h2>
+
+      <div className="col-11 mt-3" style={{display: 'inline-block', marginLeft:'4em', background: 'lightgrey', paddingLeft: '1.5em', paddingRight: '1.5em', paddingTop: '1.5em', paddingBottom: '1.5em', borderRadius:'25px'}}>
         {showLoading && (
           <Spinner animation="border" role="status">
             <span className="sr-only">Loading...</span>
           </Spinner>
         )}
-        <h2>See all your Cover Coats here:</h2>
+        
         <ListGroup>
-          <Table>
-            <thead>
+        <Table className='table' hover>
+          <thead className='table-dark' style={{background: '#111868'}}>
               <tr>
                 <th>Material Type</th>
                 <th>Supplier</th>
@@ -115,11 +119,12 @@ export default function ListCoverCoat() {
         <div className="buttonStyle">
           <Link to="/createCoverCoat">
             <Button type="button" variant="secondary">
-              Create A New Cover Coat
+              Create New Cover Coat
             </Button>
           </Link>
         </div>
+        </div>
       </Jumbotron>
-    </div>
+    
   );
 }

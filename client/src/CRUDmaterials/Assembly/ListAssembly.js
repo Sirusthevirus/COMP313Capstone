@@ -55,17 +55,20 @@ export default function ListAssembly() {
       .catch((error) => setShowLoading(false));
   };
   return (
-    <div>
-      <Jumbotron>
+    
+      <Jumbotron style={{background: 'white'}}>
+      <h2 style={{marginLeft:'2.5em'}}><b>List of Assemblies:</b></h2>
+
+      <div className="col-11 mt-3" style={{display: 'inline-block', marginLeft:'4em', background: 'lightgrey', paddingLeft: '1.5em', paddingRight: '1.5em', paddingTop: '1.5em', paddingBottom: '1.5em', borderRadius:'25px'}}>
         {showLoading && (
           <Spinner animation="border" role="status">
             <span className="sr-only">Loading...</span>
           </Spinner>
         )}
-        <h2>See all your Assemblies here:</h2>
+        
         <ListGroup>
-          <Table>
-            <thead>
+        <Table className='table' hover>
+          <thead className='table-dark' style={{background: '#111868'}}>
               <tr>
                 <th>Type</th>
                 <th>Cost</th>
@@ -102,11 +105,12 @@ export default function ListAssembly() {
         <div className="buttonStyle">
           <Link to="/createAssembly">
             <Button type="button" variant="secondary">
-              Create A New Assembly
+              Create New Assembly
             </Button>
           </Link>
         </div>
+        </div>
       </Jumbotron>
-    </div>
+   
   );
 }

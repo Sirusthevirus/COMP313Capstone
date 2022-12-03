@@ -39,8 +39,8 @@ export default function CreateAdditional() {
     setAdditional({ ...additional, [e.target.name]: e.target.value });
   };
   return (
-    <Jumbotron>
-      <div>
+    <Jumbotron style={{background: 'white'}}>
+      <div className="col-11 mt-6" style={{display: 'inline-block', marginLeft:'4em', background: 'lightgrey', paddingLeft: '1.5em', paddingRight: '1.5em', paddingTop: '1.5em', paddingBottom: '1.5em', borderRadius:'25px'}}>
         {showLoading && (
           <Spinner animation="border" role="status">
             <span className="sr-only">Loading...</span>
@@ -69,7 +69,7 @@ export default function CreateAdditional() {
               onChange={onChange}
             />
           </Form.Group>
-          <Button variant="primary" type="submit">
+          <Button variant="secondary" type="submit">
             Create
           </Button>
         </Form>

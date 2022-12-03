@@ -6,7 +6,7 @@ import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Jumbotron from 'react-bootstrap/Jumbotron';
 import 'bootstrap/dist/css/bootstrap.min.css';
-// import { withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import '../quote.css'
 
 
@@ -128,7 +128,7 @@ function Manufacturing(props)
           <Jumbotron style={{background: 'white'}}>
 
               <div style={{paddingLeft: '1.5em'}}>
-              <h1><b>Manufacturing</b></h1>
+              <h1>Manufacturing</h1>
               &nbsp;&nbsp;
               </div>
 
@@ -137,7 +137,7 @@ function Manufacturing(props)
                
                 <Col>
 
-                <div  style={{ display: 'flex', justifyContent: 'center', background: 'white', float: 'center', paddingLeft: '0.5em', paddingRight: '0.5em', paddingTop: '0.5em', paddingBottom: '0.5em'}}>
+                <div  style={{ display: 'flex', justifyContent: 'center',  float: 'center', paddingLeft: '0.5em', paddingRight: '0.5em', paddingTop: '0.5em', paddingBottom: '0.5em'}}>
 
                 <Row>
                 
@@ -175,7 +175,7 @@ function Manufacturing(props)
             
             
             <div  className="col-11 mt-3" style={{display: 'inline-block', background: '#A9A9A9', paddingLeft: '1.5em', paddingRight: '1.5em', paddingTop: '1.5em', paddingBottom: '1.5em', borderRadius:'25px'}} >
-            <h4><b>Laminate Material</b></h4>
+            <h4>Laminate Material</h4>
 
                 {serviceList.map((singleService,index)=>( 
                 <Row key={index}>
@@ -185,7 +185,8 @@ function Manufacturing(props)
                         value={singleService.service}
                         onChange = {(e) => handleServiceChange(e, index)}>
                             <option> Dupont</option>
-                            <option> Suppliers from DB</option>  
+                            <option> Suppliers from DB</option>
+                            
                         </Form.Control>
                         
                     </Form.Group>
@@ -248,7 +249,7 @@ function Manufacturing(props)
             
             
             <div  className="col-11 mt-3" style={{display: 'inline-block', background: '#A9A9A9', paddingLeft: '1.5em', paddingRight: '1.5em', paddingTop: '1.5em', paddingBottom: '1.5em', borderRadius:'25px'}} >
-            <h4><b>Coat Cover</b></h4>
+            <h4>Coat Cover</h4>
 
                 {serviceLists.map((singleServices,index)=>( 
                 <Row key={index}>
@@ -321,7 +322,7 @@ function Manufacturing(props)
             
             
             <div  className="col-11 mt-3" style={{display: 'inline-block', background: '#A9A9A9', paddingLeft: '1.5em', paddingRight: '1.5em', paddingTop: '1.5em', paddingBottom: '1.5em', borderRadius:'25px'}} >
-            <h4><b>Coat Cover</b></h4>
+            <h4>Coat Cover</h4>
 
                 {serviceListstiff.map((singleServicestiff,index)=>( 
                 <Row key={index}>
@@ -617,4 +618,4 @@ function Manufacturing(props)
 }
     
 
-export default Manufacturing;
+export default withRouter(Manufacturing);

@@ -49,34 +49,40 @@ import CreateAssembly from "./CRUDmaterials/Assembly/CreateAssembly";
 
 import "./App.css";
 import Summary from "./components/Summary";
+import Jumbotron from "react-bootstrap/esm/Jumbotron";
 
 function App() {
-  return (
+  return (    
+
     <Router>
-      <Navbar bg="light" expand="lg">
+      <div>
+        <img src="/images/logo.jpg" alt="PFC Flex Circuits logo"></img>
+
+      </div>
+      <Navbar  expand="lg" style={{background: '#D29823'}}>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
-            <Nav.Link href="/home">Home</Nav.Link>
+            <Nav.Link href="/login" style={{fontSize:'120%'}}> <b>Home</b></Nav.Link>
             {/* <Nav.Link href="/quote">Generate Quote</Nav.Link>
             <Nav.Link href="/assembly">Generate Assembly</Nav.Link>          
             <Nav.Link href="/manufacturing">Manufacturing</Nav.Link>
              <Nav.Link href="/processes">Processes</Nav.Link>
              <Nav.Link href="/summary">Summary</Nav.Link>   */}
             {/* <Nav.Link href="/quote">Quotes</Nav.Link> */}
-            <Nav.Link href="/allQuotes">All Quotes</Nav.Link>
-            <NavDropdown title="Materials" id="basic-nav-dropdown">
-              <NavDropdown.Item href="/listLaminate">Laminate Material</NavDropdown.Item>
-              <NavDropdown.Item href="/listCoverCoat">Cover Coat</NavDropdown.Item>
-              <NavDropdown.Item href="/listStiffener">Stiffener</NavDropdown.Item>
-              <NavDropdown.Item href="/list3MTapes">3M Tapes</NavDropdown.Item>
-              <NavDropdown.Item href="/listAdditional">Additional Processes</NavDropdown.Item>
-              <NavDropdown.Item href="/listDryAndWet">Dry Film & Wet</NavDropdown.Item>
-              <NavDropdown.Item href="/listMechanical">Mechanical</NavDropdown.Item>
-              <NavDropdown.Item href="/listStandard">Standard Processes</NavDropdown.Item>
-              <NavDropdown.Item href="/listAssembly">Assembly</NavDropdown.Item>
+            <Nav.Link href="/allQuotes" style={{fontSize:'120%'}}> <b>Quotes</b> </Nav.Link>
+            <NavDropdown title="Materials" id="basic-nav-dropdown" style={{fontWeight:'bold', fontSize:'120%',}}>
+              <NavDropdown.Item href="/listLaminate" > <b>Laminate Material</b></NavDropdown.Item>
+              <NavDropdown.Item href="/listCoverCoat"><b>Cover Coat</b></NavDropdown.Item>
+              <NavDropdown.Item href="/listStiffener"> <b>Stiffener</b></NavDropdown.Item>
+              <NavDropdown.Item href="/list3MTapes"> <b>3M Tapes</b></NavDropdown.Item>
+              <NavDropdown.Item href="/listAdditional"><b>Additional Processes</b></NavDropdown.Item>
+              <NavDropdown.Item href="/listDryAndWet"><b>Dry Film & Wet</b></NavDropdown.Item>
+              <NavDropdown.Item href="/listMechanical"><b>Mechanical</b></NavDropdown.Item>
+              <NavDropdown.Item href="/listStandard"><b>Standard Processes</b></NavDropdown.Item>
+              <NavDropdown.Item href="/listAssembly"><b>Assembly</b></NavDropdown.Item>
             </NavDropdown>
-            <Nav.Link href="/login">Login</Nav.Link>
+            
           </Nav>
         </Navbar.Collapse>
       </Navbar>

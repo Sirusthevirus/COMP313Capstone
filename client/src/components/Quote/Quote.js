@@ -138,61 +138,77 @@ function Quote(props)
           }, []);
         
   return (
-        <Jumbotron>
+        <Jumbotron style={{background: 'white'}}>
+
+            <h2 style={{marginLeft:'2.5em'}}><b>Create Quote</b></h2>
             <Form style={{display: 'flex'}}>
             <div  className="col-12 mt-3" style={{display: 'inline-block'}}>
+
+                <div style={{display:'flex', justifyContent: 'center'}}>
             <Form.Group as={Row} className="mb-3">
                 <Col sm={4}>
-                    <Form.Label>Customer</Form.Label>
-                    <Form.Control type="text" placeholder="Customer">
+                    <Form.Label> <b>Customer</b></Form.Label>
+                    <Form.Control type="text" >
                     </Form.Control>
                 </Col>
                 <Col sm={4}>
-                    <Form.Label>Panel Size</Form.Label>
-                    <Form.Control type="text" placeholder="Panel Size">
+                    <Form.Label><b>Panel Size</b></Form.Label>
+                    <Form.Control type="text">
                     </Form.Control>
                 </Col>
                 <Col sm={4}>
-                    <Form.Label>Exchange Rate</Form.Label>
-                    <Form.Control type="text" placeholder="Exchange Rate">
+                    <Form.Label><b>Exchange Rate</b></Form.Label>
+                    <Form.Control type="text" >
                     </Form.Control>
                 </Col>
             </Form.Group>
+            </div>
+
+            <div style={{display:'flex', justifyContent: 'center'}}>
             <Form.Group as={Row} className="mb-3">
                 <Col sm={4}>
-                    <Form.Label>Part Number</Form.Label>
-                    <Form.Control type="text" placeholder="Part Number">
+                    <Form.Label><b>Part Number</b></Form.Label>
+                    <Form.Control type="text" >
                     </Form.Control>
                 </Col>
                 <Col sm={4}>
-                    <Form.Label>Number of Layers</Form.Label>
-                    <Form.Control type="text" placeholder="Number of Layers">
+                    <Form.Label><b>Number of Layers</b></Form.Label>
+                    <Form.Control type="text" >
                     </Form.Control>
                 </Col>
                 <Col sm={4}>
-                    <Form.Label>Freight</Form.Label>
-                    <Form.Control type="text" placeholder="Freight">
+                    <Form.Label><b>Freight</b></Form.Label>
+                    <Form.Control type="text" >
                     </Form.Control>
                 </Col>
             </Form.Group>
+            </div>
+
+            <div style={{display:'flex', justifyContent: 'center'}}>
             <Form.Group as={Row} className="mb-3">
                 <Col sm={4}>
-                    <Form.Label>Revision</Form.Label>
-                    <Form.Control type="text" placeholder="Revision">
+                    <Form.Label><b>Revision</b></Form.Label>
+                    <Form.Control type="text" >
                     </Form.Control>
                 </Col>
                 <Col sm={4}>
-                    <Form.Label>Technology</Form.Label>
-                    <Form.Control type="text" placeholder="Technology">
+                    <Form.Label><b>Technology</b></Form.Label>
+                    <Form.Control type="text" >
                     </Form.Control>
                 </Col>
                 <Col sm={4}>
-                    <Form.Label>Assembly?</Form.Label>
-                    <Form.Control type="text" placeholder="Assembly">
+                    <Form.Label><b>Assembly</b></Form.Label>
+                    <Form.Control type="text" >
                     </Form.Control>
                 </Col>
             </Form.Group>
-                <div className="col-12 mt-3" style={{display: 'inline-block', background: 'lightgrey', paddingLeft: '1.5em', paddingRight: '1.5em', paddingTop: '1.5em', paddingBottom: '1.5em', borderRadius:'25px'}} >
+            </div>
+            
+            &nbsp;
+            &nbsp;
+
+            <h3 style={{marginLeft:'2.5em'}}><b>Manufacturing</b></h3>
+                <div className="col-11 mt-6" style={{display: 'inline-block', marginLeft:'4em', background: 'lightgrey', paddingLeft: '1.5em', paddingRight: '1.5em', paddingTop: '1.5em', paddingBottom: '1.5em', borderRadius:'25px'}} >
                 <h4>Laminate Material</h4>
                     {serviceList.map((singleService,index)=>( 
                     <Row key={index}>
@@ -230,21 +246,20 @@ function Quote(props)
                         </Form.Group>
                         <div className=" mt-4">
                         {serviceList.length-1 === index &&
-                        <Button style={{width:"90px", height:"38px"}} onClick={handleServiceAdd} variant="primary" type="Input">
+                        <Button style={{width:"90px", height:"38px"}} onClick={handleServiceAdd} variant="secondary" type="Input">
                             Add
                         </Button> }
                         </div>
                         &nbsp;&nbsp;
                         <div className="mt-4">
                             {serviceList.length > 1 && 
-                            <Button onClick={() => handleServiceRemove(index)} variant="primary" type="Delete">
+                            <Button onClick={() => handleServiceRemove(index)} variant="secondary" type="Delete">
                             Remove
                         </Button> }
                         </div>
                     </Row>))}
                 </div>
-
-            <div  className="col-12 mt-3" style={{display: 'inline-block', background: 'lightgrey', paddingLeft: '1.5em', paddingRight: '1.5em', paddingTop: '1.5em', paddingBottom: '1.5em', borderRadius:'25px'}} >
+                <div className="col-11 mt-3" style={{display: 'inline-block', marginLeft:'4em', background: 'lightgrey', paddingLeft: '1.5em', paddingRight: '1.5em', paddingTop: '1.5em', paddingBottom: '1.5em', borderRadius:'25px'}} >
             <h4>Cover Coat</h4>
                 {serviceLists.map((singleServices,index)=>( 
                 <Row key={index}>
@@ -284,21 +299,21 @@ function Quote(props)
                     </Form.Group>
                     <div className=" mt-4">
                     {serviceLists.length-1 === index &&
-                     <Button style={{width:"90px", height:"38px"}} onClick={handleServiceAddO} variant="primary" type="Input">
+                     <Button style={{width:"90px", height:"38px"}} onClick={handleServiceAddO} variant="secondary" type="Input">
                         Add
                     </Button> }
                     </div>
                     &nbsp;&nbsp;
                     <div className="mt-4">
                         {serviceLists.length > 1 && 
-                        <Button onClick={() => handleServiceRemoveO(index)} variant="primary" type="Delete">
+                        <Button onClick={() => handleServiceRemoveO(index)} variant="secondary" type="Delete">
                         Remove
                     </Button> }
                     </div>
                 </Row>))}
                 </div>
 
-                <div  className="col-12 mt-3" style={{display: 'inline-block', background: 'lightgrey', paddingLeft: '1.5em', paddingRight: '1.5em', paddingTop: '1.5em', paddingBottom: '1.5em', borderRadius:'25px'}} >
+                <div className="col-11 mt-3" style={{display: 'inline-block', marginLeft:'4em', background: 'lightgrey', paddingLeft: '1.5em', paddingRight: '1.5em', paddingTop: '1.5em', paddingBottom: '1.5em', borderRadius:'25px'}} >
                 <h4>Stiffener</h4>
                 {serviceListstiff.map((singleServicestiff,index)=>( 
                 <Row key={index}>
@@ -338,7 +353,7 @@ function Quote(props)
                     </Form.Group>
                     <div className=" mt-4">
                     {serviceListstiff.length-1 === index &&
-                     <Button style={{width:"90px", height:"38px"}} onClick={handleServiceAddT} variant="primary" type="Input">
+                     <Button style={{width:"90px", height:"38px"}} onClick={handleServiceAddT} variant="secondary" type="Input">
                         Add
                     </Button> }
                     </div>
@@ -346,14 +361,14 @@ function Quote(props)
 
                     <div className="mt-4">
                         {serviceListstiff.length > 1 && 
-                        <Button onClick={() => handleServiceRemoveT(index)} variant="primary" type="Delete">
+                        <Button onClick={() => handleServiceRemoveT(index)} variant="secondary" type="Delete">
                         Remove
                     </Button> }
                     </div>
                 </Row>))}
                 </div>
 
-                <div  className="col-12 mt-3" style={{display: 'inline-block', background: 'lightgrey', paddingLeft: '1.5em', paddingRight: '1.5em', paddingTop: '1.5em', paddingBottom: '1.5em', borderRadius:'25px'}} >
+                <div className="col-11 mt-3" style={{display: 'inline-block', marginLeft:'4em', background: 'lightgrey', paddingLeft: '1.5em', paddingRight: '1.5em', paddingTop: '1.5em', paddingBottom: '1.5em', borderRadius:'25px'}} >
                 <h4>3M Tape</h4>
                 {serviceListstape.map((singleServicestape,index)=>( 
                 <Row key={index}>
@@ -393,7 +408,7 @@ function Quote(props)
                     </Form.Group>
                     <div className=" mt-4">
                     {serviceListstape.length-1 === index &&
-                     <Button style={{width:"90px", height:"38px"}} onClick={handleServiceAddTape} variant="primary" type="Input">
+                     <Button style={{width:"90px", height:"38px"}} onClick={handleServiceAddTape} variant="secondary" type="Input">
                         Add
                     </Button> }
                     </div>
@@ -401,9 +416,11 @@ function Quote(props)
                 </Row>))}
                 </div>
                 
+                <div className="col-11 mt-6" style={{display: 'inline-block', marginLeft:'4em', background: 'white', paddingLeft: '1.5em', paddingRight: '1.5em', paddingTop: '1.5em', paddingBottom: '1.5em', borderRadius:'25px'}} ></div>
 
+            <h3 style={{marginLeft:'2.5em'}}><b>Processes</b></h3>
 
-                <div  className="col-12 mt-3" style={{display: 'inline-block', background: 'lightgrey', paddingLeft: '1.5em', paddingRight: '1.5em', paddingTop: '1.5em', paddingBottom: '1.5em', borderRadius:'25px'}} >
+            <div className="col-11 mt-6" style={{display: 'inline-block', marginLeft:'4em', background: 'lightgrey', paddingLeft: '1.5em', paddingRight: '1.5em', paddingTop: '1.5em', paddingBottom: '1.5em', borderRadius:'25px'}} >
                 <h4>Dry Film & Wet Processes</h4>
                 {serviceListstape.map((singleServicestape,index)=>( 
                 <Row key={index}>
@@ -434,7 +451,7 @@ function Quote(props)
                     </Form.Group>
                     <div className=" mt-4">
                     {serviceListstape.length-1 === index &&
-                     <Button style={{width:"90px", height:"38px"}} onClick={handleServiceAddTape} variant="primary" type="Input">
+                     <Button style={{width:"90px", height:"38px"}} onClick={handleServiceAddTape} variant="secondary" type="Input">
                         Add
                     </Button> }
                     </div>
@@ -442,7 +459,7 @@ function Quote(props)
                 </Row>))}
                 </div>
 
-                <div  className="col-12 mt-3" style={{display: 'inline-block', background: 'lightgrey', paddingLeft: '1.5em', paddingRight: '1.5em', paddingTop: '1.5em', paddingBottom: '1.5em', borderRadius:'25px'}} >
+                <div className="col-11 mt-3" style={{display: 'inline-block', marginLeft:'4em', background: 'lightgrey', paddingLeft: '1.5em', paddingRight: '1.5em', paddingTop: '1.5em', paddingBottom: '1.5em', borderRadius:'25px'}} >
                 <h4>Mechanical Processes</h4>
                 {serviceListstape.map((singleServicestape,index)=>( 
                 <Row key={index}>
@@ -473,14 +490,15 @@ function Quote(props)
                     </Form.Group>
                     <div className=" mt-4">
                     {serviceListstape.length-1 === index &&
-                     <Button style={{width:"90px", height:"38px"}} onClick={handleServiceAddTape} variant="primary" type="Input">
+                     <Button style={{width:"90px", height:"38px"}} onClick={handleServiceAddTape} variant="secondary" type="Input">
                         Add
                     </Button> }
                     </div>
                     &nbsp;&nbsp;                   
                 </Row>))}
                 </div>
-                <div  className="col-12 mt-3" style={{display: 'inline-block', background: 'lightgrey', paddingLeft: '1.5em', paddingRight: '1.5em', paddingTop: '1.5em', paddingBottom: '1.5em', borderRadius:'25px'}} >
+
+               <div className="col-11 mt-3" style={{display: 'inline-block', marginLeft:'4em', background: 'lightgrey', paddingLeft: '1.5em', paddingRight: '1.5em', paddingTop: '1.5em', paddingBottom: '1.5em', borderRadius:'25px'}} >
                 <h4>Standard Processes</h4>
                 {serviceListstape.map((singleServicestape,index)=>( 
                 <Row key={index}>
@@ -511,7 +529,7 @@ function Quote(props)
                     </Form.Group>
                     <div className=" mt-4">
                     {serviceListstape.length-1 === index &&
-                     <Button style={{width:"90px", height:"38px"}} onClick={handleServiceAddTape} variant="primary" type="Input">
+                     <Button style={{width:"90px", height:"38px"}} onClick={handleServiceAddTape} variant="secondary" type="Input">
                         Add
                     </Button> }
                     </div>
@@ -519,7 +537,7 @@ function Quote(props)
                 </Row>))}
                 </div>
 
-                <div className="col-12 mt-3" style={{display: 'inline-block', background: 'lightgrey', paddingLeft: '1.5em', paddingRight: '1.5em', paddingTop: '1.5em', paddingBottom: '1.5em', borderRadius:'25px'}} >
+                <div className="col-11 mt-3" style={{display: 'inline-block', marginLeft:'4em', background:'lightgrey', paddingLeft: '1.5em', paddingRight: '1.5em', paddingTop: '1.5em', paddingBottom: '1.5em', borderRadius:'25px'}} >
                 <h4>Finishes</h4>
                 {serviceListstape.map((singleServicestape,index)=>( 
                 <Row key={index}>
@@ -550,14 +568,24 @@ function Quote(props)
                     </Form.Group>
                     <div className=" mt-4">
                     {serviceListstape.length-1 === index &&
-                     <Button style={{width:"90px", height:"38px"}} onClick={handleServiceAddTape} variant="primary" type="Input">
+                     <Button style={{width:"90px", height:"38px"}} onClick={handleServiceAddTape} variant="secondary" type="Input">
                         Add
                     </Button> }
                     </div>
                     &nbsp;&nbsp;                   
                 </Row>))}
                 </div>
+
+                <div className="col-12 mt-3" style={{display: 'flex', justifyContent: 'flex-end'}}>
+                <Button style={{width:"100px", height:"50px"}}  variant="secondary" type="Submit">
+                
+                        Submit
+                        
+                    </Button>
             </div>
+            </div>
+
+            
             {
                 //The space below can be used to add a dynamic cost breakdown to the quote form. Change the above div to col-8 instead of col-12
             }

@@ -56,23 +56,28 @@ export default function ListLaminate() {
   };
   const laminate = data.filter((la) => la.materialType === "Laminate Material");
   return (
-    <div>
-      <Jumbotron>
+   
+      <Jumbotron style={{background: 'white'}}>
+
+      <h2 style={{marginLeft:'2.5em'}}> <b>List of Laminate Materials: </b></h2>
+
+      <div className="col-11 mt-3" style={{display: 'inline-block', marginLeft:'4em', background: 'lightgrey', paddingLeft: '1.5em', paddingRight: '1.5em', paddingTop: '1.5em', paddingBottom: '1.5em', borderRadius:'25px'}}>
+
         {showLoading && (
           <Spinner animation="border" role="status">
             <span className="sr-only">Loading...</span>
           </Spinner>
         )}
-        <h2>See all your Laminate Materials here:</h2>
+        
 
         <ListGroup>
-          <Table>
-            <thead>
+        <Table className='table' hover>
+            <thead className='table-dark' style={{background: '#111868'}}>
               <tr>
                 <th>Material Type</th>
                 <th>Supplier</th>
                 <th>Material Name</th>
-                <th>Cu Weight</th>
+                <th>CU Weight</th>
                 <th>Price</th>
                 <th>Edit Action</th>
                 <th>Delete Action</th>
@@ -116,11 +121,12 @@ export default function ListLaminate() {
         <div className="buttonStyle">
           <Link to="/createLaminate">
             <Button type="button" variant="secondary">
-              Create A New Laminate Material
+              Create New Laminate Material
             </Button>
           </Link>
         </div>
+        </div>
       </Jumbotron>
-    </div>
+    
   );
 }

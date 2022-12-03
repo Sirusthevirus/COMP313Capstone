@@ -5,41 +5,49 @@ import Spinner from "react-bootstrap/Spinner";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Jumbotron from "react-bootstrap/Jumbotron";
-export default function Create3MTapes() {
+
+export default function CreateMaterial() {
   let navigate = useNavigate();
-  const [tapes, set3MTapes] = useState({
+  const [material, setMaterial] = useState({
+    _id: "",
     materialType: "",
     supplier: "",
     material: "",
-    modelNumber: "",
+    code: "",
+    numberOfUse: "",
     price: "",
   });
   const [showLoading, setShowLoading] = useState(false);
+
   const apiUrl = "http://localhost:3000/addMaterial";
-  const save3MTapes = (e) => {
+
+  const saveMaterial = (e) => {
     setShowLoading(true);
     e.preventDefault();
     const data = {
-      materialType: tapes.materialType,
-      supplier: tapes.supplier,
-      material: tapes.material,
-      modelNumber: tapes.modelNumber,
-      price: tapes.price,
+      materialType: material.materialType,
+      supplier: material.supplier,
+      material: material.material,
+      code: material.code,
+      numberOfUse: material.numberOfUse,
+      price: material.price,
     };
     //use promises
     axios
       .post(apiUrl, data)
       .then((result) => {
         setShowLoading(false);
-        navigate("/list3MTapes");
+        navigate("/listMaterial");
       })
       .catch((error) => setShowLoading(false));
   };
+
   // handles onChange event
   const onChange = (e) => {
     e.persist();
-    set3MTapes({ ...tapes, [e.target.name]: e.target.value });
+    setMaterial({ ...material, [e.target.name]: e.target.value });
   };
+
   return (
     <Jumbotron style={{background: 'white'}}>
       <div className="col-11 mt-6" style={{display: 'inline-block', marginLeft:'4em', background: 'lightgrey', paddingLeft: '1.5em', paddingRight: '1.5em', paddingTop: '1.5em', paddingBottom: '1.5em', borderRadius:'25px'}}>
@@ -48,17 +56,20 @@ export default function Create3MTapes() {
             <span className="sr-only">Loading...</span>
           </Spinner>
         )}
-        <Form onSubmit={save3MTapes}>
+        <Form onSubmit={saveMaterial}>
           <Form.Group className="mb-3">
             <Form.Label>Material Type</Form.Label>
             <Form.Control
               as="select"
               name="materialType"
               id="materialType"
-              value={tapes.materialType}
+              value={material.materialType}
               onChange={onChange}
             >
               <option>Select . . .</option>
+              <option value="Laminate Material">Laminate Material</option>
+              <option value="Cover Coat">Cover Coat</option>
+              <option value="Stiffener">Stiffener</option>
               <option value="3M Tapes">3M Tapes</option>
             </Form.Control>
           </Form.Group>
@@ -69,7 +80,7 @@ export default function Create3MTapes() {
               placeholder="Supplier"
               name="supplier"
               id="supplier"
-              value={tapes.supplier}
+              value={material.supplier}
               onChange={onChange}
             />
           </Form.Group>
@@ -80,18 +91,29 @@ export default function Create3MTapes() {
               placeholder="Material Name"
               name="material"
               id="material"
-              value={tapes.material}
+              value={material.material}
               onChange={onChange}
             />
           </Form.Group>
           <Form.Group className="mb-3">
-            <Form.Label>Model Number</Form.Label>
+            <Form.Label>Code</Form.Label>
             <Form.Control
               type="text"
-              placeholder="Model Number"
-              name="modelNumber"
-              id="modelNumber"
-              value={tapes.modelNumber}
+              placeholder="Code"
+              name="code"
+              id="code"
+              value={material.code}
+              onChange={onChange}
+            />
+          </Form.Group>
+          <Form.Group className="mb-3">
+            <Form.Label>Number Of Use</Form.Label>
+            <Form.Control
+              type="number"
+              placeholder="Number Of Use"
+              name="numberOfUse"
+              id="numberOfUse"
+              value={material.numberOfUse}
               onChange={onChange}
             />
           </Form.Group>
@@ -102,7 +124,7 @@ export default function Create3MTapes() {
               placeholder="Price"
               name="price"
               id="price"
-              value={tapes.price}
+              value={material.price}
               onChange={onChange}
             />
           </Form.Group>
