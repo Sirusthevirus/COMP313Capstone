@@ -14,108 +14,204 @@ import axios from 'axios';
 function Quote(props)
 {
         /* Service List*/
-        const [serviceList, setServiceList] = useState([
+        const [laminateList, setLaminateMaterial] = useState([
             {supplier: "", material: "", weight: "", used: ""},
             
         ]);
     
-        const [serviceLists, setServiceLists] = useState([
+        const [coverCoatList, setCoverCoat] = useState([
             {supplier: "", material: "", thinkness: "", used: ""},
             
         ]);
     
-        const [serviceListstiff, setServiceListstiff] = useState([
+        const [stiffenerList, setStiffener] = useState([
             {supplier: "", material: "", thinkness: "", used: ""},
             
         ]);
     
-        const [serviceListstape, setServiceListstape] = useState([
+        const [tapeList, set3MTape] = useState([
+            {supplier: "", material: "", thinkness: "", used: ""},
+            
+        ]);
+
+        const [dryFilmList, setDryFilm] = useState([
+            {supplier: "", material: "", thinkness: "", used: ""},
+            
+        ]);
+
+        const [mechanicalProcessList, setMechanicalProcess] = useState([
+            {supplier: "", material: "", thinkness: "", used: ""},
+            
+        ]);
+
+        const [standardProcessList, setStandardProcess] = useState([
+            {supplier: "", material: "", thinkness: "", used: ""},
+            
+        ]);
+
+        const [finishesList, setFinishes] = useState([
             {supplier: "", material: "", thinkness: "", used: ""},
             
         ]);
     
          /* Add Button*/
     
-        const handleServiceAdd = () => {
-            setServiceList([...serviceList, {supplier: "", material: "", weight: "", used: ""}]);
+        const addLaminate = () => {
+            setLaminateMaterial([...laminateList, {supplier: "", material: "", weight: "", used: ""}]);
     
         };
     
-        const handleServiceAddO = () => {
-            setServiceLists([...serviceLists, {supplier: "", material: "", thinkness: "", used: ""}]);
+        const addCoverCoat = () => {
+            setCoverCoat([...coverCoatList, {supplier: "", material: "", thinkness: "", used: ""}]);
     
         };
     
-        const handleServiceAddT = () => {
-            setServiceListstiff([...serviceListstiff, {supplier: "", material: "", thinkness: "", used: ""}]);
+        const addStiffener = () => {
+            setStiffener([...stiffenerList, {supplier: "", material: "", thinkness: "", used: ""}]);
     
         };
     
-        const handleServiceAddTape = () => {
-            setServiceListstape([...serviceListstape, {supplier: "", material: "", thinkness: "", used: ""}]);
+        const add3MTape = () => {
+            set3MTape([...tapeList, {supplier: "", material: "", thinkness: "", used: ""}]);
+    
+        };
+
+        const addDryFilm = () => {
+            setDryFilm([...dryFilmList, {supplier: "", material: "", used: ""}]);
+    
+        };
+
+        const addMechanicalProcess = () => {
+            setMechanicalProcess([...mechanicalProcessList, {supplier: "", material: "", used: ""}]);
+    
+        };
+
+        const addStandardProcess = () => {
+            setStandardProcess([...standardProcessList, {supplier: "", material: "", used: ""}]);
+    
+        };
+
+        const addFinishes = () => {
+            setFinishes([...finishesList, {supplier: "", material: "", used: ""}]);
     
         };
     
          /* Remove Button*/
     
-        const handleServiceRemove = (index) => {
-            const list = [...serviceList]
+        const removeLaminate = (index) => {
+            const list = [...laminateList]
             list.splice(index, 1);
-            setServiceList(list)
+            setLaminateMaterial(list)
         };
     
-        const handleServiceRemoveO = (index) => {
-            const list = [...serviceLists]
+        const removeCoverCoat = (index) => {
+            const list = [...coverCoatList]
             list.splice(index, 1);
-            setServiceLists(list)
+            setCoverCoat(list)
         };
     
-        const handleServiceRemoveT = (index) => {
-            const list = [...serviceListstiff]
+        const removeStiffener = (index) => {
+            const list = [...stiffenerList]
             list.splice(index, 1);
-            setServiceListstiff(list)
+            setStiffener(list)
         };
     
-        const handleServiceRemoveTape = (index) => {
-            const list = [...serviceListstape]
+        const remove3MTape = (index) => {
+            const list = [...tapeList]
             list.splice(index, 1);
-            setServiceListstape(list)
+            set3MTape(list)
         };
     
+        const removeDryFilm = (index) => {
+            const list = [...dryFilmList]
+            list.splice(index, 1);
+            setDryFilm(list)
+        };
+
+        const removeMechanicalProcess = (index) => {
+            const list = [...mechanicalProcessList]
+            list.splice(index, 1);
+            setMechanicalProcess(list)
+        };
+
+        const removeStandardProcess = (index) => {
+            const list = [...standardProcessList]
+            list.splice(index, 1);
+            setStandardProcess(list)
+        };
+
+        const removeFinishes = (index) => {
+            const list = [...finishesList]
+            list.splice(index, 1);
+            setFinishes(list)
+        };
+        
+        
          /* Output*/
     
-        const handleServiceChange = (e, index) => {
+        const handleLaminateChange = (e, index) => {
             const {name, value} = e.target
-            const list = [...serviceList];
+            const list = [...laminateList];
             list[index][name] = value;
-            setServiceList(list)
+            setLaminateMaterial(list)
     
         };
     
-        const handleServiceChangeO = (e, index) => {
+        const handleCoverCoatChange = (e, index) => {
             const {name, value} = e.target
-            const list = [...serviceLists];
+            const list = [...coverCoatList];
             list[index][name] = value;
-            setServiceLists(list)
+            setCoverCoat(list)
     
         };
     
-        const handleServiceChangeT = (e, index) => {
+        const handleStiffenerChange = (e, index) => {
             const {name, value} = e.target
-            const list = [...serviceListstiff];
+            const list = [...stiffenerList];
             list[index][name] = value;
-            setServiceListstiff(list)
+            setStiffener(list)
     
         };
     
-        const handleServiceChangeTape = (e, index) => {
+        const handle3MTapeChange = (e, index) => {
             const {name, value} = e.target
-            const list = [...serviceListstape];
+            const list = [...tapeList];
             list[index][name] = value;
-            setServiceListstape(list)
+            set3MTape(list)
     
         };
 
+        const handleDryFilmChange = (e, index) => {
+            const {name, value} = e.target
+            const list = [...dryFilmList];
+            list[index][name] = value;
+            setDryFilm(list)
+    
+        };
+
+        const handleMechanicalChange = (e, index) => {
+            const {name, value} = e.target
+            const list = [...mechanicalProcessList];
+            list[index][name] = value;
+            setMechanicalProcess(list)
+    
+        };
+
+        const handleStandardChange = (e, index) => {
+            const {name, value} = e.target
+            const list = [...standardProcessList];
+            list[index][name] = value;
+            setStandardProcess(list)
+    
+        };
+
+        const handleFinishesChange = (e, index) => {
+            const {name, value} = e.target
+            const list = [...finishesList];
+            list[index][name] = value;
+            setFinishes(list)
+    
+        };
         const [optionList, setOptionList] = useState([]);
         const fetchLaminateData = () => {
             axios
@@ -210,7 +306,7 @@ function Quote(props)
             <h3 style={{marginLeft:'2.5em'}}><b>Manufacturing</b></h3>
                 <div className="col-11 mt-6" style={{display: 'inline-block', marginLeft:'4em', background: 'lightgrey', paddingLeft: '1.5em', paddingRight: '1.5em', paddingTop: '1.5em', paddingBottom: '1.5em', borderRadius:'25px'}} >
                 <h4>Laminate Material</h4>
-                    {serviceList.map((singleService,index)=>( 
+                    {laminateList.map((singleService,index)=>( 
                     <Row key={index}>
                         <Form.Group as={Col} className="mb-3">
                             <Form.Label>Supplier</Form.Label>
@@ -241,19 +337,19 @@ function Quote(props)
                             <Form.Label>Used</Form.Label>
                             <Form.Control name='used' type="number" placeholder='0'
                             value={singleService.service}
-                            onChange = {(e) => handleServiceChange(e, index)}>
+                            onChange = {(e) => handleLaminateChange(e, index)}>
                             </Form.Control>
                         </Form.Group>
                         <div className=" mt-4">
-                        {serviceList.length-1 === index &&
-                        <Button style={{width:"90px", height:"38px"}} onClick={handleServiceAdd} variant="secondary" type="Input">
+                        {laminateList.length-1 === index &&
+                        <Button style={{width:"90px", height:"38px"}} onClick={addLaminate} variant="secondary" type="Input">
                             Add
                         </Button> }
                         </div>
                         &nbsp;&nbsp;
                         <div className="mt-4">
-                            {serviceList.length > 1 && 
-                            <Button onClick={() => handleServiceRemove(index)} variant="secondary" type="Delete">
+                            {laminateList.length > 1 && 
+                            <Button onClick={() => removeLaminate(index)} variant="secondary" type="Delete">
                             Remove
                         </Button> }
                         </div>
@@ -261,13 +357,13 @@ function Quote(props)
                 </div>
                 <div className="col-11 mt-3" style={{display: 'inline-block', marginLeft:'4em', background: 'lightgrey', paddingLeft: '1.5em', paddingRight: '1.5em', paddingTop: '1.5em', paddingBottom: '1.5em', borderRadius:'25px'}} >
             <h4>Cover Coat</h4>
-                {serviceLists.map((singleServices,index)=>( 
+                {coverCoatList.map((singleServices,index)=>( 
                 <Row key={index}>
                     <Form.Group as={Col} className="mb-3">
                         <Form.Label>Supplier</Form.Label>
                         <Form.Control name='supplier' as="select"
                         value={singleServices.service}
-                        onChange = {(e) => handleServiceChangeO(e, index)}>
+                        onChange = {(e) => handleCoverCoatChange(e, index)}>
                             <option> Dupont</option>
                             <option> Suppliers from DB</option>
                         </Form.Control>
@@ -276,7 +372,7 @@ function Quote(props)
                         <Form.Label>Material</Form.Label>
                         <Form.Control name='material' as="select"
                         value={singleServices.service}
-                        onChange = {(e) => handleServiceChangeO(e, index)}>
+                        onChange = {(e) => handleCoverCoatChange(e, index)}>
                             <option> FLP 7164</option>
                             <option> Materials from DB</option>
                         </Form.Control>
@@ -285,7 +381,7 @@ function Quote(props)
                         <Form.Label>Thickness</Form.Label>
                         <Form.Control name='thickness' as="select"
                         value={singleServices.service}
-                        onChange = {(e) => handleServiceChangeO(e, index)}>
+                        onChange = {(e) => handleCoverCoatChange(e, index)}>
                             <option> 0.25 oz</option>
                             <option> Weights from DB</option>
                         </Form.Control>
@@ -294,19 +390,19 @@ function Quote(props)
                         <Form.Label>Used</Form.Label>
                         <Form.Control name='used' type="number" placeholder='0'
                         value={singleServices.service}
-                        onChange = {(e) => handleServiceChangeO(e, index)}>
+                        onChange = {(e) => handleCoverCoatChange(e, index)}>
                         </Form.Control>
                     </Form.Group>
                     <div className=" mt-4">
-                    {serviceLists.length-1 === index &&
-                     <Button style={{width:"90px", height:"38px"}} onClick={handleServiceAddO} variant="secondary" type="Input">
+                    {coverCoatList.length-1 === index &&
+                     <Button style={{width:"90px", height:"38px"}} onClick={addCoverCoat} variant="secondary" type="Input">
                         Add
                     </Button> }
                     </div>
                     &nbsp;&nbsp;
                     <div className="mt-4">
-                        {serviceLists.length > 1 && 
-                        <Button onClick={() => handleServiceRemoveO(index)} variant="secondary" type="Delete">
+                        {coverCoatList.length > 1 && 
+                        <Button onClick={() => removeCoverCoat(index)} variant="secondary" type="Delete">
                         Remove
                     </Button> }
                     </div>
@@ -315,13 +411,13 @@ function Quote(props)
 
                 <div className="col-11 mt-3" style={{display: 'inline-block', marginLeft:'4em', background: 'lightgrey', paddingLeft: '1.5em', paddingRight: '1.5em', paddingTop: '1.5em', paddingBottom: '1.5em', borderRadius:'25px'}} >
                 <h4>Stiffener</h4>
-                {serviceListstiff.map((singleServicestiff,index)=>( 
+                {stiffenerList.map((singleServicestiff,index)=>( 
                 <Row key={index}>
                     <Form.Group as={Col} className="mb-3">
                         <Form.Label>Supplier</Form.Label>
                         <Form.Control name='supplier' as="select"
                         value={singleServicestiff.service}
-                        onChange = {(e) => handleServiceChangeT(e, index)}>
+                        onChange = {(e) => handleStiffenerChange(e, index)}>
                             <option> Dupont</option>
                             <option> Suppliers from DB</option>
                         </Form.Control>
@@ -330,7 +426,7 @@ function Quote(props)
                         <Form.Label>Material</Form.Label>
                         <Form.Control name='material' as="select"
                         value={singleServicestiff.service}
-                        onChange = {(e) => handleServiceChangeT(e, index)}>
+                        onChange = {(e) => handleStiffenerChange(e, index)}>
                             <option> FLP 7164</option>
                             <option> Materials from DB</option>
                         </Form.Control>
@@ -339,7 +435,7 @@ function Quote(props)
                         <Form.Label>Thickness</Form.Label>
                         <Form.Control name='thickness' as="select"
                         value={singleServicestiff.service}
-                        onChange = {(e) => handleServiceChangeT(e, index)}>
+                        onChange = {(e) => handleStiffenerChange(e, index)}>
                             <option> 0.25 oz</option>
                             <option> Weights from DB</option>
                         </Form.Control>
@@ -348,20 +444,20 @@ function Quote(props)
                         <Form.Label>Used</Form.Label>
                         <Form.Control name='used' type="number" placeholder='0'
                         value={singleServicestiff.service}
-                        onChange = {(e) => handleServiceChangeT(e, index)}>
+                        onChange = {(e) => handleStiffenerChange(e, index)}>
                         </Form.Control>
                     </Form.Group>
                     <div className=" mt-4">
-                    {serviceListstiff.length-1 === index &&
-                     <Button style={{width:"90px", height:"38px"}} onClick={handleServiceAddT} variant="secondary" type="Input">
+                    {stiffenerList.length-1 === index &&
+                     <Button style={{width:"90px", height:"38px"}} onClick={addStiffener} variant="secondary" type="Input">
                         Add
                     </Button> }
                     </div>
                     &nbsp;&nbsp;
 
                     <div className="mt-4">
-                        {serviceListstiff.length > 1 && 
-                        <Button onClick={() => handleServiceRemoveT(index)} variant="secondary" type="Delete">
+                        {stiffenerList.length > 1 && 
+                        <Button onClick={() => removeStiffener(index)} variant="secondary" type="Delete">
                         Remove
                     </Button> }
                     </div>
@@ -370,13 +466,13 @@ function Quote(props)
 
                 <div className="col-11 mt-3" style={{display: 'inline-block', marginLeft:'4em', background: 'lightgrey', paddingLeft: '1.5em', paddingRight: '1.5em', paddingTop: '1.5em', paddingBottom: '1.5em', borderRadius:'25px'}} >
                 <h4>3M Tape</h4>
-                {serviceListstape.map((singleServicestape,index)=>( 
+                {tapeList.map((singleServicestape,index)=>( 
                 <Row key={index}>
                     <Form.Group as={Col} className="mb-3">
                         <Form.Label>Supplier</Form.Label>
                         <Form.Control name='supplier' as="select"
                         value={singleServicestape.service}
-                        onChange = {(e) => handleServiceChangeTape(e, index)}>
+                        onChange = {(e) => handle3MTapeChange(e, index)}>
                             <option> Dupont</option>
                             <option> Suppliers from DB</option>
                         </Form.Control>
@@ -385,7 +481,7 @@ function Quote(props)
                         <Form.Label>Material</Form.Label>
                         <Form.Control name='material' as="select"
                         value={singleServicestape.service}
-                        onChange = {(e) => handleServiceChangeTape(e, index)}>
+                        onChange = {(e) => handle3MTapeChange(e, index)}>
                             <option> FLP 7164</option>
                             <option> Materials from DB</option>
                         </Form.Control>
@@ -394,7 +490,7 @@ function Quote(props)
                         <Form.Label>Model # </Form.Label>
                         <Form.Control name='thickness' as="select"
                         value={singleServicestape.service}
-                        onChange = {(e) => handleServiceChangeTape(e, index)}>
+                        onChange = {(e) => handle3MTapeChange(e, index)}>
                             <option> 587342</option>
                             <option> Model# from DB</option>
                         </Form.Control>
@@ -403,13 +499,21 @@ function Quote(props)
                         <Form.Label>Used</Form.Label>
                         <Form.Control name='used' type="number" placeholder='0'
                         value={singleServicestape.service}
-                        onChange = {(e) => handleServiceChangeTape(e, index)}>
+                        onChange = {(e) => handle3MTapeChange(e, index)}>
                         </Form.Control>
                     </Form.Group>
                     <div className=" mt-4">
-                    {serviceListstape.length-1 === index &&
-                     <Button style={{width:"90px", height:"38px"}} onClick={handleServiceAddTape} variant="secondary" type="Input">
+                    {tapeList.length-1 === index &&
+                     <Button style={{width:"90px", height:"38px"}} onClick={add3MTape} variant="secondary" type="Input">
                         Add
+                    </Button> }
+                    </div>
+                    &nbsp;&nbsp;
+
+                    <div className="mt-4">
+                        {tapeList.length > 1 && 
+                        <Button onClick={() => remove3MTape(index)} variant="secondary" type="Delete">
+                        Remove
                     </Button> }
                     </div>
                     &nbsp;&nbsp;                   
@@ -422,13 +526,13 @@ function Quote(props)
 
             <div className="col-11 mt-6" style={{display: 'inline-block', marginLeft:'4em', background: 'lightgrey', paddingLeft: '1.5em', paddingRight: '1.5em', paddingTop: '1.5em', paddingBottom: '1.5em', borderRadius:'25px'}} >
                 <h4>Dry Film & Wet Processes</h4>
-                {serviceListstape.map((singleServicestape,index)=>( 
+                {dryFilmList.map((singleServicestape,index)=>( 
                 <Row key={index}>
                     <Form.Group as={Col} className="mb-3">
                         <Form.Label>Supplier</Form.Label>
                         <Form.Control name='supplier' as="select"
                         value={singleServicestape.service}
-                        onChange = {(e) => handleServiceChangeTape(e, index)}>
+                        onChange = {(e) => handleDryFilmChange(e, index)}>
                             <option> Dupont</option>
                             <option> Suppliers from DB</option>
                         </Form.Control>
@@ -437,7 +541,7 @@ function Quote(props)
                         <Form.Label>Material</Form.Label>
                         <Form.Control name='material' as="select"
                         value={singleServicestape.service}
-                        onChange = {(e) => handleServiceChangeTape(e, index)}>
+                        onChange = {(e) => handleDryFilmChange(e, index)}>
                             <option> FLP 7164</option>
                             <option> Materials from DB</option>
                         </Form.Control>
@@ -446,13 +550,21 @@ function Quote(props)
                         <Form.Label>Used</Form.Label>
                         <Form.Control name='used' type="number" placeholder='0'
                         value={singleServicestape.service}
-                        onChange = {(e) => handleServiceChangeTape(e, index)}>
+                        onChange = {(e) => handleDryFilmChange(e, index)}>
                         </Form.Control>
                     </Form.Group>
                     <div className=" mt-4">
-                    {serviceListstape.length-1 === index &&
-                     <Button style={{width:"90px", height:"38px"}} onClick={handleServiceAddTape} variant="secondary" type="Input">
+                    {dryFilmList.length-1 === index &&
+                     <Button style={{width:"90px", height:"38px"}} onClick={addDryFilm} variant="secondary" type="Input">
                         Add
+                    </Button> }
+                    </div>
+                    &nbsp;&nbsp;
+
+                    <div className="mt-4">
+                        {dryFilmList.length > 1 && 
+                        <Button onClick={() => removeDryFilm(index)} variant="secondary" type="Delete">
+                        Remove
                     </Button> }
                     </div>
                     &nbsp;&nbsp;                   
@@ -461,13 +573,13 @@ function Quote(props)
 
                 <div className="col-11 mt-3" style={{display: 'inline-block', marginLeft:'4em', background: 'lightgrey', paddingLeft: '1.5em', paddingRight: '1.5em', paddingTop: '1.5em', paddingBottom: '1.5em', borderRadius:'25px'}} >
                 <h4>Mechanical Processes</h4>
-                {serviceListstape.map((singleServicestape,index)=>( 
+                {mechanicalProcessList.map((singleServicestape,index)=>( 
                 <Row key={index}>
                     <Form.Group as={Col} className="mb-3">
                         <Form.Label>Supplier</Form.Label>
                         <Form.Control name='supplier' as="select"
                         value={singleServicestape.service}
-                        onChange = {(e) => handleServiceChangeTape(e, index)}>
+                        onChange = {(e) => handleMechanicalChange(e, index)}>
                             <option> Dupont</option>
                             <option> Suppliers from DB</option>
                         </Form.Control>
@@ -476,7 +588,7 @@ function Quote(props)
                         <Form.Label>Material</Form.Label>
                         <Form.Control name='material' as="select"
                         value={singleServicestape.service}
-                        onChange = {(e) => handleServiceChangeTape(e, index)}>
+                        onChange = {(e) => handleMechanicalChange(e, index)}>
                             <option> FLP 7164</option>
                             <option> Materials from DB</option>
                         </Form.Control>
@@ -485,13 +597,21 @@ function Quote(props)
                         <Form.Label>Used</Form.Label>
                         <Form.Control name='used' type="number" placeholder='0'
                         value={singleServicestape.service}
-                        onChange = {(e) => handleServiceChangeTape(e, index)}>
+                        onChange = {(e) => handleMechanicalChange(e, index)}>
                         </Form.Control>
                     </Form.Group>
                     <div className=" mt-4">
-                    {serviceListstape.length-1 === index &&
-                     <Button style={{width:"90px", height:"38px"}} onClick={handleServiceAddTape} variant="secondary" type="Input">
+                    {mechanicalProcessList.length-1 === index &&
+                     <Button style={{width:"90px", height:"38px"}} onClick={addMechanicalProcess} variant="secondary" type="Input">
                         Add
+                    </Button> }
+                    </div>
+                    &nbsp;&nbsp;
+
+                    <div className="mt-4">
+                        {mechanicalProcessList.length > 1 && 
+                        <Button onClick={() => removeMechanicalProcess(index)} variant="secondary" type="Delete">
+                        Remove
                     </Button> }
                     </div>
                     &nbsp;&nbsp;                   
@@ -500,13 +620,13 @@ function Quote(props)
 
                <div className="col-11 mt-3" style={{display: 'inline-block', marginLeft:'4em', background: 'lightgrey', paddingLeft: '1.5em', paddingRight: '1.5em', paddingTop: '1.5em', paddingBottom: '1.5em', borderRadius:'25px'}} >
                 <h4>Standard Processes</h4>
-                {serviceListstape.map((singleServicestape,index)=>( 
+                {standardProcessList.map((singleServicestape,index)=>( 
                 <Row key={index}>
                     <Form.Group as={Col} className="mb-3">
                         <Form.Label>Supplier</Form.Label>
                         <Form.Control name='supplier' as="select"
                         value={singleServicestape.service}
-                        onChange = {(e) => handleServiceChangeTape(e, index)}>
+                        onChange = {(e) => handleStandardChange(e, index)}>
                             <option> Dupont</option>
                             <option> Suppliers from DB</option>
                         </Form.Control>
@@ -515,7 +635,7 @@ function Quote(props)
                         <Form.Label>Material</Form.Label>
                         <Form.Control name='material' as="select"
                         value={singleServicestape.service}
-                        onChange = {(e) => handleServiceChangeTape(e, index)}>
+                        onChange = {(e) => handleStandardChange(e, index)}>
                             <option> FLP 7164</option>
                             <option> Materials from DB</option>
                         </Form.Control>
@@ -524,13 +644,21 @@ function Quote(props)
                         <Form.Label>Used</Form.Label>
                         <Form.Control name='used' type="number" placeholder='0'
                         value={singleServicestape.service}
-                        onChange = {(e) => handleServiceChangeTape(e, index)}>
+                        onChange = {(e) => handleStandardChange(e, index)}>
                         </Form.Control>
                     </Form.Group>
                     <div className=" mt-4">
-                    {serviceListstape.length-1 === index &&
-                     <Button style={{width:"90px", height:"38px"}} onClick={handleServiceAddTape} variant="secondary" type="Input">
+                    {standardProcessList.length-1 === index &&
+                     <Button style={{width:"90px", height:"38px"}} onClick={addStandardProcess} variant="secondary" type="Input">
                         Add
+                    </Button> }
+                    </div>
+                    &nbsp;&nbsp;
+
+                    <div className="mt-4">
+                        {standardProcessList.length > 1 && 
+                        <Button onClick={() => removeStandardProcess(index)} variant="secondary" type="Delete">
+                        Remove
                     </Button> }
                     </div>
                     &nbsp;&nbsp;                   
@@ -539,13 +667,13 @@ function Quote(props)
 
                 <div className="col-11 mt-3" style={{display: 'inline-block', marginLeft:'4em', background:'lightgrey', paddingLeft: '1.5em', paddingRight: '1.5em', paddingTop: '1.5em', paddingBottom: '1.5em', borderRadius:'25px'}} >
                 <h4>Finishes</h4>
-                {serviceListstape.map((singleServicestape,index)=>( 
+                {finishesList.map((singleServicestape,index)=>( 
                 <Row key={index}>
                     <Form.Group as={Col} className="mb-3">
                         <Form.Label>Supplier</Form.Label>
                         <Form.Control name='supplier' as="select"
                         value={singleServicestape.service}
-                        onChange = {(e) => handleServiceChangeTape(e, index)}>
+                        onChange = {(e) => handleFinishesChange(e, index)}>
                             <option> Dupont</option>
                             <option> Suppliers from DB</option>
                         </Form.Control>
@@ -554,7 +682,7 @@ function Quote(props)
                         <Form.Label>Material</Form.Label>
                         <Form.Control name='material' as="select"
                         value={singleServicestape.service}
-                        onChange = {(e) => handleServiceChangeTape(e, index)}>
+                        onChange = {(e) => handleFinishesChange(e, index)}>
                             <option> FLP 7164</option>
                             <option> Materials from DB</option>
                         </Form.Control>
@@ -563,13 +691,21 @@ function Quote(props)
                         <Form.Label>Used</Form.Label>
                         <Form.Control name='used' type="number" placeholder='0'
                         value={singleServicestape.service}
-                        onChange = {(e) => handleServiceChangeTape(e, index)}>
+                        onChange = {(e) => handleFinishesChange(e, index)}>
                         </Form.Control>
                     </Form.Group>
                     <div className=" mt-4">
-                    {serviceListstape.length-1 === index &&
-                     <Button style={{width:"90px", height:"38px"}} onClick={handleServiceAddTape} variant="secondary" type="Input">
+                    {finishesList.length-1 === index &&
+                     <Button style={{width:"90px", height:"38px"}} onClick={addFinishes} variant="secondary" type="Input">
                         Add
+                    </Button> }
+                    </div>
+                    &nbsp;&nbsp;
+
+                    <div className="mt-4">
+                        {finishesList.length > 1 && 
+                        <Button onClick={() => removeFinishes(index)} variant="secondary" type="Delete">
+                        Remove
                     </Button> }
                     </div>
                     &nbsp;&nbsp;                   
