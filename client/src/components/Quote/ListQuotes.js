@@ -47,7 +47,7 @@ function ListQuotes() {
                             <tr key={quote._id}
                             // onClick={() => { quoteDetails(quote._id) }}
                             >
-                                <td>{quote._id}</td>
+                                <td>{quote.quoteNumber}</td>
                                 <td>{quote.customer}</td>
                                 <td>{quote.partNumber}</td>
                                 <td>{quote.revision}</td>
