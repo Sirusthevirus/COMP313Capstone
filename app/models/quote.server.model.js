@@ -47,6 +47,9 @@ let QuoteSchema = mongoose.Schema({
     panelSize: {
         type: String,
         enum: ["12x18", "18x24"]
+    },
+    dateCreated: {
+        type: Date
     }
 }, {
     collection: "quotes"
