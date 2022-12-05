@@ -212,7 +212,15 @@ function Quote(props)
             setFinishes(list)
     
         };
-        const [optionList, setOptionList] = useState([]);
+        const [laminateOptions, setLaminateOptions] = useState([]);
+        const [coverCoatOptions, setCoverCoatOptions] = useState([]);
+        const [stiffenerOptions, setStiffenerOptions] = useState([]);
+        const [tapeOptions, setTapeOptions] = useState([]);
+        const [dryFilmOptions, setDryFilmOptions] = useState([]);
+        const [mechanicalOptions, setMechanicalOptions] = useState([]);
+        const [standardOptions, setStandardOptions] = useState([]);
+        const [finishesOptions, setFinishesOptions] = useState([]);
+
         const fetchLaminateData = () => {
             axios
               .get("http://localhost:5000/specificMaterial/Laminate Material")
@@ -220,7 +228,120 @@ function Quote(props)
                 const { data } = response;
                 if(response.status === 200){
                     //check the api call is success by stats code 200,201 ...etc
-                    setOptionList(data)
+                    setLaminateOptions(data)
+                    console.log(data)
+                }else{
+                    //error handle section 
+                }
+              })
+              .catch((error) => console.log(error));
+          };
+
+          const fetchCoverCoatData = () => {
+            axios
+              .get("http://localhost:5000/specificMaterial/Cover Coat")
+              .then((response) => {
+                const { data } = response;
+                if(response.status === 200){
+                    //check the api call is success by stats code 200,201 ...etc
+                    setCoverCoatOptions(data)
+                    console.log("fetchCoverCoatData:",data)
+                }else{
+                    //error handle section 
+                }
+              })
+              .catch((error) => console.log(error));
+          };
+
+          const fetchStiffenerData = () => {
+            axios
+              .get("http://localhost:5000/specificMaterial/Stiffener")
+              .then((response) => {
+                const { data } = response;
+                if(response.status === 200){
+                    //check the api call is success by stats code 200,201 ...etc
+                    setStiffenerOptions(data)
+                    console.log("fetchStiffenerData:", data)
+                }else{
+                    //error handle section 
+                }
+              })
+              .catch((error) => console.log(error));
+          };
+
+
+          const fetchTapeData = () => {
+            axios
+              .get("http://localhost:5000/specificMaterial/3M Tapes")
+              .then((response) => {
+                const { data } = response;
+                if(response.status === 200){
+                    //check the api call is success by stats code 200,201 ...etc
+                    setTapeOptions(data)
+                    console.log("fetchTapeData:",data)
+                }else{
+                    //error handle section 
+                }
+              })
+              .catch((error) => console.log(error));
+          };
+
+          const fetchDryFilmData = () => {
+            axios
+              .get("http://localhost:5000/DryAndWets")
+              .then((response) => {
+                const { data } = response;
+                if(response.status === 200){
+                    //check the api call is success by stats code 200,201 ...etc
+                    setDryFilmOptions(data)
+                    console.log("fetchDryFilmData:",data)
+                }else{
+                    //error handle section 
+                }
+              })
+              .catch((error) => console.log(error));
+          };
+
+          const fetchMechanicalData = () => {
+            axios
+              .get("http://localhost:5000/mechanicals")
+              .then((response) => {
+                const { data } = response;
+                if(response.status === 200){
+                    //check the api call is success by stats code 200,201 ...etc
+                    setMechanicalOptions(data)
+                    console.log("fetchMechanicalData:",data)
+                }else{
+                    //error handle section 
+                }
+              })
+              .catch((error) => console.log(error));
+          };
+
+          const fetchStandardData = () => {
+            axios
+              .get("http://localhost:5000/standard")
+              .then((response) => {
+                const { data } = response;
+                if(response.status === 200){
+                    //check the api call is success by stats code 200,201 ...etc
+                    setStandardOptions(data)
+                    console.log("fetchStandardData:",data)
+                }else{
+                    //error handle section 
+                }
+              })
+              .catch((error) => console.log(error));
+          };
+
+          const fetchFinishesData = () => {
+            axios
+              .get("http://localhost:5000/finishes")
+              .then((response) => {
+                const { data } = response;
+                if(response.status === 200){
+                    //check the api call is success by stats code 200,201 ...etc
+                    setFinishesOptions("fetchFinishesData:",data)
                     console.log(data)
                 }else{
                     //error handle section 
@@ -231,6 +352,13 @@ function Quote(props)
 
         useEffect(() => {
             fetchLaminateData();
+            fetchCoverCoatData();
+            fetchStiffenerData();
+            fetchTapeData();
+            fetchDryFilmData();
+            fetchMechanicalData();
+            fetchStandardData();
+            //fetchFinishesData();
           }, []);
         
   return (
@@ -240,7 +368,7 @@ function Quote(props)
             <Form style={{display: 'flex'}}>
             <div  className="col-12 mt-3" style={{display: 'inline-block'}}>
 
-                <div style={{display:'flex', justifyContent: 'center'}}>
+            <div style={{display:'flex', justifyContent: 'center'}}>
             <Form.Group as={Row} className="mb-3">
                 <Col sm={4}>
                     <Form.Label> <b>Customer</b></Form.Label>
@@ -248,8 +376,10 @@ function Quote(props)
                     </Form.Control>
                 </Col>
                 <Col sm={4}>
-                    <Form.Label><b>Panel Size</b></Form.Label>
-                    <Form.Control type="text">
+                    <Form.Label><b>Panel Size  &emsp;  &emsp;  &emsp;</b></Form.Label>
+                    <Form.Control as="select">
+                        <option> 12x18</option>
+                        <option> 18x24</option>
                     </Form.Control>
                 </Col>
                 <Col sm={4}>
@@ -269,7 +399,27 @@ function Quote(props)
                 </Col>
                 <Col sm={4}>
                     <Form.Label><b>Number of Layers</b></Form.Label>
-                    <Form.Control type="text" >
+                    <Form.Control as="select" >
+                        <option> 1</option>
+                        <option> 2</option>
+                        <option> 3</option>
+                        <option> 4</option>
+                        <option> 5</option>
+                        <option> 6</option>
+                        <option> 7</option>
+                        <option> 8</option>
+                        <option> 9</option>
+                        <option> 10</option>
+                        <option> 11</option>
+                        <option> 12</option>
+                        <option> 13</option>
+                        <option> 14</option>
+                        <option> 15</option>
+                        <option> 16</option>
+                        <option> 17</option>
+                        <option> 18</option>
+                        <option> 19</option>
+                        <option> 20</option>
                     </Form.Control>
                 </Col>
                 <Col sm={4}>
@@ -288,8 +438,10 @@ function Quote(props)
                     </Form.Control>
                 </Col>
                 <Col sm={4}>
-                    <Form.Label><b>Technology</b></Form.Label>
-                    <Form.Control type="text" >
+                    <Form.Label><b>Technology  &emsp;  &emsp;  &nbsp;</b></Form.Label>
+                    <Form.Control as="select" >
+                        <option> Flex</option>
+                        <option> Rigid-Flex</option>
                     </Form.Control>
                 </Col>
                 <Col sm={4}>
@@ -311,7 +463,7 @@ function Quote(props)
                         <Form.Group as={Col} className="mb-3">
                             <Form.Label>Supplier</Form.Label>
                             <Form.Control name='supplier' as="select">
-                            {optionList.map((d) => (
+                            {laminateOptions.map((d) => (
                                 <option key={d.id} value={d.id}>{d.supplier}</option>
                                 ))}
                             </Form.Control>              
@@ -319,7 +471,7 @@ function Quote(props)
                         <Form.Group as={Col}>
                             <Form.Label>Material</Form.Label>
                             <Form.Control name='material' as="select">
-                            {optionList.map((d) => (
+                            {laminateOptions.map((d) => (
                                 <option key={d.id} value={d.id}>{d.material}</option>
                                 ))}
                             </Form.Control>
@@ -327,7 +479,7 @@ function Quote(props)
                         <Form.Group as={Col}>
                             <Form.Label>CU Weight</Form.Label>
                             <Form.Control name='weight' as="select">
-                            {optionList.map((d) => (
+                            {laminateOptions.map((d) => (
                                 <option key={d.id} value={d.id}>{d.cuWeight}</option>
                                 ))}
                             </Form.Control>
@@ -361,30 +513,27 @@ function Quote(props)
                 <Row key={index}>
                     <Form.Group as={Col} className="mb-3">
                         <Form.Label>Supplier</Form.Label>
-                        <Form.Control name='supplier' as="select"
-                        value={singleServices.service}
-                        onChange = {(e) => handleCoverCoatChange(e, index)}>
-                            <option> Dupont</option>
-                            <option> Suppliers from DB</option>
-                        </Form.Control>
+                        <Form.Control name='supplier' as="select">
+                        {coverCoatOptions.map((d) => (
+                            <option key={d.id} value={d.id}>{d.supplier}</option>
+                            ))}
+                        </Form.Control>              
                     </Form.Group>
                     <Form.Group as={Col}>
-                        <Form.Label>Material</Form.Label>
-                        <Form.Control name='material' as="select"
-                        value={singleServices.service}
-                        onChange = {(e) => handleCoverCoatChange(e, index)}>
-                            <option> FLP 7164</option>
-                            <option> Materials from DB</option>
-                        </Form.Control>
+                    <Form.Label>Material</Form.Label>
+                        <Form.Control name='material' as="select">
+                        {coverCoatOptions.map((d) => (
+                            <option key={d.id} value={d.id}>{d.material}</option>
+                            ))}
+                        </Form.Control>   
                     </Form.Group>
                     <Form.Group as={Col}>
-                        <Form.Label>Thickness</Form.Label>
-                        <Form.Control name='thickness' as="select"
-                        value={singleServices.service}
-                        onChange = {(e) => handleCoverCoatChange(e, index)}>
-                            <option> 0.25 oz</option>
-                            <option> Weights from DB</option>
-                        </Form.Control>
+                    <Form.Label>Thickness</Form.Label>
+                        <Form.Control name='thickness' as="select">
+                        {coverCoatOptions.map((d) => (
+                            <option key={d.id} value={d.id}>{d.thickness}</option>
+                            ))}
+                        </Form.Control>   
                     </Form.Group>
                     <Form.Group as={Col}>
                         <Form.Label>Used</Form.Label>
@@ -414,31 +563,28 @@ function Quote(props)
                 {stiffenerList.map((singleServicestiff,index)=>( 
                 <Row key={index}>
                     <Form.Group as={Col} className="mb-3">
-                        <Form.Label>Supplier</Form.Label>
-                        <Form.Control name='supplier' as="select"
-                        value={singleServicestiff.service}
-                        onChange = {(e) => handleStiffenerChange(e, index)}>
-                            <option> Dupont</option>
-                            <option> Suppliers from DB</option>
-                        </Form.Control>
+                    <Form.Label>Supplier</Form.Label>
+                        <Form.Control name='supplier' as="select">
+                        {stiffenerOptions.map((d) => (
+                            <option key={d.id} value={d.id}>{d.supplier}</option>
+                            ))}
+                        </Form.Control>   
                     </Form.Group>
                     <Form.Group as={Col}>
-                        <Form.Label>Material</Form.Label>
-                        <Form.Control name='material' as="select"
-                        value={singleServicestiff.service}
-                        onChange = {(e) => handleStiffenerChange(e, index)}>
-                            <option> FLP 7164</option>
-                            <option> Materials from DB</option>
-                        </Form.Control>
+                    <Form.Label>Material</Form.Label>
+                        <Form.Control name='material' as="select">
+                        {stiffenerOptions.map((d) => (
+                            <option key={d.id} value={d.id}>{d.material}</option>
+                            ))}
+                        </Form.Control>   
                     </Form.Group>
                     <Form.Group as={Col}>
-                        <Form.Label>Thickness</Form.Label>
-                        <Form.Control name='thickness' as="select"
-                        value={singleServicestiff.service}
-                        onChange = {(e) => handleStiffenerChange(e, index)}>
-                            <option> 0.25 oz</option>
-                            <option> Weights from DB</option>
-                        </Form.Control>
+                    <Form.Label>Thickness</Form.Label>
+                        <Form.Control name='thickness' as="select">
+                        {stiffenerOptions.map((d) => (
+                            <option key={d.id} value={d.id}>{d.thickness}</option>
+                            ))}
+                        </Form.Control>   
                     </Form.Group>
                     <Form.Group as={Col}>
                         <Form.Label>Used</Form.Label>
@@ -470,30 +616,27 @@ function Quote(props)
                 <Row key={index}>
                     <Form.Group as={Col} className="mb-3">
                         <Form.Label>Supplier</Form.Label>
-                        <Form.Control name='supplier' as="select"
-                        value={singleServicestape.service}
-                        onChange = {(e) => handle3MTapeChange(e, index)}>
-                            <option> Dupont</option>
-                            <option> Suppliers from DB</option>
-                        </Form.Control>
+                        <Form.Control name='supplier' as="select">
+                        {tapeOptions.map((d) => (
+                            <option key={d.id} value={d.id}>{d.supplier}</option>
+                            ))}
+                        </Form.Control> 
                     </Form.Group>
                     <Form.Group as={Col}>
                         <Form.Label>Material</Form.Label>
-                        <Form.Control name='material' as="select"
-                        value={singleServicestape.service}
-                        onChange = {(e) => handle3MTapeChange(e, index)}>
-                            <option> FLP 7164</option>
-                            <option> Materials from DB</option>
-                        </Form.Control>
+                        <Form.Control name='material' as="select">
+                        {tapeOptions.map((d) => (
+                            <option key={d.id} value={d.id}>{d.material}</option>
+                            ))}
+                        </Form.Control> 
                     </Form.Group>
                     <Form.Group as={Col}>
                         <Form.Label>Model # </Form.Label>
-                        <Form.Control name='thickness' as="select"
-                        value={singleServicestape.service}
-                        onChange = {(e) => handle3MTapeChange(e, index)}>
-                            <option> 587342</option>
-                            <option> Model# from DB</option>
-                        </Form.Control>
+                        <Form.Control name='thickness' as="select">
+                        {tapeOptions.map((d) => (
+                            <option key={d.id} value={d.id}>{d.modelNumber}</option>
+                            ))}
+                        </Form.Control> 
                     </Form.Group>
                     <Form.Group as={Col}>
                         <Form.Label>Used</Form.Label>
@@ -529,29 +672,25 @@ function Quote(props)
                 {dryFilmList.map((singleServicestape,index)=>( 
                 <Row key={index}>
                     <Form.Group as={Col} className="mb-3">
-                        <Form.Label>Supplier</Form.Label>
-                        <Form.Control name='supplier' as="select"
-                        value={singleServicestape.service}
-                        onChange = {(e) => handleDryFilmChange(e, index)}>
-                            <option> Dupont</option>
-                            <option> Suppliers from DB</option>
-                        </Form.Control>
+                        <Form.Label>Name</Form.Label>
+                        <Form.Control name='name' as="select">
+                        {dryFilmOptions.map((d) => (
+                            <option key={d.id} value={d.id}>{d.name}</option>
+                            ))}
+                        </Form.Control> 
                     </Form.Group>
                     <Form.Group as={Col}>
                         <Form.Label>Material</Form.Label>
-                        <Form.Control name='material' as="select"
-                        value={singleServicestape.service}
-                        onChange = {(e) => handleDryFilmChange(e, index)}>
-                            <option> FLP 7164</option>
-                            <option> Materials from DB</option>
-                        </Form.Control>
+                        <Form.Control name='material' as="select">
+                        {dryFilmOptions.map((d) => (
+                            <option key={d.id} value={d.id}>{d.material}</option>
+                            ))}
+                        </Form.Control> 
                     </Form.Group>
                     <Form.Group as={Col}>
                         <Form.Label>Used</Form.Label>
-                        <Form.Control name='used' type="number" placeholder='0'
-                        value={singleServicestape.service}
-                        onChange = {(e) => handleDryFilmChange(e, index)}>
-                        </Form.Control>
+                        <Form.Control name='used' type="number" placeholder='0'>
+                        </Form.Control> 
                     </Form.Group>
                     <div className=" mt-4">
                     {dryFilmList.length-1 === index &&
@@ -576,28 +715,24 @@ function Quote(props)
                 {mechanicalProcessList.map((singleServicestape,index)=>( 
                 <Row key={index}>
                     <Form.Group as={Col} className="mb-3">
-                        <Form.Label>Supplier</Form.Label>
-                        <Form.Control name='supplier' as="select"
-                        value={singleServicestape.service}
-                        onChange = {(e) => handleMechanicalChange(e, index)}>
-                            <option> Dupont</option>
-                            <option> Suppliers from DB</option>
-                        </Form.Control>
+                        <Form.Label>Name</Form.Label>
+                        <Form.Control name='name' as="select">
+                        {mechanicalOptions.map((d) => (
+                            <option key={d.id} value={d.id}>{d.name}</option>
+                            ))}
+                        </Form.Control> 
                     </Form.Group>
                     <Form.Group as={Col}>
                         <Form.Label>Material</Form.Label>
-                        <Form.Control name='material' as="select"
-                        value={singleServicestape.service}
-                        onChange = {(e) => handleMechanicalChange(e, index)}>
-                            <option> FLP 7164</option>
-                            <option> Materials from DB</option>
-                        </Form.Control>
+                        <Form.Control name='material' as="select">
+                        {mechanicalOptions.map((d) => (
+                            <option key={d.id} value={d.id}>{d.material}</option>
+                            ))}
+                        </Form.Control> 
                     </Form.Group>
                     <Form.Group as={Col}>
                         <Form.Label>Used</Form.Label>
-                        <Form.Control name='used' type="number" placeholder='0'
-                        value={singleServicestape.service}
-                        onChange = {(e) => handleMechanicalChange(e, index)}>
+                        <Form.Control name='used' type="number" placeholder='0'>
                         </Form.Control>
                     </Form.Group>
                     <div className=" mt-4">
@@ -623,28 +758,24 @@ function Quote(props)
                 {standardProcessList.map((singleServicestape,index)=>( 
                 <Row key={index}>
                     <Form.Group as={Col} className="mb-3">
-                        <Form.Label>Supplier</Form.Label>
-                        <Form.Control name='supplier' as="select"
-                        value={singleServicestape.service}
-                        onChange = {(e) => handleStandardChange(e, index)}>
-                            <option> Dupont</option>
-                            <option> Suppliers from DB</option>
-                        </Form.Control>
+                        <Form.Label>Name</Form.Label>
+                        <Form.Control name='name' as="select">
+                        {standardOptions.map((d) => (
+                            <option key={d.id} value={d.id}>{d.name}</option>
+                            ))}
+                        </Form.Control> 
                     </Form.Group>
                     <Form.Group as={Col}>
                         <Form.Label>Material</Form.Label>
-                        <Form.Control name='material' as="select"
-                        value={singleServicestape.service}
-                        onChange = {(e) => handleStandardChange(e, index)}>
-                            <option> FLP 7164</option>
-                            <option> Materials from DB</option>
-                        </Form.Control>
+                        <Form.Control name='material' as="select">
+                        {standardOptions.map((d) => (
+                            <option key={d.id} value={d.id}>{d.material}</option>
+                            ))}
+                        </Form.Control> 
                     </Form.Group>
                     <Form.Group as={Col}>
                         <Form.Label>Used</Form.Label>
-                        <Form.Control name='used' type="number" placeholder='0'
-                        value={singleServicestape.service}
-                        onChange = {(e) => handleStandardChange(e, index)}>
+                        <Form.Control name='used' type="number" placeholder='0'>
                         </Form.Control>
                     </Form.Group>
                     <div className=" mt-4">
@@ -671,21 +802,19 @@ function Quote(props)
                 <Row key={index}>
                     <Form.Group as={Col} className="mb-3">
                         <Form.Label>Supplier</Form.Label>
-                        <Form.Control name='supplier' as="select"
-                        value={singleServicestape.service}
-                        onChange = {(e) => handleFinishesChange(e, index)}>
-                            <option> Dupont</option>
-                            <option> Suppliers from DB</option>
-                        </Form.Control>
+                        <Form.Control name='Supplier' as="select">
+                        {standardOptions.map((d) => (
+                            <option key={d.id} value={d.id}>{d.supplier}</option>
+                            ))}
+                        </Form.Control> 
                     </Form.Group>
                     <Form.Group as={Col}>
                         <Form.Label>Material</Form.Label>
-                        <Form.Control name='material' as="select"
-                        value={singleServicestape.service}
-                        onChange = {(e) => handleFinishesChange(e, index)}>
-                            <option> FLP 7164</option>
-                            <option> Materials from DB</option>
-                        </Form.Control>
+                        <Form.Control name='material' as="select">
+                        {standardOptions.map((d) => (
+                            <option key={d.id} value={d.id}>{d.material}</option>
+                            ))}
+                        </Form.Control> 
                     </Form.Group>
                     <Form.Group as={Col}>
                         <Form.Label>Used</Form.Label>
