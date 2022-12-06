@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-let finishes = mongoose.Schema({
+let finish = mongoose.Schema({
     name: {
         type: String
     },
@@ -8,7 +8,7 @@ let finishes = mongoose.Schema({
         type: Number
     }
 }, {
-    collection: "finishes"
+    collection: "finish"
 });
 
-module.exports.finishes = mongoose.model('finishes', finishes);
+module.exports.finish = mongoose.model('finish', finish);

@@ -1,4 +1,4 @@
-const Finishes = require('mongoose').model('finishes');
+const Finish = require('mongoose').model('finish');
 
 // Add a standard
 function getErrorMessage(err) {
@@ -14,32 +14,47 @@ function getErrorMessage(err) {
 //
 
 exports.create = function (req, res) {
-    var finishes = new Finishes (req.body);
-    finishes.save(function (err){
+    var finish = new Finish (req.body);
+    finish.save(function (err){
         if(err){
             return next(err);
         } else {
             console.log(req.body);
-            res.json(finishes);
+            res.json(finish);
         }
     });
 };
 
 //get all of the standards
 exports.allFinishes = function (req, res, next) {
-    Finishes.find({}, function (err, courses) {
+    Finish.find({}, function (err, finishes) {
         if (err) {
             return next(err);
         } else {
-            res.json(courses);
+            res.json(finishes);
         }
     });
 };
 
+exports.finishesByID = function (req, res, next, id) {
+    Finish.findById(id).populate().exec((err, finish) =>
+    {
+        if (err) return next(err);
+        if (!finish) return next(new Error('Failed to load finishes process '
+            + id));
+        req.finish = finish;
+        next();
+        res.status(200).json(finish);
+    });
+};
+
+exports.byId = function (req, res, next){
+    res.status(200);
+}
 
 exports.delete = function(req, res){
-    const finishes =  req.finishes;
-    finishes.remove((err) => {
+    const finish =  req.finish;
+    finish.remove((err) => {
         if (err) {
             return res.status(400).send({
                 message: getErrorMessage(err)
@@ -48,21 +63,4 @@ exports.delete = function(req, res){
             res.status(200);
         }
     });
-}
-
-exports.finishesByID = function (req, res, next, id) {
-    Finishes.findById(id).populate().exec((err, finishes) =>
-    {
-        if (err) return next(err);
-        if (!finishes) return next(new Error('Failed to load finishes process '
-            + id));
-        req.finishes = finishes;
-        console.log('in finishesByID:', req.finishes)
-        next();
-        res.status(200).json(finishes);
-    });
-};
-
-exports.byId = function (req, res, next){
-    res.status(200);
 }

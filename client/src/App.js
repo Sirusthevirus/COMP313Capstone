@@ -46,6 +46,9 @@ import CreateStandard from "./CRUDmaterials/StandardProcess/CreateStandard";
 //Assembly
 import ListAssembly from "./CRUDmaterials/Assembly/ListAssembly";
 import CreateAssembly from "./CRUDmaterials/Assembly/CreateAssembly";
+//Finishe
+import ListFinish from "./CRUDmaterials/Finishes/ListFinish";
+import CreateFinish from "./CRUDmaterials/Finishes/CreateFinish";
 
 import "./App.css";
 import Summary from "./components/Summary";
@@ -81,6 +84,7 @@ function App() {
               <NavDropdown.Item href="/listMechanical"><b>Mechanical</b></NavDropdown.Item>
               <NavDropdown.Item href="/listStandard"><b>Standard Processes</b></NavDropdown.Item>
               <NavDropdown.Item href="/listAssembly"><b>Assembly</b></NavDropdown.Item>
+              <NavDropdown.Item href="/listFinish"><b>Finish</b></NavDropdown.Item>
             </NavDropdown>
             
           </Nav>
@@ -129,6 +133,9 @@ function App() {
           {/* route for assembly */}
           <Route path="listAssembly" element={<ListAssembly />} />
           <Route path="createAssembly" element={<CreateAssembly />} />
+          {/* route for finish */}
+          <Route path="listFinish" element={<ListFinish />} />
+          <Route path="createFinish" element={<CreateFinish />} />
         </Routes>
       </div>
     </Router>

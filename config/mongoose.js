@@ -20,6 +20,7 @@ module.exports = function () {
     require('../app/models/mechanical.server.model');
     require('../app/models/quote.server.model');
     require('../app/models/standard.server.model');
+    require('../app/models/finish.server.model');
     // Return the Mongoose connection instance
     return db;
 };
