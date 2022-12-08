@@ -51,6 +51,10 @@ let QuoteSchema = mongoose.Schema({
         type: String,
         enum: ["12x18", "18x24"]
     },
+    technology: {
+        type: String,
+        enum: ["Flex", "Rigid-Flex"]
+    },
     dateCreated: {
         type: Date
     }

@@ -14,10 +14,14 @@ import axios from 'axios';
 function Quote(props) {
     /* Service List*/
 
-    const [quoteItems, setQuoteItems] = useState({
-        _id: '', materials: '', dryAndWet: '', mechanical: '', standard: '', additional: '', assembly: '', exchangeRate: '', freight: ''
-        , numberOfLayers: '', customer: '', partNumber: '', revision: '', panelSize: '', dateCreated: ''
-    });
+    const [quote, setQuote] = useState('');
+
+    const [materials, setMaterials] = useState([]);
+
+    // const [quoteItems, setQuoteItems] = useState({
+    //     materials: [], dryAndWet: [], mechanical: [], standard: '', additional: '', assembly: '', exchangeRate: '', freight: ''
+    //     , numberOfLayers: '', customer: '', partNumber: '', revision: '', panelSize: '', dateCreated: ''
+    // });
 
     const [laminateList, setLaminateMaterial] = useState([
         { supplier: "", material: "", weight: "", used: "" },
@@ -369,17 +373,43 @@ function Quote(props) {
         fetchFinishesData();
     }, []);
 
+    // Save form input to quote hook
+    const onChange = (e) => {
+        e.persist();
+        console.log("Inside onChange: " + e.target.value)
+        setQuote({ ...quote, [e.target.name]: e.target.value });
+    }
+
 
     const postUrl = "http://localhost:5000/addQuote/";
     const saveQuote = (e) => {
         e.preventDefault();
+
+        // Set quote creation date to now
+        const currDate = new Date();
+
+        console.log("quote inside saveQuote: " + quote)
         const data = {
-            materials: quoteItems.materials, dryAndWet: quoteItems.dryAndWet, mechanical: quoteItems.mechanical, standard: quoteItems.standard
-            , additional: quoteItems.additional, assembly: quoteItems.assembly, city: quoteItems.city, phoneNumber: quoteItems.phoneNumber, program: quoteItems.program
+            customer: quote.customer,
+            panelSize: quote.panelSize,
+            exchangeRate: parseInt(quote.exchangeRate),
+            freight: parseInt(quote.freight),
+            numberOfLayers: parseInt(quote.numberOfLayers),
+            partNumber: parseInt(quote.partNumber),
+            revision: parseInt(quote.revision),
+            dateCreated: currDate,
+            // materials: quote.materials,
+            // dryAndWet: quote.dryAndWet,
+            // standard: quote.standard,
+            // additional: quote.additional,
+            // assembly: quote.assembly
         };
+
+        console.log(data)
         axios.post(postUrl, data)
             .then((result) => {
-                props.history.push('/show/' + result.data._id)
+                // props.history.push('/show/' + result.data._id)
+                console.log(result.data)
             })
     };
 
@@ -394,19 +424,19 @@ function Quote(props) {
                         <Form.Group as={Row} className="mb-3">
                             <Col sm={4}>
                                 <Form.Label> <b>Customer</b></Form.Label>
-                                <Form.Control type="text" >
+                                <Form.Control type="text" name="customer" id="customer" value={quote.customer} onChange={onChange}>
                                 </Form.Control>
                             </Col>
                             <Col sm={4}>
                                 <Form.Label><b>Panel Size  &emsp;  &emsp;  &emsp;</b></Form.Label>
-                                <Form.Control as="select">
-                                    <option> 12x18</option>
-                                    <option> 18x24</option>
+                                <Form.Control as="select" name="panelSize" id="panelSize" value={quote.panelSize} onChange={onChange}>
+                                    <option value="12x18"> 12x18</option>
+                                    <option value="18x24"> 18x24</option>
                                 </Form.Control>
                             </Col>
                             <Col sm={4}>
                                 <Form.Label><b>Exchange Rate</b></Form.Label>
-                                <Form.Control type="text" >
+                                <Form.Control type="text" name="exchangeRate" id="exchangeRate" value={quote.exchangeRate} onChange={onChange}>
                                 </Form.Control>
                             </Col>
                         </Form.Group>
@@ -416,37 +446,41 @@ function Quote(props) {
                         <Form.Group as={Row} className="mb-3">
                             <Col sm={4}>
                                 <Form.Label><b>Part Number</b></Form.Label>
-                                <Form.Control type="text" >
+                                <Form.Control type="text" name="partNumber" id="partNumber" value={quote.partNumber} onChange={onChange}>
                                 </Form.Control>
                             </Col>
                             <Col sm={4}>
                                 <Form.Label><b>Number of Layers</b></Form.Label>
-                                <Form.Control as="select" >
-                                    <option> 1</option>
-                                    <option> 2</option>
-                                    <option> 3</option>
-                                    <option> 4</option>
-                                    <option> 5</option>
-                                    <option> 6</option>
-                                    <option> 7</option>
-                                    <option> 8</option>
-                                    <option> 9</option>
-                                    <option> 10</option>
-                                    <option> 11</option>
-                                    <option> 12</option>
-                                    <option> 13</option>
-                                    <option> 14</option>
-                                    <option> 15</option>
-                                    <option> 16</option>
-                                    <option> 17</option>
-                                    <option> 18</option>
-                                    <option> 19</option>
-                                    <option> 20</option>
+                                <Form.Control as="select" name="numberOfLayers" id="numberOfLayers" value={quote.numberOfLayers} onChange={onChange}>
+                                    <option value="1"> 1</option>
+                                    <option value="2"> 2</option>
+                                    <option value="3"> 3</option>
+                                    <option value="4"> 4</option>
+                                    <option value="5"> 5</option>
+                                    <option value="6"> 6</option>
+                                    <option value="7"> 7</option>
+                                    <option value="8"> 8</option>
+                                    <option value="9"> 9</option>
+                                    <option value="10"> 10</option>
+                                    <option value="11"> 11</option>
+                                    <option value="12"> 12</option>
+                                    <option value="14"> 13</option>
+                                    <option value="14"> 14</option>
+                                    <option value="15"> 15</option>
+                                    <option value="16"> 16</option>
+                                    <option value="17"> 17</option>
+                                    <option value="18"> 18</option>
+                                    <option value="19"> 19</option>
+                                    <option value="20"> 20</option>
                                 </Form.Control>
+                                {/* <Form.Control as="select" name="panelSize" id="panelSize" value={quote.panelSize} onChange={onChange}>
+                                    <option value="12x18"> 12x18</option>
+                                    <option value="18x24"> 18x24</option>
+                                </Form.Control> */}
                             </Col>
                             <Col sm={4}>
                                 <Form.Label><b>Freight</b></Form.Label>
-                                <Form.Control type="text" >
+                                <Form.Control type="text" name="freight" id="freight" value={quote.freight} onChange={onChange}>
                                 </Form.Control>
                             </Col>
                         </Form.Group>
@@ -456,19 +490,19 @@ function Quote(props) {
                         <Form.Group as={Row} className="mb-3">
                             <Col sm={4}>
                                 <Form.Label><b>Revision</b></Form.Label>
-                                <Form.Control type="text" >
+                                <Form.Control type="text" name="revision" id="revision" value={quote.revision} onChange={onChange}>
                                 </Form.Control>
                             </Col>
                             <Col sm={4}>
                                 <Form.Label><b>Technology  &emsp;  &emsp;  &nbsp;</b></Form.Label>
-                                <Form.Control as="select" >
-                                    <option> Flex</option>
-                                    <option> Rigid-Flex</option>
+                                <Form.Control as="select" name="technology" id="technology" value={quote.technology} onChange={onChange}>
+                                    <option value="Flex"> Flex</option>
+                                    <option value="Rigid-Flex"> Rigid-Flex</option>
                                 </Form.Control>
                             </Col>
                             <Col sm={4}>
                                 <Form.Label><b>Assembly</b></Form.Label>
-                                <Form.Control type="text" >
+                                <Form.Control type="text" name="assembly" id="assembly" value={quote.assembly} onChange={onChange}>
                                 </Form.Control>
                             </Col>
                         </Form.Group>
