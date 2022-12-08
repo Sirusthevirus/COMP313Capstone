@@ -1,4 +1,7 @@
 const mongoose = require('mongoose');
+const autoIncrement = require('mongoose-auto-increment');
+
+autoIncrement.initialize(mongoose.connection);
 
 let QuoteSchema = mongoose.Schema({
     materials: [{
@@ -55,4 +58,12 @@ let QuoteSchema = mongoose.Schema({
     collection: "quotes"
 });
 
+QuoteSchema.plugin(autoIncrement.plugin, {
+    model: 'QuoteSchema',
+    field: 'quoteNumber',
+    startAt: 1,
+    incrementBy: 1
+});
+
 module.exports.quotes = mongoose.model('quote', QuoteSchema);
+
