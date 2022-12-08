@@ -14,6 +14,10 @@ import axios from 'axios';
 function Quote(props)
 {
         /* Service List*/
+
+        const [quoteItems, setQuoteItems] = useState({_id: '', materials: '', dryAndWet: '', mechanical: '', standard: '', additional: '', assembly: '', exchangeRate: '', freight: ''
+        , numberOfLayers: '', customer: '', partNumber:'', revision:'', panelSize:'', dateCreated:'' });
+
         const [laminateList, setLaminateMaterial] = useState([
             {supplier: "", material: "", weight: "", used: ""},
             
@@ -56,8 +60,11 @@ function Quote(props)
     
          /* Add Button*/
     
-        const addLaminate = () => {
-            setLaminateMaterial([...laminateList, {supplier: "", material: "", weight: "", used: ""}]);
+        const addLaminate = (e) => {
+            //console.log(e.target.selectedValue)
+            //setQuoteItems({...quoteItems, [e.target.name]: e.target.value})
+            setLaminateMaterial([...laminateList, {supplier: e.target.value, material: "", weight: "", used: ""}]);
+            //console.log("QuoteItems:", quoteItems);
     
         };
     
@@ -77,22 +84,22 @@ function Quote(props)
         };
 
         const addDryFilm = () => {
-            setDryFilm([...dryFilmList, {supplier: "", material: "", used: ""}]);
+            setDryFilm([...dryFilmList, {supplier: "", used: ""}]);
     
         };
 
         const addMechanicalProcess = () => {
-            setMechanicalProcess([...mechanicalProcessList, {supplier: "", material: "", used: ""}]);
+            setMechanicalProcess([...mechanicalProcessList, {supplier: "", used: ""}]);
     
         };
 
         const addStandardProcess = () => {
-            setStandardProcess([...standardProcessList, {supplier: "", material: "", used: ""}]);
+            setStandardProcess([...standardProcessList, {supplier: "", used: ""}]);
     
         };
 
         const addFinishes = () => {
-            setFinishes([...finishesList, {supplier: "", material: "", used: ""}]);
+            setFinishes([...finishesList, {supplier: "", used: ""}]);
     
         };
     
@@ -229,7 +236,7 @@ function Quote(props)
                 if(response.status === 200){
                     //check the api call is success by stats code 200,201 ...etc
                     setLaminateOptions(data)
-                    console.log(data)
+                    //console.log(data)
                 }else{
                     //error handle section 
                 }
@@ -245,7 +252,7 @@ function Quote(props)
                 if(response.status === 200){
                     //check the api call is success by stats code 200,201 ...etc
                     setCoverCoatOptions(data)
-                    console.log("fetchCoverCoatData:",data)
+                    //console.log("fetchCoverCoatData:",data)
                 }else{
                     //error handle section 
                 }
@@ -261,7 +268,7 @@ function Quote(props)
                 if(response.status === 200){
                     //check the api call is success by stats code 200,201 ...etc
                     setStiffenerOptions(data)
-                    console.log("fetchStiffenerData:", data)
+                    //console.log("fetchStiffenerData:", data)
                 }else{
                     //error handle section 
                 }
@@ -278,7 +285,7 @@ function Quote(props)
                 if(response.status === 200){
                     //check the api call is success by stats code 200,201 ...etc
                     setTapeOptions(data)
-                    console.log("fetchTapeData:",data)
+                    //console.log("fetchTapeData:",data)
                 }else{
                     //error handle section 
                 }
@@ -294,7 +301,7 @@ function Quote(props)
                 if(response.status === 200){
                     //check the api call is success by stats code 200,201 ...etc
                     setDryFilmOptions(data)
-                    console.log("fetchDryFilmData:",data)
+                    //console.log("fetchDryFilmData:",data)
                 }else{
                     //error handle section 
                 }
@@ -310,7 +317,7 @@ function Quote(props)
                 if(response.status === 200){
                     //check the api call is success by stats code 200,201 ...etc
                     setMechanicalOptions(data)
-                    console.log("fetchMechanicalData:",data)
+                    //console.log("fetchMechanicalData:",data)
                 }else{
                     //error handle section 
                 }
@@ -326,7 +333,7 @@ function Quote(props)
                 if(response.status === 200){
                     //check the api call is success by stats code 200,201 ...etc
                     setStandardOptions(data)
-                    console.log("fetchStandardData:",data)
+                    //console.log("fetchStandardData:",data)
                 }else{
                     //error handle section 
                 }
@@ -341,8 +348,8 @@ function Quote(props)
                 const { data } = response;
                 if(response.status === 200){
                     //check the api call is success by stats code 200,201 ...etc
-                    setFinishesOptions("fetchFinishesData:",data)
-                    console.log(data)
+                    setFinishesOptions(data)
+                    //console.log("fetchFinishesData:",data)
                 }else{
                     //error handle section 
                 }
@@ -358,14 +365,25 @@ function Quote(props)
             fetchDryFilmData();
             fetchMechanicalData();
             fetchStandardData();
-            //fetchFinishesData();
+            fetchFinishesData();
           }, []);
+
+
+          const apiUrl = "http://localhost:5000/quotes/";
+          const saveQuote = (e) => {
+            e.preventDefault();
+            const data = { materials: quoteItems.materials, dryAndWet: quoteItems.dryAndWet, mechanical: quoteItems.mechanical, standard: quoteItems.standard
+                , additional: quoteItems.additional, assembly: quoteItems.assembly, city: quoteItems.city, phoneNumber: quoteItems.phoneNumber, program: quoteItems.program };
+            axios.put(apiUrl, data)
+              .then((result) => {
+                props.history.push('/show/' + result.data._id)
+              })};
         
   return (
         <Jumbotron style={{background: 'white'}}>
 
             <h2 style={{marginLeft:'2.5em'}}><b>Create Quote</b></h2>
-            <Form style={{display: 'flex'}}>
+            <Form style={{display: 'flex'}} onSubmit={saveQuote}>
             <div  className="col-12 mt-3" style={{display: 'inline-block'}}>
 
             <div style={{display:'flex', justifyContent: 'center'}}>
@@ -462,7 +480,7 @@ function Quote(props)
                     <Row key={index}>
                         <Form.Group as={Col} className="mb-3">
                             <Form.Label>Supplier</Form.Label>
-                            <Form.Control name='supplier' as="select">
+                            <Form.Control name='laminateSupplier' as="select">
                             {laminateOptions.map((d) => (
                                 <option key={d.id} value={d.id}>{d.supplier}</option>
                                 ))}
@@ -494,7 +512,7 @@ function Quote(props)
                         </Form.Group>
                         <div className=" mt-4">
                         {laminateList.length-1 === index &&
-                        <Button style={{width:"90px", height:"38px"}} onClick={addLaminate} variant="secondary" type="Input">
+                        <Button style={{width:"90px", height:"38px"}} onClick={addLaminate} variant="secondary" type="Input" name='test' >
                             Add
                         </Button> }
                         </div>
@@ -680,14 +698,6 @@ function Quote(props)
                         </Form.Control> 
                     </Form.Group>
                     <Form.Group as={Col}>
-                        <Form.Label>Material</Form.Label>
-                        <Form.Control name='material' as="select">
-                        {dryFilmOptions.map((d) => (
-                            <option key={d.id} value={d.id}>{d.material}</option>
-                            ))}
-                        </Form.Control> 
-                    </Form.Group>
-                    <Form.Group as={Col}>
                         <Form.Label>Used</Form.Label>
                         <Form.Control name='used' type="number" placeholder='0'>
                         </Form.Control> 
@@ -719,14 +729,6 @@ function Quote(props)
                         <Form.Control name='name' as="select">
                         {mechanicalOptions.map((d) => (
                             <option key={d.id} value={d.id}>{d.name}</option>
-                            ))}
-                        </Form.Control> 
-                    </Form.Group>
-                    <Form.Group as={Col}>
-                        <Form.Label>Material</Form.Label>
-                        <Form.Control name='material' as="select">
-                        {mechanicalOptions.map((d) => (
-                            <option key={d.id} value={d.id}>{d.material}</option>
                             ))}
                         </Form.Control> 
                     </Form.Group>
@@ -766,14 +768,6 @@ function Quote(props)
                         </Form.Control> 
                     </Form.Group>
                     <Form.Group as={Col}>
-                        <Form.Label>Material</Form.Label>
-                        <Form.Control name='material' as="select">
-                        {standardOptions.map((d) => (
-                            <option key={d.id} value={d.id}>{d.material}</option>
-                            ))}
-                        </Form.Control> 
-                    </Form.Group>
-                    <Form.Group as={Col}>
                         <Form.Label>Used</Form.Label>
                         <Form.Control name='used' type="number" placeholder='0'>
                         </Form.Control>
@@ -803,16 +797,8 @@ function Quote(props)
                     <Form.Group as={Col} className="mb-3">
                         <Form.Label>Supplier</Form.Label>
                         <Form.Control name='Supplier' as="select">
-                        {standardOptions.map((d) => (
-                            <option key={d.id} value={d.id}>{d.supplier}</option>
-                            ))}
-                        </Form.Control> 
-                    </Form.Group>
-                    <Form.Group as={Col}>
-                        <Form.Label>Material</Form.Label>
-                        <Form.Control name='material' as="select">
-                        {standardOptions.map((d) => (
-                            <option key={d.id} value={d.id}>{d.material}</option>
+                        {finishesOptions.map((d) => (
+                            <option key={d.id} value={d.id}>{d.name}</option>
                             ))}
                         </Form.Control> 
                     </Form.Group>
@@ -847,7 +833,7 @@ function Quote(props)
                         Submit
                         
                     </Button>
-            </div>
+                </div>
             </div>
 
             
