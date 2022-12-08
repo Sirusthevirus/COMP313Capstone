@@ -9,9 +9,13 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 // import { withRouter } from 'react-router-dom';
 import '../../quote.css'
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 
 function Quote(props) {
+    
+    let navigate = useNavigate();
+
     /* Service List*/
 
     const [quote, setQuote] = useState('');
@@ -408,8 +412,12 @@ function Quote(props) {
         console.log(data)
         axios.post(postUrl, data)
             .then((result) => {
-                // props.history.push('/show/' + result.data._id)
+                // props.history.push('/show/' + result.data._id) // giving errors
                 console.log(result.data)
+                navigate("/allQuotes")
+            })
+            .catch((e) => {
+                console.log(e)
             })
     };
 
@@ -430,13 +438,14 @@ function Quote(props) {
                             <Col sm={4}>
                                 <Form.Label><b>Panel Size  &emsp;  &emsp;  &emsp;</b></Form.Label>
                                 <Form.Control as="select" name="panelSize" id="panelSize" value={quote.panelSize} onChange={onChange}>
+                                    <option>-- Select Panel Size --</option>
                                     <option value="12x18"> 12x18</option>
                                     <option value="18x24"> 18x24</option>
                                 </Form.Control>
                             </Col>
                             <Col sm={4}>
                                 <Form.Label><b>Exchange Rate</b></Form.Label>
-                                <Form.Control type="text" name="exchangeRate" id="exchangeRate" value={quote.exchangeRate} onChange={onChange}>
+                                <Form.Control type="number" name="exchangeRate" id="exchangeRate" value={quote.exchangeRate} onChange={onChange}>
                                 </Form.Control>
                             </Col>
                         </Form.Group>
@@ -446,12 +455,13 @@ function Quote(props) {
                         <Form.Group as={Row} className="mb-3">
                             <Col sm={4}>
                                 <Form.Label><b>Part Number</b></Form.Label>
-                                <Form.Control type="text" name="partNumber" id="partNumber" value={quote.partNumber} onChange={onChange}>
+                                <Form.Control type="number" name="partNumber" id="partNumber" value={quote.partNumber} onChange={onChange}>
                                 </Form.Control>
                             </Col>
                             <Col sm={4}>
                                 <Form.Label><b>Number of Layers</b></Form.Label>
                                 <Form.Control as="select" name="numberOfLayers" id="numberOfLayers" value={quote.numberOfLayers} onChange={onChange}>
+                                    <option>-- Select Layers --</option>
                                     <option value="1"> 1</option>
                                     <option value="2"> 2</option>
                                     <option value="3"> 3</option>
@@ -473,14 +483,10 @@ function Quote(props) {
                                     <option value="19"> 19</option>
                                     <option value="20"> 20</option>
                                 </Form.Control>
-                                {/* <Form.Control as="select" name="panelSize" id="panelSize" value={quote.panelSize} onChange={onChange}>
-                                    <option value="12x18"> 12x18</option>
-                                    <option value="18x24"> 18x24</option>
-                                </Form.Control> */}
                             </Col>
                             <Col sm={4}>
                                 <Form.Label><b>Freight</b></Form.Label>
-                                <Form.Control type="text" name="freight" id="freight" value={quote.freight} onChange={onChange}>
+                                <Form.Control type="number" name="freight" id="freight" value={quote.freight} onChange={onChange}>
                                 </Form.Control>
                             </Col>
                         </Form.Group>
@@ -490,12 +496,13 @@ function Quote(props) {
                         <Form.Group as={Row} className="mb-3">
                             <Col sm={4}>
                                 <Form.Label><b>Revision</b></Form.Label>
-                                <Form.Control type="text" name="revision" id="revision" value={quote.revision} onChange={onChange}>
+                                <Form.Control type="number" name="revision" id="revision" value={quote.revision} onChange={onChange}>
                                 </Form.Control>
                             </Col>
                             <Col sm={4}>
                                 <Form.Label><b>Technology  &emsp;  &emsp;  &nbsp;</b></Form.Label>
                                 <Form.Control as="select" name="technology" id="technology" value={quote.technology} onChange={onChange}>
+                                    <option>-- Select Flex--</option>
                                     <option value="Flex"> Flex</option>
                                     <option value="Rigid-Flex"> Rigid-Flex</option>
                                 </Form.Control>
