@@ -40,6 +40,7 @@ function ListQuotes() {
                             <th scope="col">Part Number</th>
                             <th scope="col">Revision</th>
                             <th scope="col">Panel Size</th>
+                            <th scope="col">Date Created</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -52,6 +53,7 @@ function ListQuotes() {
                                 <td>{quote.partNumber}</td>
                                 <td>{quote.revision}</td>
                                 <td>{quote.panelSize}</td>
+                                <td>{quote.dateCreated}</td>
                             </tr>
                         ))}
                     </tbody>
