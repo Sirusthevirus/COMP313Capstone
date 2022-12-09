@@ -502,7 +502,7 @@ function Quote(props) {
                             <Col sm={4}>
                                 <Form.Label><b>Technology  &emsp;  &emsp;  &nbsp;</b></Form.Label>
                                 <Form.Control as="select" name="technology" id="technology" value={quote.technology} onChange={onChange}>
-                                    <option>-- Select Flex--</option>
+                                    <option>-- Select Technology--</option>
                                     <option value="Rigid"> Rigid</option>
                                     <option value="Flex"> Flex</option>
                                     <option value="Rigid-Flex"> Rigid-Flex</option>
