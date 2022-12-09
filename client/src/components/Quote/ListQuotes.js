@@ -28,7 +28,7 @@ function ListQuotes() {
 
     return (
         <Jumbotron style={{background: 'white'}}>
-            <h2 style={{marginLeft:'2.5em'}}><b> Previous Quotes </b></h2>
+            <h2 style={{marginLeft:'2.5em'}}><b> All Quotes </b></h2>
 
             <div className="col-11 mt-6" style={{display: 'inline-block', marginLeft:'4em', background: 'lightgrey', paddingLeft: '1.5em', paddingRight: '1.5em', paddingTop: '1.5em', paddingBottom: '1.5em', borderRadius:'25px'}} >
                 
