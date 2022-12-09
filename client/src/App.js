@@ -95,7 +95,7 @@ function App() {
         <Routes>
           <Route path="login" element={<Login />} />
           <Route path="home" element={<Home />} />
-          <Route path="home" element={<Home />} />
+          <Route path="/" element={<ListQuotes />} />
           <Route path="allQuotes" element={<ListQuotes />} />
           <Route path="quote" element={<Quote />} />
           <Route path="assembly" element={<Assembly />} />

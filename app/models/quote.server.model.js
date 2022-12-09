@@ -53,7 +53,7 @@ let QuoteSchema = mongoose.Schema({
     },
     technology: {
         type: String,
-        enum: ["Flex", "Rigid-Flex"]
+        enum: ["Rigid", "Flex", "Rigid-Flex"]
     },
     dateCreated: {
         type: Date
