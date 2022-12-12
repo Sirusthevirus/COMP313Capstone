@@ -26,6 +26,10 @@ function ListQuotes() {
 
     const addQuote = () => { navigate('/quote') }
 
+    const showSummary = (qId) => {
+        navigate('/summary/' + qId)
+    }
+
     return (
         <Jumbotron style={{background: 'white'}}>
             <h2 style={{marginLeft:'2.5em'}}><b> All Quotes </b></h2>
@@ -41,6 +45,8 @@ function ListQuotes() {
                             <th scope="col">Revision</th>
                             <th scope="col">Panel Size</th>
                             <th scope="col">Date Created</th>
+                            <th scope="col">Summary Action</th>
+                            <th scope="col">Print Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -54,10 +60,13 @@ function ListQuotes() {
                                 <td>{quote.revision}</td>
                                 <td>{quote.panelSize}</td>
                                 <td>{quote.dateCreated}</td>
+                                <td><Button type="button" variant="primary" onClick={() => { showSummary(quote._id) }}>Summary</Button></td>
+                                <td><Button type="button" variant="primary" onClick={() => { showSummary(quote._id) }}>Print</Button></td>
                             </tr>
                         ))}
                     </tbody>
                 </Table>
+                
                 <div className="col-12 mt-3" style={{display: 'flex', justifyContent: 'flex-end'}}>
                 <Button onClick={addQuote} style={{width:"200px", height:"50px"}}  variant="secondary">
                     Create New Quote

@@ -71,7 +71,7 @@ function App() {
             <Nav.Link href="/assembly">Generate Assembly</Nav.Link>          
             <Nav.Link href="/manufacturing">Manufacturing</Nav.Link>
              <Nav.Link href="/processes">Processes</Nav.Link>
-             <Nav.Link href="/summary">Summary</Nav.Link>   */}
+                */}
             {/* <Nav.Link href="/quote">Quotes</Nav.Link> */}
             <Nav.Link href="/allQuotes" style={{fontSize:'120%'}}> <b>Quotes</b> </Nav.Link>
             <NavDropdown title="Materials" id="basic-nav-dropdown" style={{fontWeight:'bold', fontSize:'120%',}}>
@@ -101,7 +101,8 @@ function App() {
           <Route path="assembly" element={<Assembly />} />
           <Route path="manufacturing" element={<Manufacturing />} />
           <Route path="processes" element={<Processes />} />
-          <Route path="summary" element={<Summary />} />
+          {/* route for Summary for all quotes */}
+          <Route path="summary/:qId" element={<Summary />} />
           {/* route for Laminate Material */}
           <Route path="listLaminate" element={<ListLaminate />} />
           <Route path="createLaminate" element={<CreateLaminate />} />
