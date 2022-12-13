@@ -16,22 +16,23 @@ function Quote(props) {
     
     let navigate = useNavigate();
 
-    /* Service List*/
+    /* Populating the drop down options*/
+
+    const [laminateOptions, setLaminateOptions] = useState([]);
+    const [coverCoatOptions, setCoverCoatOptions] = useState([]);
+    const [stiffenerOptions, setStiffenerOptions] = useState([]);
+    const [tapeOptions, setTapeOptions] = useState([]);
+    const [dryFilmOptions, setDryFilmOptions] = useState([]);
+    const [mechanicalOptions, setMechanicalOptions] = useState([]);
+    const [standardOptions, setStandardOptions] = useState([]);
+    const [finishesOptions, setFinishesOptions] = useState([]);
+
+    /* Selecting an item from the drop down options*/
 
     const [quote, setQuote] = useState('');
 
-    const [materials, setMaterials] = useState([]);
-
-    // const [quoteItems, setQuoteItems] = useState({
-    //     materials: [], dryAndWet: [], mechanical: [], standard: '', additional: '', assembly: '', exchangeRate: '', freight: ''
-    //     , numberOfLayers: '', customer: '', partNumber: '', revision: '', panelSize: '', dateCreated: ''
-    // });
-
-    const [laminateList, setLaminateMaterial] = useState([
-        { supplier: "", material: "", weight: "", used: "" },
-
-    ]);
-
+    const [laminateList, setLaminateMaterial] = useState([]);
+    
     const [coverCoatList, setCoverCoat] = useState([
         { supplier: "", material: "", thinkness: "", used: "" },
 
@@ -69,12 +70,28 @@ function Quote(props) {
 
     /* Add Button*/
 
-    const addLaminate = (e) => {
-        //console.log(e.target.selectedValue)
-        //setQuoteItems({...quoteItems, [e.target.name]: e.target.value})
-        setLaminateMaterial([...laminateList, { supplier: e.target.value, material: "", weight: "", used: "" }]);
-        //console.log("QuoteItems:", quoteItems);
+    const [totalPrice, setTotalPrice] = useState();
 
+
+    const [laminateIDs, setLaminateIDs] = useState([]);
+
+
+    let totalPrice2 = 0;
+
+    const addLaminate = (e) => {
+        e.preventDefault();
+        console.log(e.target.form.laminateSupplier.selectedOptions[0].id);
+        setTotalPrice(...e.target.form.laminatePrice.value)
+        totalPrice2 = parseInt(totalPrice2 + e.target.form.laminatePrice.value)
+        //console.log("Price", totalPrice, totalPrice2);
+        //console.log("Pricev2", totalPrice2);
+        setLaminateMaterial([...laminateList, { id: e.target.form.laminateSupplier.id, supplier: e.target.form.laminateSupplier.value, material: e.target.form.laminateMaterial.value,
+             weight: e.target.form.laminateWeight.value, used: e.target.form.laminateUsed.value }]);
+        //console.log("LaminateAddedList:", laminateList);
+        //console.log("laminate Options", laminateOptions);
+        let temp = [...laminateIDs, e.target.form.laminateSupplier.selectedOptions[0].id]
+        setLaminateIDs(temp);
+        setQuote({ ...quote, "materials": temp});
     };
 
     const addCoverCoat = () => {
@@ -161,81 +178,6 @@ function Quote(props) {
         list.splice(index, 1);
         setFinishes(list)
     };
-
-
-    /* Output*/
-
-    const handleLaminateChange = (e, index) => {
-        const { name, value } = e.target
-        const list = [...laminateList];
-        list[index][name] = value;
-        setLaminateMaterial(list)
-
-    };
-
-    const handleCoverCoatChange = (e, index) => {
-        const { name, value } = e.target
-        const list = [...coverCoatList];
-        list[index][name] = value;
-        setCoverCoat(list)
-
-    };
-
-    const handleStiffenerChange = (e, index) => {
-        const { name, value } = e.target
-        const list = [...stiffenerList];
-        list[index][name] = value;
-        setStiffener(list)
-
-    };
-
-    const handle3MTapeChange = (e, index) => {
-        const { name, value } = e.target
-        const list = [...tapeList];
-        list[index][name] = value;
-        set3MTape(list)
-
-    };
-
-    const handleDryFilmChange = (e, index) => {
-        const { name, value } = e.target
-        const list = [...dryFilmList];
-        list[index][name] = value;
-        setDryFilm(list)
-
-    };
-
-    const handleMechanicalChange = (e, index) => {
-        const { name, value } = e.target
-        const list = [...mechanicalProcessList];
-        list[index][name] = value;
-        setMechanicalProcess(list)
-
-    };
-
-    const handleStandardChange = (e, index) => {
-        const { name, value } = e.target
-        const list = [...standardProcessList];
-        list[index][name] = value;
-        setStandardProcess(list)
-
-    };
-
-    const handleFinishesChange = (e, index) => {
-        const { name, value } = e.target
-        const list = [...finishesList];
-        list[index][name] = value;
-        setFinishes(list)
-
-    };
-    const [laminateOptions, setLaminateOptions] = useState([]);
-    const [coverCoatOptions, setCoverCoatOptions] = useState([]);
-    const [stiffenerOptions, setStiffenerOptions] = useState([]);
-    const [tapeOptions, setTapeOptions] = useState([]);
-    const [dryFilmOptions, setDryFilmOptions] = useState([]);
-    const [mechanicalOptions, setMechanicalOptions] = useState([]);
-    const [standardOptions, setStandardOptions] = useState([]);
-    const [finishesOptions, setFinishesOptions] = useState([]);
 
     const fetchLaminateData = () => {
         axios
@@ -375,6 +317,8 @@ function Quote(props) {
         fetchMechanicalData();
         fetchStandardData();
         fetchFinishesData();
+        //console.log("list from useEffect", laminateList)
+        //console.log("laminate Options from useEffect", laminateOptions)
     }, []);
 
     // Save form input to quote hook
@@ -391,7 +335,8 @@ function Quote(props) {
 
         // Set quote creation date to now
         const currDate = new Date();
-
+        console.log("quote, here: ");
+        console.log(quote);
         console.log("quote inside saveQuote: " + quote)
         const data = {
             customer: quote.customer,
@@ -402,7 +347,7 @@ function Quote(props) {
             partNumber: parseInt(quote.partNumber),
             revision: parseInt(quote.revision),
             dateCreated: currDate,
-            // materials: quote.materials,
+            materials: quote.materials,
             // dryAndWet: quote.dryAndWet,
             // standard: quote.standard,
             // additional: quote.additional,
@@ -419,6 +364,30 @@ function Quote(props) {
             .catch((e) => {
                 console.log(e)
             })
+    };
+
+    const [quotePrice, setQuotePrice] = useState([])
+
+    var calculatePrice = () => {
+
+    }
+
+
+    const [laminatePrice, setLaminatePrice] = useState([])
+
+    const getMaterialPrice = (e) => {
+        axios
+            .get("http://localhost:5000/byId/6386c4c87c89b5388c0cd637")
+            .then((response) => {
+                const { data } = response;
+                if (response.status === 200) {
+                    //check the api call is success by stats code 200,201 ...etc
+                    setLaminatePrice(data.price)
+                } else {
+                    //error handle section 
+                }
+            })
+            .catch((error) => console.log(error));
     };
 
     return (
@@ -522,100 +491,158 @@ function Quote(props) {
                     <h3 style={{ marginLeft: '2.5em' }}><b>Manufacturing</b></h3>
                     <div className="col-11 mt-6" style={{ display: 'inline-block', marginLeft: '4em', background: 'lightgrey', paddingLeft: '1.5em', paddingRight: '1.5em', paddingTop: '1.5em', paddingBottom: '1.5em', borderRadius: '25px' }} >
                         <h4>Laminate Material</h4>
-                        {laminateList.map((singleService, index) => (
-                            <Row key={index}>
+                            <Row>
                                 <Form.Group as={Col} className="mb-3">
                                     <Form.Label>Supplier</Form.Label>
-                                    <Form.Control name='laminateSupplier' as="select">
+                                    <Form.Control name='laminateSupplier' as="select"                         
+                                        value={laminateOptions.service}>
                                         {laminateOptions.map((d) => (
-                                            <option key={d.id} value={d.id}>{d.supplier}</option>
+                                            <option data-myname={d.price} id={d.id} value={d.supplier}>{d.supplier}</option>
                                         ))}
                                     </Form.Control>
                                 </Form.Group>
                                 <Form.Group as={Col}>
                                     <Form.Label>Material</Form.Label>
-                                    <Form.Control name='material' as="select">
+                                    <Form.Control name='laminateMaterial' as="select" onChange={getMaterialPrice}                         
+                                        value={laminateList.material}>
                                         {laminateOptions.map((d) => (
-                                            <option key={d.id} value={d.id}>{d.material}</option>
+                                            <option id={d.id} value={d.material}>{d.material}</option>
                                         ))}
                                     </Form.Control>
                                 </Form.Group>
                                 <Form.Group as={Col}>
                                     <Form.Label>CU Weight</Form.Label>
-                                    <Form.Control name='weight' as="select">
+                                    <Form.Control name='laminateWeight' as="select"                         
+                                        value={laminateOptions.weight}>
                                         {laminateOptions.map((d) => (
-                                            <option key={d.id} value={d.id}>{d.cuWeight}</option>
+                                            <option id={d.id} value={d.cuWeight}>{d.cuWeight}</option>
                                         ))}
                                     </Form.Control>
                                 </Form.Group>
-
                                 <Form.Group as={Col}>
                                     <Form.Label>Used</Form.Label>
-                                    <Form.Control name='used' type="number" placeholder='0'
-                                        value={singleService.service}
-                                        onChange={(e) => handleLaminateChange(e, index)}>
+                                    <Form.Control name='laminateUsed' type="number" placeholder='0'                       
+                                        value={laminateOptions.used}>
+                                    </Form.Control>
+                                </Form.Group>
+                                <Form.Group as={Col} style={{display:"none"}}>
+                                    <Form.Label>Price</Form.Label>
+                                    <Form.Control name='laminatePrice' type='Text'                     
+                                        value={laminatePrice}>
                                     </Form.Control>
                                 </Form.Group>
                                 <div className=" mt-4">
-                                    {laminateList.length - 1 === index &&
-                                        <Button style={{ width: "90px", height: "38px" }} onClick={addLaminate} variant="secondary" type="Input" name='test' >
-                                            Add
-                                        </Button>}
+                                    <Button style={{ width: "90px", height: "38px" }} onClick={addLaminate} variant="secondary" type="button">
+                                        Add
+                                    </Button>
                                 </div>
                                 &nbsp;&nbsp;
-                                <div className="mt-4">
-                                    {laminateList.length > 1 &&
-                                        <Button onClick={() => removeLaminate(index)} variant="secondary" type="Delete">
-                                            Remove
-                                        </Button>}
-                                </div>
-                            </Row>))}
+                            </Row>
+                            <Row><h6 style={{ marginLeft: '1em' }}><b>Materials Added</b></h6></Row>
+                            {laminateList.map((laminates, index) => (
+                                <Row key={index}>
+                                    <Form.Group as={Col} className="mb-3">
+                                        {/* supplier: "", material: "", thinkness: "", used: "" */}
+                                        <Form.Label>{laminates.supplier}</Form.Label>
+                                    </Form.Group>
+                                    <Form.Group as={Col}>
+                                        <Form.Label>{laminates.material}</Form.Label>
+                                    </Form.Group>
+                                    <Form.Group as={Col}>
+                                        <Form.Label>{laminates.weight}</Form.Label>
+                                    </Form.Group>
+                                    <Form.Group as={Col}>
+                                        <Form.Label>{laminates.used}</Form.Label>
+                                    </Form.Group>
+                                    <div className=" mt-4">
+                                        
+                                    </div>
+                                    &nbsp;&nbsp;
+                                    <div>
+                                        {laminateList.length > 0 &&
+                                            <Button onClick={() => removeLaminate(index)} variant="secondary" type="button">
+                                                Remove
+                                            </Button>}
+                                    </div>
+                                </Row>))}
                     </div>
                     <div className="col-11 mt-3" style={{ display: 'inline-block', marginLeft: '4em', background: 'lightgrey', paddingLeft: '1.5em', paddingRight: '1.5em', paddingTop: '1.5em', paddingBottom: '1.5em', borderRadius: '25px' }} >
                         <h4>Cover Coat</h4>
+                            <div>
+                            <Row>
+                                <Form.Group as={Col} className="mb-3">
+                                        <Form.Label>Supplier</Form.Label>
+                                        <Form.Control name='coverCoatSupplier' as="select"
+                                            value={coverCoatList.supplier}>
+                                            {coverCoatOptions.map((d) => (
+                                                <option key={d.id} value={d.supplier}>{d.supplier}</option>
+                                            ))}
+                                        </Form.Control>
+                                    </Form.Group>
+                                    <Form.Group as={Col}>
+                                        <Form.Label>Material</Form.Label>
+                                        <Form.Control name='coverCoatMaterial' as="select"
+                                            value={coverCoatList.material}>
+                                            {coverCoatOptions.map((d) => (
+                                                <option key={d.id} value={d.material}>{d.material}</option>
+                                            ))}
+                                        </Form.Control>
+                                    </Form.Group>
+                                    <Form.Group as={Col}>
+                                        <Form.Label>Thickness</Form.Label>
+                                        <Form.Control name='coverCoatThickness' as="select"
+                                            value={coverCoatList.thickness}>
+                                            {coverCoatOptions.map((d) => (
+                                                <option key={d.id} value={d.thickness}>{d.thickness}</option>
+                                            ))}
+                                        </Form.Control>
+                                    </Form.Group>
+                                    <Form.Group as={Col}>
+                                        <Form.Label>Used</Form.Label>
+                                        <Form.Control name='used' type="number" placeholder='0'>
+                                        </Form.Control>
+                                    </Form.Group>
+                                    <div className=" mt-4">
+                                        <Button style={{ width: "90px", height: "38px" }} onClick={addCoverCoat} variant="secondary" type="Input">
+                                            Add
+                                        </Button>
+                                    </div>
+                                    &nbsp;&nbsp;
+                                    <div className="mt-4">
+                                        {coverCoatList.length > 1 &&
+                                            <Button onClick={() => removeCoverCoat()} variant="secondary" type="Delete">
+                                                Remove
+                                            </Button>}
+                                    </div>
+                            </Row>
+                            </div>
                         {coverCoatList.map((singleServices, index) => (
                             <Row key={index}>
                                 <Form.Group as={Col} className="mb-3">
+ 
+                                    {/* supplier: "", material: "", thinkness: "", used: "" */}
                                     <Form.Label>Supplier</Form.Label>
-                                    <Form.Control name='supplier' as="select">
-                                        {coverCoatOptions.map((d) => (
-                                            <option key={d.id} value={d.id}>{d.supplier}</option>
-                                        ))}
-                                    </Form.Control>
+                                    <Form.Label>{singleServices.supplier}</Form.Label>
                                 </Form.Group>
                                 <Form.Group as={Col}>
                                     <Form.Label>Material</Form.Label>
-                                    <Form.Control name='material' as="select">
-                                        {coverCoatOptions.map((d) => (
-                                            <option key={d.id} value={d.id}>{d.material}</option>
-                                        ))}
-                                    </Form.Control>
+                                    <Form.Label>{singleServices.supplier}</Form.Label>
                                 </Form.Group>
                                 <Form.Group as={Col}>
                                     <Form.Label>Thickness</Form.Label>
-                                    <Form.Control name='thickness' as="select">
-                                        {coverCoatOptions.map((d) => (
-                                            <option key={d.id} value={d.id}>{d.thickness}</option>
-                                        ))}
-                                    </Form.Control>
+                                    <Form.Label>{singleServices.supplier}</Form.Label>
                                 </Form.Group>
                                 <Form.Group as={Col}>
                                     <Form.Label>Used</Form.Label>
-                                    <Form.Control name='used' type="number" placeholder='0'
-                                        value={singleServices.service}
-                                        onChange={(e) => handleCoverCoatChange(e, index)}>
-                                    </Form.Control>
+                                    <Form.Label>Thickness</Form.Label>
                                 </Form.Group>
                                 <div className=" mt-4">
-                                    {coverCoatList.length - 1 === index &&
-                                        <Button style={{ width: "90px", height: "38px" }} onClick={addCoverCoat} variant="secondary" type="Input">
-                                            Add
-                                        </Button>}
+                                   
                                 </div>
                                 &nbsp;&nbsp;
                                 <div className="mt-4">
                                     {coverCoatList.length > 1 &&
-                                        <Button onClick={() => removeCoverCoat(index)} variant="secondary" type="Delete">
+                                        <Button onClick={() => removeCoverCoat(index)} variant="secondary" type="button">
                                             Remove
                                         </Button>}
                                 </div>
@@ -652,9 +679,7 @@ function Quote(props) {
                                 </Form.Group>
                                 <Form.Group as={Col}>
                                     <Form.Label>Used</Form.Label>
-                                    <Form.Control name='used' type="number" placeholder='0'
-                                        value={singleServicestiff.service}
-                                        onChange={(e) => handleStiffenerChange(e, index)}>
+                                    <Form.Control name='used' type="number" placeholder='0'>
                                     </Form.Control>
                                 </Form.Group>
                                 <div className=" mt-4">
@@ -704,9 +729,7 @@ function Quote(props) {
                                 </Form.Group>
                                 <Form.Group as={Col}>
                                     <Form.Label>Used</Form.Label>
-                                    <Form.Control name='used' type="number" placeholder='0'
-                                        value={singleServicestape.service}
-                                        onChange={(e) => handle3MTapeChange(e, index)}>
+                                    <Form.Control name='used' type="number" placeholder='0'>
                                     </Form.Control>
                                 </Form.Group>
                                 <div className=" mt-4">
@@ -850,9 +873,7 @@ function Quote(props) {
                                 </Form.Group>
                                 <Form.Group as={Col}>
                                     <Form.Label>Used</Form.Label>
-                                    <Form.Control name='used' type="number" placeholder='0'
-                                        value={singleServicestape.service}
-                                        onChange={(e) => handleFinishesChange(e, index)}>
+                                    <Form.Control name='used' type="number" placeholder='0'>
                                     </Form.Control>
                                 </Form.Group>
                                 <div className=" mt-4">
