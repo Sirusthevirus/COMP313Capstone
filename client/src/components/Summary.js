@@ -1,8 +1,10 @@
-import React, { useRef } from "react";
+import React, { useRef,useState, useEffect  } from "react";
 import Jumbotron from "react-bootstrap/Jumbotron";
 import { useReactToPrint } from "react-to-print";
-
+import { useNavigate, useParams } from "react-router-dom";
+import axios from "axios";
 export default function Summary() {
+
   const componentRef = useRef();
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
@@ -10,10 +12,36 @@ export default function Summary() {
     onafterprint: () => alert("print success"),
   });
 
+  let navigate = useNavigate();
+  let { qId } = useParams();
+
+  const [data, setData] = useState({
+    _id: "",
+    customer: "",
+    panelSize: "",
+    exchangeRate:"",
+    freight:"",
+    partNumber:"",
+    revision:"",
+    dateCreated:"",
+    quoteNumber:"",
+  });
+
+  const apiUrl = "http://localhost:3000/quoteById/" + qId;
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await axios(apiUrl);
+      setData(result.data);
+      console.log(result.data);
+    };
+    fetchData();
+  }, []);
+
+
   return (
     <Jumbotron>
       <div className="summary" ref={componentRef}>
-        <h1>Summary</h1>
+        <h1>Summary -- Customer: {data.customer}</h1>
         <br />
         <table>
           <thead>

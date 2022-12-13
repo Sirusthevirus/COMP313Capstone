@@ -83,7 +83,7 @@ exports.delete = function(req, res){
 }
 
 exports.quoteByID = function (req, res, next, id) {
-    quote.findById(id).populate().exec((err, quote) =>
+    Quote.findById(id).populate().exec((err, quote) =>
     {
         if (err) return next(err);
         if (!quote) return next(new Error('Failed to load quote '
