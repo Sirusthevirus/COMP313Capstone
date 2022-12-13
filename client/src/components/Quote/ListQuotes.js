@@ -45,8 +45,7 @@ function ListQuotes() {
                             <th scope="col">Revision</th>
                             <th scope="col">Panel Size</th>
                             <th scope="col">Date Created</th>
-                            <th scope="col">Summary Action</th>
-                            <th scope="col">Print Action</th>
+                            <th scope="col">Summary Action</th>                         
                         </tr>
                     </thead>
                     <tbody>
@@ -60,8 +59,7 @@ function ListQuotes() {
                                 <td>{quote.revision}</td>
                                 <td>{quote.panelSize}</td>
                                 <td>{quote.dateCreated}</td>
-                                <td><Button type="button" variant="primary" onClick={() => { showSummary(quote._id) }}>Summary</Button></td>
-                                <td><Button type="button" variant="primary" onClick={() => { showSummary(quote._id) }}>Print</Button></td>
+                                <td><Button type="button" variant="primary" onClick={() => { showSummary(quote._id) }}>Summary</Button></td>                                
                             </tr>
                         ))}
                     </tbody>
