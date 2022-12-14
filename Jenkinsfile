@@ -13,7 +13,7 @@ pipeline {
         stage("Build") {
             steps {
                 bat 'npm install --silent'
-                bat 'npm run build & npx wait-on http://localhost:3000'
+                bat 'npm run build'
             }
         }
     }
