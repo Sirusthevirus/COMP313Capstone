@@ -8,26 +8,50 @@ let QuoteSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'materials'
     }],
+    materialNumberOfUse: {
+        type: Number
+    },
+    
     dryAndWet: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'dryAndWet'
     }],
+    dryAndWetNumberOfUse: {
+        type: Number
+    },
+
     mechanical: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'mechanical'
     }],
+    mechanicalNumberOfUse: {
+        type: Number
+    },
+
     standard: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'standard'
     }],
+    standardNumberOfUse: {
+        type: Number
+    },
+
     additional: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'additional'
     }],
+    additionalNumberOfUse: {
+        type: Number
+    },
+
     assembly: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'assembly'
     }],
+    assemblyNumberOfUse: {
+        type: Number
+    },
+
     exchangeRate: {
         type: Number
     },
@@ -54,6 +78,9 @@ let QuoteSchema = mongoose.Schema({
     technology: {
         type: String,
         enum: ["Rigid", "Flex", "Rigid-Flex"]
+    },
+    totalPrice: {
+        type: Number
     },
     dateCreated: {
         type: Date
