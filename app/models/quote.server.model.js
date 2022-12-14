@@ -28,6 +28,14 @@ let QuoteSchema = mongoose.Schema({
         type: Number
     },
 
+    finish: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'finish'
+    }],
+    finishNumberOfUse: {
+        type: Number
+    },
+
     standard: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'standard'

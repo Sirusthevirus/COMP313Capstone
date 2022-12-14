@@ -16,14 +16,7 @@ const TapeCard = ({ options, ids, setIds, numberOfUse, setNumberOfUse }) => {
     }
 
     const deleteItem = (item) => {
-        const tempIds = ids.filter(element => element !== item._id)
-
-
-        // setIds(tempIds)
-        console.log("DELETE")
-        setIds([])
-
-        // console.log("tempIds", tempIds)
+        setIds(ids.filter(element => element !== item._id))
 
         setItemList(itemList.filter(element => element._id !== item._id))
 
@@ -39,7 +32,7 @@ const TapeCard = ({ options, ids, setIds, numberOfUse, setNumberOfUse }) => {
     }
 
     const handleSearchFilter = (item) => {
-        return (item.supplier.toLowerCase().includes(searchTerm.toLowerCase()) || item.material.toLowerCase().includes(searchTerm.toLowerCase()) || item.cuWeight.toString().toLowerCase().includes(searchTerm.toLowerCase()))
+        return (item.supplier.toLowerCase().includes(searchTerm.toLowerCase()) || item.material.toLowerCase().includes(searchTerm.toLowerCase()) || item.model.toString().toLowerCase().includes(searchTerm.toLowerCase()))
     }
 
     const handleChangeNumberOfUse = (event, row) => {
@@ -80,6 +73,7 @@ const TapeCard = ({ options, ids, setIds, numberOfUse, setNumberOfUse }) => {
                         {options.filter(handleSearchFilter).map((row) => (
                             <TableRow
                                 key={row.name}
+                                
                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                             >
                                 <TableCell component="th" scope="row">
@@ -89,7 +83,7 @@ const TapeCard = ({ options, ids, setIds, numberOfUse, setNumberOfUse }) => {
                                     {row.material}
                                 </TableCell>
                                 <TableCell component="th" scope="row">
-                                    {row.cuWeight}
+                                    {row.modelNumber}
                                 </TableCell>
                                 <TableCell component="th" scope="row">
                                     <TextField
@@ -120,7 +114,7 @@ const TapeCard = ({ options, ids, setIds, numberOfUse, setNumberOfUse }) => {
                         <TableRow>
                             <TableCell>Supplier</TableCell>
                             <TableCell>Material</TableCell>
-                            <TableCell>CU Weight</TableCell>
+                            <TableCell>modelNumber</TableCell>
                             <TableCell>Used</TableCell>
                             <TableCell>Remove</TableCell>
                         </TableRow>
@@ -138,7 +132,7 @@ const TapeCard = ({ options, ids, setIds, numberOfUse, setNumberOfUse }) => {
                                     {row.material}
                                 </TableCell>
                                 <TableCell component="th" scope="row">
-                                    {row.cuWeight}
+                                    {row.modelNumber}
                                 </TableCell>
                                 <TableCell component="th" scope="row">
                                     {numberOfUse[row._id] ?? 0}

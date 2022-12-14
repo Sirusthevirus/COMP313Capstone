@@ -16,12 +16,7 @@ const LaminateMaterialCard = ({ options, ids, setIds, numberOfUse, setNumberOfUs
     }
 
     const deleteItem = (item) => {
-        const tempIds = ids.filter(element => element !== item._id)
-        setIds(tempIds)
-        console.log("DELETE")
-        //setIds([])
-
-        // console.log("tempIds", tempIds)
+        setIds(ids.filter(element => element !== item._id))
 
         setItemList(itemList.filter(element => element._id !== item._id))
 
