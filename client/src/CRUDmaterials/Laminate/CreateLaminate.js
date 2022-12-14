@@ -86,9 +86,9 @@ export default function CreateLaminate() {
             />
           </Form.Group>
           <Form.Group className="mb-3">
-            <Form.Label>Code</Form.Label>
+            <Form.Label>Cu Weight</Form.Label>
             <Form.Control
-              type="text"
+              type="number"
               placeholder="Cu Weight"
               name="cuWeight"
               id="cuWeight"
