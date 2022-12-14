@@ -1,7 +1,7 @@
 pipeline {
     agent any
         
-    tools {nodejs "Node"}
+    tools {nodejs "node"}
 
     stages {
     stage('Checkout')
@@ -13,7 +13,7 @@ pipeline {
         stage("Build") {
             steps {
                 bat 'npm install --silent'
-                bat 'npm start'
+                bat 'npm run build & npx wait-on http://localhost:3000'
             }
         }
     }
