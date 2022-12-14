@@ -14,6 +14,7 @@ import MaterialListCard from '../LaminateMaterialCard/LaminateMaterialCard';
 import LaminateMaterialCard from '../LaminateMaterialCard/LaminateMaterialCard';
 import CoverCoatCard from '../CoverCoatCard/CoverCoatCard';
 import StiffenerCard from '../StiffenerCard/StiffenerCard';
+import TapeCard from '../3MTapeCard/3MTapeCard';
 
 
 function Quote(props) {
@@ -321,10 +322,12 @@ function Quote(props) {
 
     // Save form input to quote hook
     const onChange = (e) => {
-        e.persist();
+        console.log("why")
+       
         console.log("Inside onChange: " + e.target.value)
         setQuote({ ...quote, [e.target.name]: e.target.value });
     }
+
 
 
     const postUrl = "http://localhost:5000/addQuote/";
@@ -394,10 +397,19 @@ function Quote(props) {
 
     // Update quote for ID
     useEffect(() => {
-        setQuote({ ...quote, "materials": materialIds });
-        console.log(materialIds)
+        
+        //quote.materials = materialIds;
+        console.log("yo: "+ materialIds)
+        setQuote((prevState) => {
+            return {
+                 ...prevState, "materials": materialIds
+            }
+        });
+        
+   
+        
     }, [materialIds])
-
+    console.log("from quote: "+ quote.materials);
     // Update quote for number of use
     useEffect(() => {
         function add(accumulator, a) {
@@ -406,7 +418,11 @@ function Quote(props) {
 
         const materialNumberOfUse = [...Object.values(numberOfUse)].reduce(add, 0)
 
-        setQuote({ ...quote, "materialNumberOfUse": materialNumberOfUse });
+        setQuote((prevState) => {
+            return {
+                 ...prevState, "materialNumberOfUse": materialNumberOfUse 
+            }
+        });
 
     }, [numberOfUse])
 
@@ -513,222 +529,14 @@ function Quote(props) {
                     <LaminateMaterialCard options={laminateOptions} ids={materialIds} setIds={setMaterialIds} numberOfUse={numberOfUse} setNumberOfUse={setNumberOfUse} />
 
 
-                    {/* <div className="col-11 mt-6" style={{ display: 'inline-block', marginLeft: '4em', background: 'lightgrey', paddingLeft: '1.5em', paddingRight: '1.5em', paddingTop: '1.5em', paddingBottom: '1.5em', borderRadius: '25px' }} >
-                        <h4>Laminate Material</h4>
-                        <Row>
-                            <Form.Group as={Col} className="mb-3">
-                                <Form.Label>Supplier</Form.Label>
-                                <Form.Control name='laminateSupplier' as="select"
-                                    value={laminateOptions.service}>
-                                    {laminateOptions.map((d) => (
-                                        <option data-myname={d.price} id={d.id} value={d.supplier}>{d.supplier}</option>
-                                    ))}
-                                </Form.Control>
-                            </Form.Group>
-                            <Form.Group as={Col}>
-                                <Form.Label>Material</Form.Label>
-                                <Form.Control name='laminateMaterial' as="select" onChange={getMaterialPrice}
-                                    value={laminateList.material}>
-                                    {laminateOptions.map((d) => (
-                                        <option id={d.id} value={d.material}>{d.material}</option>
-                                    ))}
-                                </Form.Control>
-                            </Form.Group>
-                            <Form.Group as={Col}>
-                                <Form.Label>CU Weight</Form.Label>
-                                <Form.Control name='laminateWeight' as="select"
-                                    value={laminateOptions.weight}>
-                                    {laminateOptions.map((d) => (
-                                        <option id={d.id} value={d.cuWeight}>{d.cuWeight}</option>
-                                    ))}
-                                </Form.Control>
-                            </Form.Group>
-                            <Form.Group as={Col}>
-                                <Form.Label>Used</Form.Label>
-                                <Form.Control name='laminateUsed' type="number" placeholder='0'
-                                    value={laminateOptions.used}>
-                                </Form.Control>
-                            </Form.Group>
-                            <Form.Group as={Col} style={{ display: "none" }}>
-                                <Form.Label>Price</Form.Label>
-                                <Form.Control name='laminatePrice' type='Text'
-                                    value={laminatePrice}>
-                                </Form.Control>
-                            </Form.Group>
-                            <div className=" mt-4">
-                                <Button style={{ width: "90px", height: "38px" }} onClick={addLaminate} variant="secondary" type="button">
-                                    Add
-                                </Button>
-                            </div>
-                            &nbsp;&nbsp;
-                        </Row>
-                        <Row><h6 style={{ marginLeft: '1em' }}><b>Materials Added</b></h6></Row>
-                        {laminateList.map((laminates, index) => (
-                            <Row key={index}>
-                                <Form.Group as={Col} className="mb-3"> */}
-                    {/* supplier: "", material: "", thinkness: "", used: "" */}
-                    {/* <Form.Label>{laminates.supplier}</Form.Label>
-                                </Form.Group>
-                                <Form.Group as={Col}>
-                                    <Form.Label>{laminates.material}</Form.Label>
-                                </Form.Group>
-                                <Form.Group as={Col}>
-                                    <Form.Label>{laminates.weight}</Form.Label>
-                                </Form.Group>
-                                <Form.Group as={Col}>
-                                    <Form.Label>{laminates.used}</Form.Label>
-                                </Form.Group>
-                                <div className=" mt-4">
-
-                                </div>
-                                &nbsp;&nbsp;
-                                <div>
-                                    {laminateList.length > 0 &&
-                                        <Button onClick={() => removeLaminate(index)} variant="secondary" type="button">
-                                            Remove
-                                        </Button>}
-                                </div>
-                            </Row>))}
-                    </div> */}
-
-
                     <CoverCoatCard ids={materialIds} options={coverCoatOptions} setIds={setMaterialIds} numberOfUse={numberOfUse} setNumberOfUse={setNumberOfUse} />
 
-                    {/* <div className="col-11 mt-3" style={{ display: 'inline-block', marginLeft: '4em', background: 'lightgrey', paddingLeft: '1.5em', paddingRight: '1.5em', paddingTop: '1.5em', paddingBottom: '1.5em', borderRadius: '25px' }} >
-                        <h4>Cover Coat</h4>
-                        <div>
-                            <Row>
-                                <Form.Group as={Col} className="mb-3">
-                                    <Form.Label>Supplier</Form.Label>
-                                    <Form.Control name='coverCoatSupplier' as="select"
-                                        value={coverCoatList.supplier}>
-                                        {coverCoatOptions.map((d) => (
-                                            <option key={d.id} value={d.supplier}>{d.supplier}</option>
-                                        ))}
-                                    </Form.Control>
-                                </Form.Group>
-                                <Form.Group as={Col}>
-                                    <Form.Label>Material</Form.Label>
-                                    <Form.Control name='coverCoatMaterial' as="select"
-                                        value={coverCoatList.material}>
-                                        {coverCoatOptions.map((d) => (
-                                            <option key={d.id} value={d.material}>{d.material}</option>
-                                        ))}
-                                    </Form.Control>
-                                </Form.Group>
-                                <Form.Group as={Col}>
-                                    <Form.Label>Thickness</Form.Label>
-                                    <Form.Control name='coverCoatThickness' as="select"
-                                        value={coverCoatList.thickness}>
-                                        {coverCoatOptions.map((d) => (
-                                            <option key={d.id} value={d.thickness}>{d.thickness}</option>
-                                        ))}
-                                    </Form.Control>
-                                </Form.Group>
-                                <Form.Group as={Col}>
-                                    <Form.Label>Used</Form.Label>
-                                    <Form.Control name='used' type="number" placeholder='0'>
-                                    </Form.Control>
-                                </Form.Group>
-                                <div className=" mt-4">
-                                    <Button style={{ width: "90px", height: "38px" }} onClick={addCoverCoat} variant="secondary" type="Input">
-                                        Add
-                                    </Button>
-                                </div>
-                                &nbsp;&nbsp;
-                                <div className="mt-4">
-                                    {coverCoatList.length > 1 &&
-                                        <Button onClick={() => removeCoverCoat()} variant="secondary" type="Delete">
-                                            Remove
-                                        </Button>}
-                                </div>
-                            </Row>
-                        </div>
-                        {coverCoatList.map((singleServices, index) => (
-                            <Row key={index}>
-                                <Form.Group as={Col} className="mb-3">
-                                    <Form.Label>Supplier</Form.Label>
-                                    <Form.Label>{singleServices.supplier}</Form.Label>
-                                </Form.Group>
-                                <Form.Group as={Col}>
-                                    <Form.Label>Material</Form.Label>
-                                    <Form.Label>{singleServices.supplier}</Form.Label>
-                                </Form.Group>
-                                <Form.Group as={Col}>
-                                    <Form.Label>Thickness</Form.Label>
-                                    <Form.Label>{singleServices.supplier}</Form.Label>
-                                </Form.Group>
-                                <Form.Group as={Col}>
-                                    <Form.Label>Used</Form.Label>
-                                    <Form.Label>Thickness</Form.Label>
-                                </Form.Group>
-                                <div className=" mt-4">
-
-                                </div>
-                                &nbsp;&nbsp;
-                                <div className="mt-4">
-                                    {coverCoatList.length > 1 &&
-                                        <Button onClick={() => removeCoverCoat(index)} variant="secondary" type="button">
-                                            Remove
-                                        </Button>}
-                                </div>
-                            </Row>))}
-                    </div> */}
 
 
                     <StiffenerCard ids={materialIds} options={stiffenerOptions} setIds={setMaterialIds} numberOfUse={numberOfUse} setNumberOfUse={setNumberOfUse} />
 
+                    <TapeCard ids = {materialIds} options = {tapeOptions} setIds={setMaterialIds} numberOfUse={numberOfUse} setNumberOfUse={setNumberOfUse} />
 
-                    {/* 
-                    <div className="col-11 mt-3" style={{ display: 'inline-block', marginLeft: '4em', background: 'lightgrey', paddingLeft: '1.5em', paddingRight: '1.5em', paddingTop: '1.5em', paddingBottom: '1.5em', borderRadius: '25px' }} >
-                        <h4>Stiffener</h4>
-                        {stiffenerList.map((singleServicestiff, index) => (
-                            <Row key={index}>
-                                <Form.Group as={Col} className="mb-3">
-                                    <Form.Label>Supplier</Form.Label>
-                                    <Form.Control name='supplier' as="select">
-                                        {stiffenerOptions.map((d) => (
-                                            <option key={d.id} value={d.id}>{d.supplier}</option>
-                                        ))}
-                                    </Form.Control>
-                                </Form.Group>
-                                <Form.Group as={Col}>
-                                    <Form.Label>Material</Form.Label>
-                                    <Form.Control name='material' as="select">
-                                        {stiffenerOptions.map((d) => (
-                                            <option key={d.id} value={d.id}>{d.material}</option>
-                                        ))}
-                                    </Form.Control>
-                                </Form.Group>
-                                <Form.Group as={Col}>
-                                    <Form.Label>Thickness</Form.Label>
-                                    <Form.Control name='thickness' as="select">
-                                        {stiffenerOptions.map((d) => (
-                                            <option key={d.id} value={d.id}>{d.thickness}</option>
-                                        ))}
-                                    </Form.Control>
-                                </Form.Group>
-                                <Form.Group as={Col}>
-                                    <Form.Label>Used</Form.Label>
-                                    <Form.Control name='used' type="number" placeholder='0'>
-                                    </Form.Control>
-                                </Form.Group>
-                                <div className=" mt-4">
-                                    {stiffenerList.length - 1 === index &&
-                                        <Button style={{ width: "90px", height: "38px" }} onClick={addStiffener} variant="secondary" type="Input">
-                                            Add
-                                        </Button>}
-                                </div>
-                                &nbsp;&nbsp;
-
-                                <div className="mt-4">
-                                    {stiffenerList.length > 1 &&
-                                        <Button onClick={() => removeStiffener(index)} variant="secondary" type="Delete">
-                                            Remove
-                                        </Button>}
-                                </div>
-                            </Row>))}
-                    </div> */}
 
                     <div className="col-11 mt-3" style={{ display: 'inline-block', marginLeft: '4em', background: 'lightgrey', paddingLeft: '1.5em', paddingRight: '1.5em', paddingTop: '1.5em', paddingBottom: '1.5em', borderRadius: '25px' }} >
                         <h4>3M Tape</h4>

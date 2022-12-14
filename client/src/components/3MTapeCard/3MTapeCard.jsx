@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { Box, Button, IconButton, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField, Typography } from '@mui/material'
-import styles from "./LaminateMaterialCard.module.css"
+import styles from "./3MTapeCard.module.css"
 import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
 
-const LaminateMaterialCard = ({ options, ids, setIds, numberOfUse, setNumberOfUse }) => {
+const TapeCard = ({ options, ids, setIds, numberOfUse, setNumberOfUse }) => {
     // States
     const [itemList, setItemList] = useState([])
     const [searchTerm, setSearchTerm] = useState("")
@@ -17,9 +17,11 @@ const LaminateMaterialCard = ({ options, ids, setIds, numberOfUse, setNumberOfUs
 
     const deleteItem = (item) => {
         const tempIds = ids.filter(element => element !== item._id)
-        setIds(tempIds)
+
+
+        // setIds(tempIds)
         console.log("DELETE")
-        //setIds([])
+        setIds([])
 
         // console.log("tempIds", tempIds)
 
@@ -47,7 +49,7 @@ const LaminateMaterialCard = ({ options, ids, setIds, numberOfUse, setNumberOfUs
     return (
         <Paper sx={{ borderRadius: "20px", display: "flex", flexDirection: "column", alignItems: "flex-start", gap: "24px", padding: "24px", marginTop: "24px" }}>
             {/* Title */}
-            <Typography variant="h4">Laminate Materials</Typography>
+            <Typography variant="h4">3M Tape</Typography>
 
 
             {/* Available options */}
@@ -156,4 +158,4 @@ const LaminateMaterialCard = ({ options, ids, setIds, numberOfUse, setNumberOfUs
     )
 }
 
-export default LaminateMaterialCard
+export default TapeCard
