@@ -10,8 +10,8 @@ pipeline {
         }
         stage("Build") {
             steps {
-                bat "sudo npm install"
-                bat "sudo npm run build"
+                bat "npm install"
+                bat "npm run build"
             }
         }
     }
