@@ -4,6 +4,9 @@
   "description": "COMP308 Assignment2",
   "main": "server.js",
   "dependencies": {
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
+    "@mui/material": "^5.11.0",
     "bcrypt": "^5.1.0",
     "body-parser": "^1.19.0",
     "compression": "^1.7.4",
