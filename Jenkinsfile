@@ -7,7 +7,7 @@ pipeline {
     stage('Checkout')
     {
     steps {
-    git branch: 'main', url: 'https://github.com/Sirusthevirus/COMP313Capstone.git'
+    git branch: 'master', url: 'https://github.com/Sirusthevirus/COMP313Capstone.git'
             }
         }
         stage("Build") {
