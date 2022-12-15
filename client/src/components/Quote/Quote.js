@@ -451,7 +451,7 @@ function Quote(props) {
 
   return (
     <Jumbotron style={{ background: "white" }}>
-      <h2 style={{ marginLeft: "2.5em" }}>
+      <h2>
         <b>Create Quote</b>
       </h2>
       <Form style={{ display: "flex" }} onSubmit={saveQuote}>
@@ -610,10 +610,11 @@ function Quote(props) {
           </div>
 
           {/* Section Header */}
-          <Typography variant={"h3"} sx={{ marginTop: "48px" }}>
-            Manufacturing
-          </Typography>
+          <h2>
+            <b>Manufacturing</b>
+          </h2>
 
+          <div  className="col-11 mt-3" style={{display: 'inline-block', background: '#A9A9A9', paddingLeft: '1.5em', paddingRight: '1.5em', paddingTop: '1.5em', paddingBottom: '1.5em', borderRadius:'25px'}} >
           <LaminateMaterialCard
             options={laminateOptions}
             ids={materialIds}
@@ -621,6 +622,9 @@ function Quote(props) {
             numberOfUse={materialNumberOfUse}
             setNumberOfUse={setMaterialNumberOfUse}
           />
+          </div>
+
+          <div  className="col-11 mt-3" style={{display: 'inline-block', background: '#A9A9A9', paddingLeft: '1.5em', paddingRight: '1.5em', paddingTop: '1.5em', paddingBottom: '1.5em', borderRadius:'25px'}} >
           <CoverCoatCard
             ids={materialIds}
             options={coverCoatOptions}
@@ -628,6 +632,9 @@ function Quote(props) {
             numberOfUse={materialNumberOfUse}
             setNumberOfUse={setMaterialNumberOfUse}
           />
+          </div>
+
+          <div  className="col-11 mt-3" style={{display: 'inline-block', background: '#A9A9A9', paddingLeft: '1.5em', paddingRight: '1.5em', paddingTop: '1.5em', paddingBottom: '1.5em', borderRadius:'25px'}} >
           <StiffenerCard
             ids={materialIds}
             options={stiffenerOptions}
@@ -635,6 +642,9 @@ function Quote(props) {
             numberOfUse={materialNumberOfUse}
             setNumberOfUse={setMaterialNumberOfUse}
           />
+          </div>
+
+          <div  className="col-11 mt-3" style={{display: 'inline-block', background: '#A9A9A9', paddingLeft: '1.5em', paddingRight: '1.5em', paddingTop: '1.5em', paddingBottom: '1.5em', borderRadius:'25px'}} >
           <TapeCard
             ids={materialIds}
             options={tapeOptions}
@@ -642,12 +652,14 @@ function Quote(props) {
             numberOfUse={materialNumberOfUse}
             setNumberOfUse={setMaterialNumberOfUse}
           />
+          </div>
 
           {/* Section Header */}
-          <Typography variant={"h3"} sx={{ marginTop: "48px" }}>
-            Processes
-          </Typography>
+          <h2>
+            <b>Processes</b>
+          </h2>
 
+          <div  className="col-11 mt-3" style={{display: 'inline-block', background: '#A9A9A9', paddingLeft: '1.5em', paddingRight: '1.5em', paddingTop: '1.5em', paddingBottom: '1.5em', borderRadius:'25px'}} >
           <DryFilmCard
             ids={dryAndWetIds}
             options={dryFilmOptions}
@@ -655,7 +667,9 @@ function Quote(props) {
             numberOfUse={dryAndWetNumberOfUse}
             setNumberOfUse={setDryAndWetNumberOfUse}
           />
+          </div>
 
+          <div  className="col-11 mt-3" style={{display: 'inline-block', background: '#A9A9A9', paddingLeft: '1.5em', paddingRight: '1.5em', paddingTop: '1.5em', paddingBottom: '1.5em', borderRadius:'25px'}} >
           <MechanicalCard
             ids={mechanicalIds}
             options={mechanicalOptions}
@@ -663,7 +677,9 @@ function Quote(props) {
             numberOfUse={mechanicalNumberOfUse}
             setNumberOfUse={setMechanicalNumberOfUse}
           />
+          </div>
 
+          <div  className="col-11 mt-3" style={{display: 'inline-block', background: '#A9A9A9', paddingLeft: '1.5em', paddingRight: '1.5em', paddingTop: '1.5em', paddingBottom: '1.5em', borderRadius:'25px'}} >
           <StandardCard
             ids={standardIds}
             options={standardOptions}
@@ -671,7 +687,9 @@ function Quote(props) {
             numberOfUse={standardNumberOfUse}
             setNumberOfUse={setStandardNumberOfUse}
           />
+          </div>
 
+          <div  className="col-11 mt-3" style={{display: 'inline-block', background: '#A9A9A9', paddingLeft: '1.5em', paddingRight: '1.5em', paddingTop: '1.5em', paddingBottom: '1.5em', borderRadius:'25px'}} >
           <FinishCard
             ids={finishIds}
             options={finishesOptions}
@@ -679,15 +697,19 @@ function Quote(props) {
             numberOfUse={finishNumberOfUse}
             setNumberOfUse={setFinishNumberOfUse}
           />
+          </div>
 
+          <div style={{display: 'flex', justifyContent: 'flex-end'}}>
           <Button
             sx={{ marginTop: "24px" }}
-            variant="contained"
+            variant="secondary"
             type="Submit"
-            fullWidth
+            
           >
             Submit
           </Button>
+
+          </div>
         </div>
 
         {

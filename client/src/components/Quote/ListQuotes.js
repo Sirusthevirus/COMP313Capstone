@@ -55,18 +55,7 @@ function ListQuotes() {
           borderRadius: "25px",
         }}
       >
-        <div
-          className="col-12 mt-3"
-          style={{ display: "flex", justifyContent: "flex-end" }}
-        >
-          <Button
-            onClick={addQuote}
-            style={{ width: "200px", height: "50px" }}
-            variant="secondary"
-          >
-            Create New Quote
-          </Button>
-        </div>
+      
         <Table className="table" hover>
           <thead className="table-dark" style={{ background: "#111868" }}>
             <tr>
@@ -106,6 +95,19 @@ function ListQuotes() {
             ))}
           </tbody>
         </Table>
+
+        <div
+          className="col-12 mt-3"
+          style={{ display: "flex", justifyContent: "flex-end" }}
+        >
+          <Button
+            onClick={addQuote}
+            style={{ width: "200px", height: "50px" }}
+            variant="secondary"
+          >
+            Create New Quote
+          </Button>
+        </div>
       </div>
     </Jumbotron>
   );

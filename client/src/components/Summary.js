@@ -25,6 +25,7 @@ export default function Summary() {
     revision:"",
     dateCreated:"",
     quoteNumber:"",
+    
   });
 
   const apiUrl = "http://localhost:3000/quoteById/" + qId;
