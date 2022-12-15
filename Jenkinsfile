@@ -13,11 +13,12 @@ pipeline {
         stage("Build") {
             steps {
                 bat 'npm install --silent'
+                bat 'npm start'
             }
         }
         stage("Test") {
             steps {
-                bat 'npm start'
+                echo "Running tests"
             }
         }
     }
