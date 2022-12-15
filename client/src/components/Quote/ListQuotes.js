@@ -45,9 +45,7 @@ function ListQuotes() {
             <h2>All Quotes</h2>
           </div>
         </div>
-        <div class="grid-item">
-          <Button onClick={addQuote} className="btn btn-dark">Create New Quote</Button>
-        </div>
+        
       </div>
 
       <div

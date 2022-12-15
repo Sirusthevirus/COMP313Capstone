@@ -1,17 +1,24 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef,useState, useEffect  } from "react";
 import Jumbotron from "react-bootstrap/Jumbotron";
 import { useReactToPrint } from "react-to-print";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
-
-
 export default function Summary() {
+
+  const componentRef = useRef();
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current,
+    documentTitle: "quote",
+    onafterprint: () => alert("print success"),
+  });
+
+  let navigate = useNavigate();
+  let { qId } = useParams();
 
   const [data, setData] = useState({
     _id: "",
     customer: "",
     panelSize: "",
-<<<<<<< HEAD
     exchangeRate:"",
     freight:"",
     partNumber:"",
@@ -19,25 +26,7 @@ export default function Summary() {
     dateCreated:"",
     quoteNumber:"",
     
-=======
-    exchangeRate: "",
-    freight: "",
-    partNumber: "",
-    revision: "",
-    dateCreated: "",
-    quoteNumber: "",
->>>>>>> 6ffe9bb5a22813de5cb7ab99387a77fe1a20096e
   });
-
-  const componentRef = useRef();
-  const handlePrint = useReactToPrint({
-    content: () => componentRef.current,
-    documentTitle: data.customer + "-quote#" + data.quoteNumber,
-    onafterprint: () => alert("print success"),
-  });
-
-  let navigate = useNavigate();
-  let { qId } = useParams();
 
   const apiUrl = "http://localhost:3000/quoteById/" + qId;
   useEffect(() => {
