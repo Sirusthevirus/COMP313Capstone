@@ -38,9 +38,17 @@ function ListQuotes() {
 
   return (
     <Jumbotron style={{ background: "white" }}>
-      <h2 style={{ marginLeft: "2.5em" }}>
-        <b> All Quotes </b>
-      </h2>
+
+      <div class="row w-75 mx-auto mb-3">
+        <div class="col-sm">
+          <div class="grid-item">
+            <h2>All Quotes</h2>
+          </div>
+        </div>
+        <div class="grid-item">
+          <Button onClick={addQuote} className="btn btn-dark">Create New Quote</Button>
+        </div>
+      </div>
 
       <div
         className="col-11 mt-6"
@@ -55,18 +63,6 @@ function ListQuotes() {
           borderRadius: "25px",
         }}
       >
-        <div
-          className="col-12 mt-3"
-          style={{ display: "flex", justifyContent: "flex-end" }}
-        >
-          <Button
-            onClick={addQuote}
-            style={{ width: "200px", height: "50px" }}
-            variant="secondary"
-          >
-            Create New Quote
-          </Button>
-        </div>
         <Table className="table" hover>
           <thead className="table-dark" style={{ background: "#111868" }}>
             <tr>
@@ -83,7 +79,7 @@ function ListQuotes() {
             {quotes.map((quote) => (
               <tr
                 key={quote._id}
-                // onClick={() => { quoteDetails(quote._id) }}
+              // onClick={() => { quoteDetails(quote._id) }}
               >
                 <td>{quote.quoteNumber}</td>
                 <td>{quote.customer}</td>
