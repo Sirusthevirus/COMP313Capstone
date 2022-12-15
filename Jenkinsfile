@@ -21,6 +21,26 @@ pipeline {
                 echo "Running tests"
             }
         }
+        stage('Deploy to Dev') {
+            steps {
+                echo 'Deploying to Dev Environment'
+            }
+        }
+        stage('Deploy to QAT') {
+            steps {
+                echo 'Deploying to QAT Environment'
+            }
+        }
+        stage('Deploy to Staging') {
+            steps {
+                echo 'Deploying to Staging Environment'
+            }
+        }
+        stage('Deploy to Production') {
+            steps {
+                echo 'Deploying to Production Environment'
+            }
+        }
     }
     post {
         always {
