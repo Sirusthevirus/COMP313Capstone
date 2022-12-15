@@ -337,8 +337,8 @@ function Quote(props) {
       exchangeRate: parseInt(quote.exchangeRate),
       freight: parseInt(quote.freight),
       numberOfLayers: parseInt(quote.numberOfLayers),
-      partNumber: parseInt(quote.partNumber),
-      revision: parseInt(quote.revision),
+      partNumber: quote.partNumber,
+      revision: quote.revision,
       dateCreated: currDate,
       materials: quote.materials,
       materialNumberOfUse: quote.materialNumberOfUse,
@@ -508,7 +508,7 @@ function Quote(props) {
                   <b>Part Number</b>
                 </Form.Label>
                 <Form.Control
-                  type="number"
+                  type="text"
                   name="partNumber"
                   id="partNumber"
                   value={quote.partNumber}
@@ -570,7 +570,7 @@ function Quote(props) {
                   <b>Revision</b>
                 </Form.Label>
                 <Form.Control
-                  type="number"
+                  type="text"
                   name="revision"
                   id="revision"
                   value={quote.revision}
