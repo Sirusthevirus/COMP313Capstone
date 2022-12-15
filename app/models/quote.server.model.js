@@ -74,10 +74,10 @@ let QuoteSchema = mongoose.Schema({
         type: String
     },
     partNumber: {
-        type: Number
+        type: String
     },
     revision: {
-        type: Number
+        type: String
     },
     panelSize: {
         type: String,
